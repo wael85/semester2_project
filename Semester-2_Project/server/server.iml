@@ -8,5 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="io.github.cdimascio.java.dotenv" level="application" />
+    <orderEntry type="module" module-name="shared_module" exported="" />
+    <orderEntry type="library" name="postgresql-42.3.3" level="application" />
   </component>
 </module>
