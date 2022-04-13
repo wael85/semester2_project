@@ -1,10 +1,7 @@
 package database;
-import io.github.cdimascio.dotenv.Dotenv;
-import users_model.Student;
 
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
+import io.github.cdimascio.dotenv.Dotenv;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

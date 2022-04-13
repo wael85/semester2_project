@@ -9,6 +9,7 @@ public class Administrator {
     private String password;
 
     public Administrator(int staff_number, String f_name, String l_name, int phone, String email,String password) {
+
         this.staff_number = staff_number;
         this.f_name = f_name;
         this.l_name = l_name;

@@ -8,6 +8,7 @@ public class Guest {
     private String password;
 
     public Guest(int CVR, String company_name, int phone, String email, String password) {
+
         this.CVR = CVR;
         this.company_name = company_name;
         this.phone = phone;

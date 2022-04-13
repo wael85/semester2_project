@@ -1,7 +1,6 @@
 package database;
 
 import io.github.cdimascio.dotenv.Dotenv;
-import users_model.Guest;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

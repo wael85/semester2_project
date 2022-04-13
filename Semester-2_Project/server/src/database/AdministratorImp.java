@@ -1,7 +1,6 @@
 package database;
 
 import io.github.cdimascio.dotenv.Dotenv;
-import users_model.Administrator;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +9,7 @@ import java.sql.SQLException;
 
 public class AdministratorImp implements AdministratorDAO{
     private static AdministratorImp instance;
-    private Dotenv dotenv = Dotenv.load();
+    private Dotenv dotenv =  Dotenv.load();
 
     private AdministratorImp() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
