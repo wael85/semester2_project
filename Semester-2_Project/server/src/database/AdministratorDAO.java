@@ -1,5 +1,7 @@
 package database;
 
+import java.sql.SQLException;
+
 public interface AdministratorDAO {
-    String create(int Staff_number , String firstName , String lastName ,String email ,int phone ,String password);
+    String create(String Staff_number , String firstName , String lastName ,String email ,String phone ,String password) throws SQLException;
 }
