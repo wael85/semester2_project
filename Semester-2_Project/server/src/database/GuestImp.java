@@ -27,6 +27,7 @@ public class GuestImp implements GuestDAO {
     @Override
     public String create(String CVR, String companyName, String email, String phone, String password){
 
+
         try(Connection connection = getConnection() ){
             PreparedStatement statement = connection.prepareStatement("insert into guest (user_name, company_name, email, phone, password)" +
                     "values (?,?,?,?,?);");
@@ -39,15 +40,6 @@ public class GuestImp implements GuestDAO {
 
             return CVR+", add successful!";
 
-        }catch (SQLException e){
-            return e.getMessage();
-        }
-        finally {
-            try {
-                getConnection().close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

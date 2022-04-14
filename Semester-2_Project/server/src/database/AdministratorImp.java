@@ -25,7 +25,9 @@ public class AdministratorImp implements AdministratorDAO{
     }
 
     @Override
+
     public String create(String staffNumber, String firstName, String lastName, String email, String phone, String password){
+
 
         try(Connection connection = getConnection() ){
             PreparedStatement statement = connection.prepareStatement("insert into administrator (user_name, f_name, l_name, email, phone, password)" +
@@ -47,6 +49,7 @@ public class AdministratorImp implements AdministratorDAO{
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+
         }
     }
 }

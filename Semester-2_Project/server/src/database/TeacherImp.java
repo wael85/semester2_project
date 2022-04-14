@@ -28,10 +28,12 @@ public class TeacherImp implements TeacherDAO {
     @Override
     public String create(String staffNumber, String firstName, String lastName, String email, String phone, String password){
 
+
         try(Connection connection = getConnection() ){
             PreparedStatement statement = connection.prepareStatement("insert into administrator (user_name, f_name, l_name, email, phone, password)" +
                     "values (?,?,?,?,?,?);");
             statement.setString(1,staffNumber);
+
             statement.setString(2,firstName);
             statement.setString(3,lastName);
             statement.setString(4,email);
@@ -48,6 +50,7 @@ public class TeacherImp implements TeacherDAO {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+
         }
     }
 }
