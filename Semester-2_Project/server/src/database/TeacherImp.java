@@ -26,19 +26,31 @@ public class TeacherImp implements TeacherDAO {
     }
 
     @Override
-    public String create(String staff_number, String firstName, String lastName, String email, String phone, String password) throws SQLException {
+    public String create(String staffNumber, String firstName, String lastName, String email, String phone, String password){
+
 
         try(Connection connection = getConnection() ){
             PreparedStatement statement = connection.prepareStatement("insert into administrator (user_name, f_name, l_name, email, phone, password)" +
                     "values (?,?,?,?,?,?);");
-            statement.setString(1,staff_number);
+            statement.setString(1,staffNumber);
+
             statement.setString(2,firstName);
             statement.setString(3,lastName);
             statement.setString(4,email);
             statement.setString(5,phone);
             statement.setString(6,password);
             statement.executeUpdate();
-            return staff_number + ", add successful!";
+            return staffNumber + ", add successful!";
+        }catch (SQLException e){
+            return e.getMessage();
+        }
+        finally {
+            try {
+                getConnection().close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 }

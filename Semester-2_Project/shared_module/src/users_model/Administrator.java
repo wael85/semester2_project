@@ -1,18 +1,20 @@
 package users_model;
 
-public class Administrator {
-    private int staff_number;
-    private String f_name;
-    private String l_name;
-    private int phone;
+import java.io.Serializable;
+
+public class Administrator implements Serializable {
+    private String staffNumber;
+    private String firstName;
+    private String lastName;
+    private String phone;
     private String email;
     private String password;
 
-    public Administrator(int staff_number, String f_name, String l_name, int phone, String email,String password) {
+    public Administrator(String  staffNumber, String firstName, String lastName, String phone, String email,String password) {
 
-        this.staff_number = staff_number;
-        this.f_name = f_name;
-        this.l_name = l_name;
+        this.staffNumber = staffNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phone = phone;
         this.email = email;
         this.password=password;
@@ -22,9 +24,9 @@ public class Administrator {
     @Override
     public String toString() {
         return
-                "Staff_number" + staff_number  +
-                ", first name: '" + f_name +
-                ", last name: '" + l_name  +
+                "Staff_number" + staffNumber  +
+                ", first name: '" + firstName +
+                ", last name: '" + lastName  +
                 ", phone: " + phone +
                 ", email: '" + email ;
     }
