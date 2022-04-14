@@ -1,17 +1,19 @@
 package users_model;
 
-public class Student {
-    public int student_id;
+import java.io.Serializable;
+
+public class Student implements Serializable {
+    public String studentId;
     public String firstName;
-    public String last_name;
-    public int phone;
+    public String lastName;
+    public String phone;
     public String email;
     public String password;
 
-    public Student(int student_id, String firstName, String last_name, int phone, String email, String password) {
-        this.student_id = student_id;
+    public Student(String studentId, String firstName, String last_name, String phone, String email, String password) {
+        this.studentId = studentId;
         this.firstName = firstName;
-        this.last_name = last_name;
+        this.lastName = last_name;
         this.phone = phone;
         this.email = email;
         this.password = password;
@@ -23,9 +25,9 @@ public class Student {
     @Override
     public String toString() {
         return
-                "Id=" + student_id +
+                "Id=" + studentId +
                 ", firstName:'" + firstName +
-                ", last_name:'" + last_name +
+                ", last_name:'" + lastName +
                 ", phone:" + phone +
                 ", email:'" + email;
     }
