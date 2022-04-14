@@ -1,5 +1,7 @@
 package database;
 
+import java.sql.SQLException;
+
 public interface GuestDAO {
-    String create(int CVR , String company_name, String email, int phone ,String password);
+    String create(String CVR , String company_name, String email, String phone ,String password) throws SQLException;
 }
