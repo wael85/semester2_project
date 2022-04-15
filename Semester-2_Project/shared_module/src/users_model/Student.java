@@ -10,10 +10,10 @@ public class Student implements Serializable {
     public String email;
     public String password;
 
-    public Student(String studentId, String firstName, String last_name, String phone, String email, String password) {
+    public Student(String studentId, String firstName, String lastName, String phone, String email, String password) {
         this.studentId = studentId;
         this.firstName = firstName;
-        this.lastName = last_name;
+        this.lastName = lastName;
         this.phone = phone;
         this.email = email;
         this.password = password;
