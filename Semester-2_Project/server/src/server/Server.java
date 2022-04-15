@@ -1,5 +1,7 @@
 package server;
 
+import sheared_interfaces.RemoteCreateUsers;
+
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;

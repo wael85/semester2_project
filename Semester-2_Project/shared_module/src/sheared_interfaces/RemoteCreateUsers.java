@@ -1,4 +1,4 @@
-package server;
+package sheared_interfaces;
 
 import users_model.Administrator;
 import users_model.Guest;

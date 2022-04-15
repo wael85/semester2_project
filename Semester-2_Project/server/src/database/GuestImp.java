@@ -40,6 +40,16 @@ public class GuestImp implements GuestDAO {
 
             return CVR+", add successful!";
 
+        }catch (SQLException e){
+            return e.getMessage();
+        }
+        finally {
+            try {
+                getConnection().close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 }

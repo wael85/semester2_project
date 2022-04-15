@@ -10,7 +10,15 @@
     <orderEntry type="library" exported="" name="io.github.cdimascio.java.dotenv" level="application" />
     <orderEntry type="module" module-name="shared_module" exported="" />
     <orderEntry type="library" exported="" name="postgresql-42.3.3" level="application" />
-    <orderEntry type="library" exported="" name="java-dotenv-5.2.2" level="application" />
     <orderEntry type="library" exported="" name="remoteobserver" level="application" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../../Java_Jars/jar_files/java-dotenv-5.2.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
