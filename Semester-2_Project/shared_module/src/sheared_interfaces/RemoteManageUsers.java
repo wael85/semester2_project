@@ -9,24 +9,24 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
-public interface RemoteCreateUsers extends Remote {
+public interface RemoteManageUsers extends Remote {
     Administrator createAdmin(
-            String  staff_number, String f_name,
-            String l_name, String phone, String email,String password
+            String  staffNumber, String firstName,
+            String lastName, String phone, String email,String password
     ) throws SQLException, RemoteException;
 
     Student createStudent(
-            String student_id, String firstName,
-            String last_name, String phone, String email, String password
+            String studentId, String firstName,
+            String lastName, String phone, String email, String password
     ) throws SQLException,RemoteException;
 
     Teacher createTeacher(
-            String staff_number, String f_name, String l_name,
+            String staffNumber, String firstName, String lastName,
             String phone, String email,String password
     ) throws SQLException,RemoteException;
 
     Guest createGuest(
-            String CVR, String company_name, String phone,
+            String CVR, String companyName, String phone,
             String email, String password
     ) throws SQLException,RemoteException;
 
