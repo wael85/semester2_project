@@ -22,7 +22,7 @@ public class ViewHandler {
     }
 
     public void openView(String id){
-        Region root = switch (id) {
+       /* Region root = switch (id) {
 
             // todo add viewFactory for each view
 
@@ -39,7 +39,7 @@ public class ViewHandler {
         }
         primaryStage.setScene(currentScene);
         primaryStage.sizeToScene();
-        primaryStage.show();
+        primaryStage.show();*/
 
     }
     public void closeView(){
