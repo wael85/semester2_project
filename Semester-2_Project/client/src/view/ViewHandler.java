@@ -17,18 +17,17 @@ public class ViewHandler {
     }
     public void start(Stage primaryStage){
         this.primaryStage=primaryStage;
-        // todo add open view.
-        //openView("Chat");
+
+        openView("addAdmin");
     }
 
     public void openView(String id){
-       /* Region root = switch (id) {
+        Region root = switch (id) {
 
-            // todo add viewFactory for each view
-
-            case "Chat" -> viewFactory.loadChatView();
-            case "OnlineUsers" -> viewFactory.loadOnlineUserView();
-
+            case "addAdmin" -> viewFactory.loadAddAdminView();
+            case "addStudent" -> viewFactory.loadAddStudentView();
+            case "addGuest" -> viewFactory.loadAddGuestView();
+            case "addTeacher" -> viewFactory.loadAddTeacherView();
             default -> throw new IllegalArgumentException("Unknown view: " + id);
         };
         currentScene.setRoot(root);
@@ -39,7 +38,7 @@ public class ViewHandler {
         }
         primaryStage.setScene(currentScene);
         primaryStage.sizeToScene();
-        primaryStage.show();*/
+        primaryStage.show();
 
     }
     public void closeView(){
