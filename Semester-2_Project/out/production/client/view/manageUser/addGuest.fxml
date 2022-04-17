@@ -14,21 +14,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="335.0" prefWidth="428.0" style="-fx-background-color: #0A5663;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manageUser.AddTeacherController">
+<AnchorPane prefHeight="335.0" prefWidth="428.0" style="-fx-background-color: #0A5663;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manageUser.AddGuestController">
    <children>
-      <TextField fx:id="firstName" layoutX="114.0" layoutY="33.0" />
-      <TextField fx:id="lastname" layoutX="114.0" layoutY="68.0" />
-      <TextField fx:id="staffId" layoutX="114.0" layoutY="101.0" />
-      <TextField fx:id="phone" layoutX="114.0" layoutY="133.0" />
-      <TextField fx:id="email" layoutX="114.0" layoutY="166.0" />
-      <Label layoutX="14.0" layoutY="37.0" text="First name: " textFill="#160000" />
-      <Label layoutX="14.0" layoutY="72.0" text="Last name:" textFill="#160000" />
-      <Label layoutX="14.0" layoutY="105.0" text="Study number:" textFill="#160000" />
-      <Label layoutX="14.0" layoutY="137.0" text="tlf. number:" textFill="#130000" />
-      <Label layoutX="14.0" layoutY="170.0" text="Email addres:" textFill="#160000" />
-      <Label layoutX="17.0" layoutY="204.0" text="Password:" textFill="#160000" />
-      <Text layoutX="114.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="148.79999999999995" />
-      <Button fx:id="AddTeacher" layoutX="166.0" layoutY="231.0" mnemonicParsing="false" onAction="#AddTeacher" prefHeight="26.0" prefWidth="96.0" style="-fx-background-color: #39C997;" text="Add">
+      <TextField fx:id="name" layoutX="114.0" layoutY="33.0" />
+      <TextField fx:id="CVR" layoutX="114.0" layoutY="68.0" />
+      <TextField fx:id="phone" layoutX="114.0" layoutY="102.0" />
+      <TextField fx:id="email" layoutX="114.0" layoutY="136.0" />
+      <Label layoutX="14.0" layoutY="37.0" text="Company name:" textFill="#160000" />
+      <Label layoutX="14.0" layoutY="72.0" text="CVR:" textFill="#160000" />
+      <Label layoutX="13.0" layoutY="106.0" text="tlf. number:" textFill="#130000" />
+      <Label layoutX="14.0" layoutY="140.0" text="Email addres:" textFill="#160000" />
+      <Label layoutX="12.0" layoutY="172.0" text="Password:" textFill="#160000" />
+      <Text fill="RED" layoutX="114.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="148.79999999999995" />
+      <Button fx:id="AddGuest" layoutX="166.0" layoutY="204.0" mnemonicParsing="false" onAction="#AddGuest" prefHeight="26.0" prefWidth="96.0" style="-fx-background-color: #39C997;" text="Add">
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.5" radius="0.009345794705865539">
                <stops>
@@ -40,7 +38,7 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <PasswordField fx:id="password" layoutX="114.0" layoutY="200.0" />
+      <PasswordField fx:id="password" layoutX="114.0" layoutY="168.0" />
       <ImageView fitHeight="68.0" fitWidth="141.0" layoutX="276.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../resources/viaLogo.png" />
@@ -53,6 +51,6 @@
             <MenuItem id="addAdmin" mnemonicParsing="false" onAction="#goAddAdmin" text="Admin" />
         </items>
       </MenuButton>
-      <Button layoutX="114.0" layoutY="231.0" mnemonicParsing="false" onAction="#Cancel" style="-fx-background-color: #D13737;" text="Cancel" textFill="#090000" />
+      <Button layoutX="114.0" layoutY="204.0" mnemonicParsing="false" onAction="#Cancel" style="-fx-background-color: #D13737;" text="Cancel" textFill="#090000" />
    </children>
 </AnchorPane>

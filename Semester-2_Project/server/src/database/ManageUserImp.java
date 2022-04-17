@@ -31,7 +31,7 @@ public class ManageUserImp implements ManageUserDAO{
     @Override
     public Administrator createAdministrator(String staffNumber, String firstName, String lastName, String phone, String email, String password) throws SQLException {
         try(Connection connection = getConnection() ){
-            PreparedStatement statement = connection.prepareStatement("insert into administrator (user_name, f_name, l_name, email, phone, password)" +
+            PreparedStatement statement = connection.prepareStatement("insert into booking_room_system.administrator (user_name, f_name, l_name, email, phone, password)" +
                     "values (?,?,?,?,?,?);");
             statement.setString(1,staffNumber);
             statement.setString(2,firstName);
@@ -47,7 +47,7 @@ public class ManageUserImp implements ManageUserDAO{
     @Override
     public Guest createGuest(String CVR, String companyName, String phone, String email, String password) throws SQLException {
         try(Connection connection = getConnection() ){
-            PreparedStatement statement = connection.prepareStatement("insert into guest (user_name, company_name, email, phone, password)" +
+            PreparedStatement statement = connection.prepareStatement("insert into booking_room_system.guest (user_name, company_name, email, phone, password)" +
                     "values (?,?,?,?,?);");
             statement.setString(1,CVR);
             statement.setString(2,companyName);
@@ -63,7 +63,7 @@ public class ManageUserImp implements ManageUserDAO{
     @Override
     public Student createStudent(String studentId, String firstName, String lastName, String email, String phone, String password) throws SQLException {
         try(Connection connection = getConnection() ){
-            PreparedStatement statement = connection.prepareStatement("insert into student (user_name, f_name, l_name, email, phone, password)" +
+            PreparedStatement statement = connection.prepareStatement("insert into booking_room_system.student (user_name, f_name, l_name, email, phone, password)" +
                     "values (?,?,?,?,?,?);");
             statement.setString(1,studentId);
             statement.setString(2,firstName);
@@ -79,7 +79,7 @@ public class ManageUserImp implements ManageUserDAO{
     @Override
     public Teacher createTeacher(String staffNumber, String firstName, String lastName, String phone, String email, String password) throws SQLException {
         try(Connection connection = getConnection() ){
-            PreparedStatement statement = connection.prepareStatement("insert into administrator (user_name, f_name, l_name, email, phone, password)" +
+            PreparedStatement statement = connection.prepareStatement("insert into booking_room_system.teacher (user_name, f_name, l_name, email, phone, password)" +
                     "values (?,?,?,?,?,?);");
             statement.setString(1,staffNumber);
 

@@ -8,7 +8,7 @@ import view.ViewHandler;
 import viewModel.AddTeacherViewModel;
 
 public class AddTeacherController {
-    public TextField firstname;
+    public TextField firstName;
     public TextField lastname;
     public TextField staffId;
     public TextField phone;

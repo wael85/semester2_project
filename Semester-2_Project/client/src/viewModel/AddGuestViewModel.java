@@ -1,18 +1,18 @@
 package viewModel;
 
 import javafx.beans.property.StringProperty;
-import model.Model;
+import users_model.UsersManagementModel;
 
 public class AddGuestViewModel {
-    private Model model;
+    private UsersManagementModel usersManagementModel;
     private StringProperty CompanyName;
     private StringProperty CVR;
     private StringProperty phone;
     private StringProperty email;
     private StringProperty password;
 
-    public AddGuestViewModel(Model model) {
-        this.model = model;
+    public AddGuestViewModel(UsersManagementModel model) {
+        this.usersManagementModel = model;
 
     }
 

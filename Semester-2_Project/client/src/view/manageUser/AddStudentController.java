@@ -10,8 +10,8 @@ import viewModel.AddStudentViewModel;
 public class AddStudentController {
 
 
-    public TextField lastname;
-    public TextField firstname;
+    public TextField lastName;
+    public TextField firstName;
     public TextField studentNumber;
     public TextField phone;
     public TextField email;
