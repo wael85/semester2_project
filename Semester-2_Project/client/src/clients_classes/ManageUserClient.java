@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class ManageUserClient extends UnicastRemoteObject implements ManageUserClientInterface {
     private RemoteManageUsers remoteManageUsers;
 
-    protected ManageUserClient(String host , int port) throws RemoteException, NotBoundException {
+    public ManageUserClient(String host , int port) throws RemoteException, NotBoundException {
         Registry registry = LocateRegistry.getRegistry(host,port);
         remoteManageUsers = (RemoteManageUsers) registry.lookup("create_users");
     }
@@ -29,21 +29,27 @@ public class ManageUserClient extends UnicastRemoteObject implements ManageUserC
 
     @Override
     public Administrator createAdmin(String staffNumber, String firstName, String lastName, String phone, String email, String password) throws SQLException, RemoteException {
-        return remoteManageUsers.createAdmin(staffNumber, firstName, lastName,phone,email,password);
+        try {
+
+            return remoteManageUsers.createAdmin(staffNumber, firstName, lastName,phone,email,password);
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
     public Student createStudent(String studentId, String firstName, String lastName, String phone, String email, String password) throws SQLException, RemoteException {
-        return null;
+        return remoteManageUsers.createStudent(studentId,firstName,lastName,phone,email,password);
     }
 
     @Override
     public Teacher createTeacher(String staffNumber, String firstName, String lastName, String phone, String email, String password) throws SQLException, RemoteException {
-        return null;
+        return remoteManageUsers.createTeacher(staffNumber,firstName,lastName,phone,email,password);
     }
 
     @Override
     public Guest createGuest(String CVR, String companyName, String phone, String email, String password) throws SQLException, RemoteException {
-        return null;
+        return remoteManageUsers.createGuest(CVR,companyName,phone,email,password);
     }
 }

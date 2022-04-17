@@ -1,10 +1,10 @@
 package viewModel;
 
 import javafx.beans.property.StringProperty;
-import model.Model;
+import users_model.UsersManagementModel;
 
 public class AddStudentViewModel {
-    private Model model;
+    private UsersManagementModel usersManagementModel;
     private StringProperty firstname;
     private StringProperty lastname;
     private StringProperty studentNumber;
@@ -12,8 +12,8 @@ public class AddStudentViewModel {
     private StringProperty email;
     private StringProperty password;
 
-    public AddStudentViewModel(Model model) {
-        this.model = model;
+    public AddStudentViewModel(UsersManagementModel model) {
+        this.usersManagementModel = model;
 
     }
 

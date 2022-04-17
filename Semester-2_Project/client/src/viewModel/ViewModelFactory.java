@@ -1,7 +1,7 @@
 package viewModel;
 
-import model.Model;
 
+import users_model.UsersManagementModel;
 
 public class ViewModelFactory {
 
@@ -10,7 +10,7 @@ public class ViewModelFactory {
     private AddGuestViewModel addGuestViewModel;
     private AddTeacherViewModel addTeacherViewModel;
 
-    public ViewModelFactory(Model model){
+    public ViewModelFactory(UsersManagementModel model){
         this.addAdminViewModel =new AddAdminViewModel(model);
         this.addGuestViewModel = new AddGuestViewModel(model);
         this.addStudentViewModel = new AddStudentViewModel(model);

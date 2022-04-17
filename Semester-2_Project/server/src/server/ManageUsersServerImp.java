@@ -13,9 +13,10 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 
 public class ManageUsersServerImp extends UnicastRemoteObject implements RemoteManageUsers {
-    ManageUserDAO manageUserDAO= ManageUserImp.getInstance();
+    private ManageUserDAO manageUserDAO;
 
     public ManageUsersServerImp() throws RemoteException, SQLException {
+        manageUserDAO = ManageUserImp.getInstance();
     }
 
     @Override
