@@ -1,7 +1,11 @@
 package viewModel;
 
 
-import users_model.UsersManagementModel;
+import model.UsersManagementModel;
+import viewModel.administrator.AddAdminViewModel;
+import viewModel.administrator.AddGuestViewModel;
+import viewModel.administrator.AddStudentViewModel;
+import viewModel.administrator.AddTeacherViewModel;
 
 public class ViewModelFactory {
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="392.0" prefWidth="448.0" style="-fx-background-color: #0A5663;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.addUser.TabPaneAdminController">
+    <children>
+        <TabPane fx:id="tabPane" layoutX="-1.0" prefHeight="336.0" prefWidth="449.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Add Admin">
+                    <fx:include fx:id="addAdmin" source="admin/addAdmin.fxml" />
+                </Tab>
+
+                <Tab text="Add Teacher">
+                    <fx:include fx:id="addTeacher" source="teacher/addTeacher.fxml" />
+                </Tab>
+
+                <Tab text="Add Student">
+                    <fx:include fx:id="addStudent" source="student/addStudent.fxml" />
+                </Tab>
+
+                <Tab text="Add Guest">
+                    <fx:include fx:id="addGuest" source="guest/addGuest.fxml" />
+                </Tab>
+            </tabs>
+        </TabPane>
+      <Button layoutX="31.0" layoutY="347.0" mnemonicParsing="false" text="Back" />
+    </children>
+</AnchorPane>

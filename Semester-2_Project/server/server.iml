@@ -5,20 +5,19 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="16" jdkType="JavaSDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="io.github.cdimascio.java.dotenv" level="application" />
-    <orderEntry type="module" module-name="shared_module" exported="" />
+    <orderEntry type="module" module-name="New folder" />
     <orderEntry type="library" exported="" name="postgresql-42.3.3" level="application" />
-    <orderEntry type="library" exported="" name="remoteobserver" level="application" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../../Java_Jars/jar_files/java-dotenv-5.2.2.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/via/Java_Jars/jar_files/java-dotenv-5.2.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module" module-name="SharedModul" />
   </component>
 </module>

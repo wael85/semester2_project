@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class ManageUserImp implements ManageUserDAO{
     private static ManageUserImp instance;
-    private Dotenv dotenv =  Dotenv.load();
+    private Dotenv dotenv = Dotenv.load();
 
     private ManageUserImp() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());

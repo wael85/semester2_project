@@ -1,48 +1,49 @@
 package view;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import view.addUser.TabPaneAdminController;
 import viewModel.ViewModelFactory;
+
+import java.io.IOException;
 
 public class ViewHandler {
 
-    private Stage primaryStage;
-    private final Scene currentScene;
-    private final ViewFactory viewFactory;
+    private Stage stage;
+    private ViewModelFactory vmf;
 
-    public ViewHandler(ViewModelFactory viewModelFactory) {
-        this.viewFactory= new ViewFactory(this,viewModelFactory);
-        this.currentScene= new Scene(new Region());
-    }
-    public void start(Stage primaryStage){
-        this.primaryStage=primaryStage;
-
-        openView("addAdmin");
+    public ViewHandler(Stage stage, ViewModelFactory vmf) {
+        this.stage = stage;
+        this.vmf = vmf;
     }
 
-    public void openView(String id){
-        Region root = switch (id) {
+    public void start() {
+        openTabPaneAdmin();
+    }
 
-            case "addAdmin" -> viewFactory.loadAddAdminView();
-            case "addStudent" -> viewFactory.loadAddStudentView();
-            case "addGuest" -> viewFactory.loadAddGuestView();
-            case "addTeacher" -> viewFactory.loadAddTeacherView();
-            default -> throw new IllegalArgumentException("Unknown view: " + id);
-        };
-        currentScene.setRoot(root);
-        if (root.getUserData() == null) {
-            primaryStage.setTitle("");
-        } else {
-            primaryStage.setTitle(root.getUserData().toString());
+    private void openTabPaneAdmin() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../view/addUser/tabPaneAdmin.fxml"));
+            Parent root = loader.load();
+
+            TabPaneAdminController view = loader.getController();
+            view.init(vmf);
+            Scene scene = new Scene(root);
+            stage.setTitle("");
+
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        primaryStage.setScene(currentScene);
-        primaryStage.sizeToScene();
-        primaryStage.show();
-
     }
+
+
     public void closeView(){
-        primaryStage.close();
+        stage.close();
 
     }
 
