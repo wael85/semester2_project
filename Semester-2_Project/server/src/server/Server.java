@@ -12,7 +12,6 @@ public class Server {
     public static void main(String[] args) throws RemoteException, AlreadyBoundException, SQLException {
         Registry registry = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
         RemoteManageUsers manageUsersServerImp = new ManageUsersServerImp();
-        //manageUsersServerImp.createAdmin("asd","sds","sd","sfsf","sdfs","sds,");
         registry.bind("create_users" , manageUsersServerImp);
         System.out.println("Server is running on port "+ Registry.REGISTRY_PORT);
     }

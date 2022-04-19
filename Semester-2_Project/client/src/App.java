@@ -10,7 +10,7 @@ import viewModel.ViewModelFactory;
 
 import java.rmi.registry.Registry;
 
-public class StartApplication extends Application {
+public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         ManageUserClientInterface client = new ManageUserClient("localhost", Registry.REGISTRY_PORT);
