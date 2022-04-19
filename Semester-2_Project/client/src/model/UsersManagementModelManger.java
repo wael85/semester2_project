@@ -6,6 +6,7 @@ import users_model.Guest;
 import users_model.Student;
 import users_model.Teacher;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
@@ -35,5 +36,10 @@ public class UsersManagementModelManger implements UsersManagementModel{
     @Override
     public Guest createGuest(String CVR, String companyName, String phone, String email, String password) throws SQLException, RemoteException {
         return client.createGuest(CVR, companyName, phone, email, password);
+    }
+
+    @Override
+    public void close() throws IOException {
+        client.close();
     }
 }
