@@ -25,7 +25,7 @@ public class ViewHandler {
     public void start() {
         openTabPaneAdmin();
     }
-
+    // we need other views connected
     private void openTabPaneAdmin() {
         try {
             FXMLLoader loader = new FXMLLoader();
