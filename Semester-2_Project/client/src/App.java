@@ -16,8 +16,9 @@ public class App extends Application {
         ManageUserClientInterface client = new ManageUserClient("localhost", Registry.REGISTRY_PORT);
         UsersManagementModel usersManagementModel = new UsersManagementModelManger(client);
         ViewModelFactory viewModelFactory = new ViewModelFactory(usersManagementModel);
-        ViewHandler viewHandler = new ViewHandler(primaryStage,viewModelFactory);
+        ViewHandler viewHandler = new ViewHandler(primaryStage,viewModelFactory,usersManagementModel);
         viewHandler.start();
+        primaryStage.getOnCloseRequest();
     }
 
 
