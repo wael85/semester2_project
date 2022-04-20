@@ -19,6 +19,7 @@ public class ViewModelFactory {
         this.addGuestViewModel = new AddGuestViewModel(model);
         this.addStudentViewModel = new AddStudentViewModel(model);
         this.addTeacherViewModel = new AddTeacherViewModel(model);
+        //juan
     }
 
     public AddAdminViewModel getAddAdminViewModel() {
