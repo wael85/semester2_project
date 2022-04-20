@@ -39,7 +39,8 @@ public class ViewHandler {
 
             stage.setScene(scene);
             stage.show();
-            stage.setOnCloseRequest(e ->{
+
+            stage.setOnCloseRequest(e -> {
                 try {
                     usersManagementModel.close();
                 } catch (IOException ex) {
