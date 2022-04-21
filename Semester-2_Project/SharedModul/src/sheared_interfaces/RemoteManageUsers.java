@@ -11,23 +11,23 @@ import java.sql.SQLException;
 
 public interface RemoteManageUsers extends Remote {
     Administrator createAdmin(
-            String  staffNumber, String firstName,
-            String lastName, String phone, String email,String password
+            String  staffNumber,String password, String firstName,
+            String lastName, String phone, String email
     ) throws SQLException, RemoteException;
 
     Student createStudent(
-            String studentId, String firstName,
-            String lastName, String phone, String email, String password
+            String studentId, String password, String firstName,
+            String lastName, String phone, String email
     ) throws SQLException,RemoteException;
 
     Teacher createTeacher(
-            String staffNumber, String firstName, String lastName,
-            String phone, String email,String password
+            String staffNumber,String password, String firstName, String lastName,
+            String phone, String email
     ) throws SQLException,RemoteException;
 
     Guest createGuest(
-            String CVR, String companyName, String phone,
-            String email, String password
+            String CVR, String password, String companyName, String phone,
+            String email
     ) throws SQLException,RemoteException;
 
 }

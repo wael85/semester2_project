@@ -2,20 +2,20 @@ package users_model;
 
 import java.io.Serializable;
 
-public class Guest implements Serializable {
-    private String CVR;
+public class Guest extends User implements Serializable {
+
     private String companyName;
     private String phone;
     private String email;
-    private String password;
 
-    public Guest(String CVR, String companyName, String phone, String email, String password) {
 
-        this.CVR = CVR;
+    public Guest(String userName, String password, String companyName, String phone, String email) {
+
+        super(userName, password);
         this.companyName = companyName;
         this.phone = phone;
         this.email = email;
-        this.password = password;
+
     }
 
 
@@ -23,10 +23,9 @@ public class Guest implements Serializable {
     @Override
     public String toString() {
         return
-                "CVR:" + CVR +
-                ", company_name:'" + companyName +
-                ", phone:" + phone +
-                ", email:'" + email +
-                ", password:" + password;
+                super.toString()+
+                        ", company_name: " + companyName +
+                        ", phone: " + phone +
+                        ", email: " + email;
     }
 }
