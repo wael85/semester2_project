@@ -50,7 +50,7 @@ public class AddAdminViewModel {
     }
     public void createAdmin(){
         try {
-            usersManagementModel.createAdmin(adminId.get(),firstname.get(),lastname.get(),phone.get(),email.get(),password.get());
+            usersManagementModel.createAdmin(adminId.get(),password.get(),firstname.get(),lastname.get(),phone.get(),email.get());
             notification(adminId.getValue()+", add successfully");
         }catch (Exception e){
 

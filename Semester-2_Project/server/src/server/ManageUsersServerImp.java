@@ -20,22 +20,22 @@ public class ManageUsersServerImp extends UnicastRemoteObject implements RemoteM
     }
 
     @Override
-    public Administrator createAdmin(String staffNumber, String firstName, String lastName, String phone, String email, String password) throws RemoteException,SQLException {
-        return manageUserDAO.createAdministrator(staffNumber, firstName, lastName, phone, email, password);
+    public Administrator createAdmin(String staffNumber, String password, String firstName, String lastName, String phone, String email) throws RemoteException,SQLException {
+        return manageUserDAO.createAdministrator(staffNumber, password, firstName, lastName, phone, email);
     }
 
     @Override
-    public Student createStudent(String studentId, String firstName, String lastName, String phone, String email, String password) throws RemoteException,SQLException {
-       return manageUserDAO.createStudent(studentId, firstName, lastName, phone, email, password);
+    public Student createStudent(String studentId, String password, String firstName, String lastName, String phone, String email) throws RemoteException,SQLException {
+       return manageUserDAO.createStudent(studentId, password, firstName, lastName, phone, email);
     }
 
     @Override
-    public Teacher createTeacher(String staffNumber, String firstName, String lastName, String phone, String email, String password) throws RemoteException,SQLException {
-        return manageUserDAO.createTeacher(staffNumber, firstName, lastName, phone, email, password);
+    public Teacher createTeacher(String staffNumber, String password, String firstName, String lastName, String phone, String email) throws RemoteException,SQLException {
+        return manageUserDAO.createTeacher(staffNumber, password, firstName, lastName, phone, email);
     }
 
     @Override
-    public Guest createGuest(String CVR, String companyName, String phone, String email, String password) throws RemoteException ,SQLException {
-        return manageUserDAO.createGuest(CVR, companyName, phone, email, password);
+    public Guest createGuest(String CVR, String password, String companyName, String phone, String email) throws RemoteException ,SQLException {
+        return manageUserDAO.createGuest(CVR, password, companyName, phone, email);
     }
 }

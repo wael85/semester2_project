@@ -51,7 +51,7 @@ public class AddTeacherViewModel {
     }
     public void createTeacher(){
         try {
-            usersManagementModel.createTeacher(staffId.get(),firstname.get(),lastname.get(),phone.get(),email.get(),password.get());
+            usersManagementModel.createTeacher(staffId.get(),password.get(),firstname.get(),lastname.get(),phone.get(),email.get());
             notification(staffId.getValue()+", add successfully");
         }catch (Exception e){
             notification(e.getMessage());

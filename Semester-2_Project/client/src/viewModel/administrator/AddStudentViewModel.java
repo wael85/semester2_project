@@ -50,7 +50,7 @@ public class AddStudentViewModel {
     }
     public void createStudent(){
         try {
-            usersManagementModel.createStudent(studentNumber.get(),firstname.get(),lastname.get(),phone.get(),email.get(),password.get());
+            usersManagementModel.createStudent(studentNumber.get(),password.get(),firstname.get(),lastname.get(),phone.get(),email.get());
             notification(studentNumber.getValue()+", add successfully");
         }catch (Exception e){
             notification(e.getMessage());

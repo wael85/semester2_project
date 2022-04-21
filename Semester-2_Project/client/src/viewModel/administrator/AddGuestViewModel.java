@@ -45,7 +45,7 @@ public class AddGuestViewModel {
     }
     public void createGuest(){
         try {
-            usersManagementModel.createGuest(CVR.get(),companyName.get(),phone.get(),email.get(),password.get());
+            usersManagementModel.createGuest(CVR.get(),password.get(),companyName.get(),phone.get(),email.get());
             notification(CVR.getValue()+", add successfully");
 
         }catch (Exception e){
