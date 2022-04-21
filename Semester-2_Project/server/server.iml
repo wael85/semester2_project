@@ -7,17 +7,24 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="New folder" />
-    <orderEntry type="library" exported="" name="postgresql-42.3.3" level="application" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module" module-name="SharedModul" />
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/via/Java_Jars/jar_files/java-dotenv-5.2.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../../../Java_Jars/jar_files/java-dotenv-5.2.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="SharedModul" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../../Java_Jars/postgresql-42.3.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
