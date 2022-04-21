@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="SharedModul" />
+    <orderEntry type="library" name="javafx.fxml" level="application" />
   </component>
 </module>

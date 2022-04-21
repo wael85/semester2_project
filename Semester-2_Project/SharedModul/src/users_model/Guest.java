@@ -19,6 +19,10 @@ public class Guest extends User implements Serializable {
     }
 
 
+    @Override
+    public String getUserType() {
+        return UsersTypes.GUEST.toString();
+    }
 
     @Override
     public String toString() {
@@ -28,4 +32,5 @@ public class Guest extends User implements Serializable {
                         ", phone: " + phone +
                         ", email: " + email;
     }
+
 }

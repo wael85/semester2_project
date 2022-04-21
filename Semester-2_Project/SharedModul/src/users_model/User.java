@@ -10,6 +10,10 @@ public abstract class User implements Serializable {
         this.userName = userName;
         this.password = password;
     }
+    public boolean login(){
+        return false;
+    }
+    public abstract String getUserType();
 
     @Override
     public String toString() {

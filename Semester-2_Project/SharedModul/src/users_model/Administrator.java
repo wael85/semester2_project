@@ -21,6 +21,11 @@ public class Administrator extends User implements Serializable {
 
 
     @Override
+    public String getUserType() {
+        return UsersTypes.ADMINISTRATOR.toString();
+    }
+
+    @Override
     public String toString() {
         return   super.toString()+
                 ", first name: " + firstName +

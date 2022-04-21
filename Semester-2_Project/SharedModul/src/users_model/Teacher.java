@@ -20,6 +20,10 @@ public class Teacher extends User implements Serializable {
     }
 
 
+    @Override
+    public String getUserType() {
+        return UsersTypes.TEACHER.toString();
+    }
 
     @Override
     public String toString() {
