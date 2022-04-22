@@ -1,10 +1,4 @@
 package users_model;
-
-import users_model.Administrator;
-import users_model.Guest;
-import users_model.Student;
-import users_model.Teacher;
-
 import java.io.Closeable;
 import java.rmi.RemoteException;
 import java.sql.SQLException;

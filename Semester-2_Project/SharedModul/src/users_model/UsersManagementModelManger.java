@@ -1,11 +1,6 @@
 package users_model;
 
 import client.ManageUserClientInterface;
-import users_model.Administrator;
-import users_model.Guest;
-import users_model.Student;
-import users_model.Teacher;
-
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
