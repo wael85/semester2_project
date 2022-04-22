@@ -2,8 +2,8 @@ import client.ManageUserClient;
 import client.ManageUserClientInterface;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.UsersManagementModel;
-import model.UsersManagementModelManger;
+import users_model.UsersManagementModel;
+import users_model.UsersManagementModelManger;
 import view.ViewHandler;
 import viewModel.ViewModelFactory;
 

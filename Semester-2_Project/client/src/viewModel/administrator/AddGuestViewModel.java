@@ -3,7 +3,7 @@ package viewModel.administrator;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Alert;
-import model.UsersManagementModel;
+import users_model.UsersManagementModel;
 
 public class AddGuestViewModel {
     private UsersManagementModel usersManagementModel;

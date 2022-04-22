@@ -1,4 +1,4 @@
-package model;
+package users_model;
 
 import client.ManageUserClientInterface;
 import users_model.Administrator;

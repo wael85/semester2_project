@@ -1,4 +1,4 @@
-package model;
+package users_model;
 
 import users_model.Administrator;
 import users_model.Guest;

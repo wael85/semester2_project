@@ -1,7 +1,7 @@
 package viewModel;
 
 
-import model.UsersManagementModel;
+import users_model.UsersManagementModel;
 import viewModel.administrator.AddAdminViewModel;
 import viewModel.administrator.AddGuestViewModel;
 import viewModel.administrator.AddStudentViewModel;
