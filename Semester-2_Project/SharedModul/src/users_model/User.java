@@ -10,6 +10,11 @@ public abstract class User implements Serializable {
         this.userName = userName;
         this.password = password;
     }
+
+    public String getUserName() {
+        return userName;
+    }
+
     public boolean login(){
         return false;
     }

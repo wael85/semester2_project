@@ -1,15 +1,9 @@
 package database;
 
 import io.github.cdimascio.dotenv.Dotenv;
-import users_model.Administrator;
-import users_model.Guest;
-import users_model.Student;
-import users_model.Teacher;
+import users_model.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ManageUserImp implements ManageUserDAO{
     private static ManageUserImp instance;
@@ -31,16 +25,20 @@ public class ManageUserImp implements ManageUserDAO{
     @Override
     public Administrator createAdministrator(String staffNumber, String password, String firstName, String lastName, String phone, String email) throws SQLException {
         try(Connection connection = getConnection() ){
-            PreparedStatement statement = connection.prepareStatement("insert into booking_room_system.administrator (user_name, f_name, l_name, email, phone, password)" +
-                    "values (?,?,?,?,?,?);");
+            PreparedStatement statement = connection.prepareStatement("insert into booking_room_system.users (user_name, password)\n" +
+                    "values (?,?);\n" +
+                    "\n" +
+                    "insert into booking_room_system.administrator (user_name_fk, f_name, l_name, email, phone)\n" +
+                    "values (?,?,?,?,?);");
             statement.setString(1,staffNumber);
-            statement.setString(2,firstName);
-            statement.setString(3,lastName);
-            statement.setString(4,email);
-            statement.setString(5,phone);
-            statement.setString(6,password);
+            statement.setString(2,password);
+            statement.setString(3,staffNumber);
+            statement.setString(4,firstName);
+            statement.setString(5,lastName);
+            statement.setString(6,email);
+            statement.setString(7,phone);
             statement.executeUpdate();
-            return new Administrator(staffNumber, password, firstName, lastName, phone, email);
+            return new Administrator(staffNumber,password,firstName,lastName,phone,email);
         }
     }
 
@@ -55,8 +53,7 @@ public class ManageUserImp implements ManageUserDAO{
             statement.setString(4,phone);
             statement.setString(5,password);
             statement.executeUpdate();
-
-            return new Guest(CVR, password, companyName, phone, email);
+            return new Guest(CVR,password,companyName,phone,email);
         }
     }
 
@@ -72,7 +69,7 @@ public class ManageUserImp implements ManageUserDAO{
             statement.setString(5,phone);
             statement.setString(6,password);
             statement.executeUpdate();
-            return new Student(studentId, password, firstName, lastName, phone, email);
+            return new Student(studentId,password,firstName,lastName,phone,email);
         }
     }
 
@@ -89,7 +86,129 @@ public class ManageUserImp implements ManageUserDAO{
             statement.setString(5,phone);
             statement.setString(6,password);
             statement.executeUpdate();
-            return new Teacher(staffNumber, firstName, password, lastName, phone, email);
+            return new Teacher(staffNumber,password,firstName,lastName,phone,email);
         }
+    }
+
+    @Override
+    public void deleteUser(String userName) throws SQLException{
+        try(Connection c = getConnection()) {
+            PreparedStatement preparedStatement = c.prepareStatement("delete\n" +
+                    "from booking_room_system.users\n" +
+                    "where user_name = ?;");
+            preparedStatement.setString(1,userName);
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    @Override
+    public Users getAllUsers()throws SQLException{
+        Users users = new Users();
+        users.addUsers(getAllAdmins());
+        users.addUsers(getAllGuests());
+        users.addUsers(getAllStudents());
+        users.addUsers(getAllTeachers());
+        return users;
+    }
+
+    @Override
+    public Users getAllStudents() throws SQLException {
+        Users users = new Users();
+        try (Connection c = getConnection()) {
+            PreparedStatement preparedStatement = c.prepareStatement("select user_name,password,student.f_name,student.l_name,student.phone ,student.email from booking_room_system.users join booking_room_system.student\n" +
+                    "on users.user_name = student.user_name_fk");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                User student = new Student(resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6)
+                );
+                users.addUser(student);
+            }
+            return users;
+        }
+    }
+
+    @Override
+    public Users getAllTeachers() throws SQLException {
+        Users users = new Users();
+        try (Connection c = getConnection()){
+            PreparedStatement preparedStatement = c.prepareStatement("select user_name,password,teacher.f_name,teacher.l_name,teacher.phone ,teacher.email from booking_room_system.users join booking_room_system.teacher  on users.user_name = teacher.user_name_fk");
+            ResultSet resultSet1 =  preparedStatement.executeQuery();
+            while (resultSet1.next()){
+                User teacher = new Teacher(resultSet1.getString(1),
+                        resultSet1.getString(2),
+                        resultSet1.getString(3),
+                        resultSet1.getString(4),
+                        resultSet1.getString(5),
+                        resultSet1.getString(6)
+                );
+                users.addUser(teacher);
+            }
+            return users;
+
+        }
+    }
+
+    @Override
+    public Users getAllAdmins() throws SQLException {
+        Users users = new Users();
+        try (Connection c = getConnection()) {
+            PreparedStatement preparedStatement = c.prepareStatement("select user_name,password,administrator," +
+                    "f_name,administrator.l_name,administrator.phone" +
+                    " ,administrator.email from booking_room_system.users " +
+                    "join booking_room_system.administrator  " +
+                    "on users.user_name = administrator.user_name_fk");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                User admin = new Administrator(resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6)
+                );
+                users.addUser(admin);
+            }
+            return users;
+        }
+    }
+
+    @Override
+    public Users getAllGuests() throws SQLException {
+        Users users = new Users();
+        try (Connection c = getConnection()) {
+            PreparedStatement preparedStatement = c.prepareStatement("select user_name,password,guest.company_name," +
+                    "guest.phone ,guest.email from booking_room_system.users " +
+                    "join booking_room_system.guest  on" +
+                    " users.user_name = guest.user_name_fk");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                User guest = new Guest(resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5)
+                );
+                users.addUser(guest);
+            }
+            return users;
+        }
+    }
+
+    public static void main(String[] args) throws SQLException {
+        ManageUserImp m = new ManageUserImp();
+       // m.createAdministrator("48","sdfsd","ssdf","dfgd","sf","dsfs");
+        try {
+            m.deleteUser("123");
+            Users h = m.getAllUsers();
+            System.out.println(h.getAdministrators());
+        }catch (SQLException sql){
+            sql.printStackTrace();
+        }
+
     }
 }

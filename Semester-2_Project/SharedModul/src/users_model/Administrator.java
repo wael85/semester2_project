@@ -22,7 +22,7 @@ public class Administrator extends User implements Serializable {
 
     @Override
     public String getUserType() {
-        return UsersTypes.ADMINISTRATOR.toString();
+        return UsersTypes.ADMINISTRATOR.name();
     }
 
     @Override
