@@ -21,7 +21,7 @@ public class Guest extends User implements Serializable {
 
     @Override
     public String getUserType() {
-        return UsersTypes.GUEST.toString();
+        return UsersTypes.GUEST.name();
     }
 
     @Override

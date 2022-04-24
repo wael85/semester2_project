@@ -22,7 +22,7 @@ public class Teacher extends User implements Serializable {
 
     @Override
     public String getUserType() {
-        return UsersTypes.TEACHER.toString();
+        return UsersTypes.TEACHER.name();
     }
 
     @Override

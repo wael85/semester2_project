@@ -2,38 +2,38 @@ package viewModel;
 
 
 import users_model.UsersManagementModel;
-import viewModel.administrator.AddAdminViewModel;
-import viewModel.administrator.AddGuestViewModel;
-import viewModel.administrator.AddStudentViewModel;
-import viewModel.administrator.AddTeacherViewModel;
+import viewModel.administrator.ManageAdminViewModel;
+import viewModel.administrator.ManageGuestViewModel;
+import viewModel.administrator.ManageStudentViewModel;
+import viewModel.administrator.ManageTeacherViewModel;
 
 public class ViewModelFactory {
 
-    private AddAdminViewModel addAdminViewModel;
-    private AddStudentViewModel addStudentViewModel;
-    private AddGuestViewModel addGuestViewModel;
-    private AddTeacherViewModel addTeacherViewModel;
+    private ManageAdminViewModel manageAdminViewModel;
+    private ManageStudentViewModel manageStudentViewModel;
+    private ManageGuestViewModel manageGuestViewModel;
+    private ManageTeacherViewModel manageTeacherViewModel;
 
     public ViewModelFactory(UsersManagementModel model){
-        this.addAdminViewModel =new AddAdminViewModel(model);
-        this.addGuestViewModel = new AddGuestViewModel(model);
-        this.addStudentViewModel = new AddStudentViewModel(model);
-        this.addTeacherViewModel = new AddTeacherViewModel(model);
+        this.manageAdminViewModel =new ManageAdminViewModel(model);
+        this.manageGuestViewModel = new ManageGuestViewModel(model);
+        this.manageStudentViewModel = new ManageStudentViewModel(model);
+        this.manageTeacherViewModel = new ManageTeacherViewModel(model);
     }
 
-    public AddAdminViewModel getAddAdminViewModel() {
-        return addAdminViewModel;
+    public ManageAdminViewModel getManageAdminViewModel() {
+        return manageAdminViewModel;
     }
 
-    public AddStudentViewModel getAddStudentViewModel() {
-        return addStudentViewModel;
+    public ManageStudentViewModel getManageStudentViewModel() {
+        return manageStudentViewModel;
     }
 
-    public AddGuestViewModel getAddGuestViewModel() {
-        return addGuestViewModel;
+    public ManageGuestViewModel getManagGuestViewModel() {
+        return manageGuestViewModel;
     }
 
-    public AddTeacherViewModel getAddTeacherViewModel() {
-        return addTeacherViewModel;
+    public ManageTeacherViewModel getManageTeacherViewModel() {
+        return manageTeacherViewModel;
     }
 }

@@ -21,7 +21,7 @@ public class Student extends User implements Serializable {
 
     @Override
     public String getUserType() {
-        return UsersTypes.STUDENT.toString();
+        return UsersTypes.STUDENT.name();
     }
 
     @Override

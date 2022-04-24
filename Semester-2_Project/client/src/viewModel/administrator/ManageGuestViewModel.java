@@ -1,0 +1,86 @@
+package viewModel.administrator;
+
+import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import users_model.User;
+import users_model.Users;
+import users_model.UsersManagementModel;
+
+import java.beans.PropertyChangeEvent;
+
+public class ManageGuestViewModel {
+    private UsersManagementModel usersManagementModel;
+    private StringProperty companyName;
+    private StringProperty CVR;
+    private StringProperty phone;
+    private StringProperty email;
+    private StringProperty password;
+    private StringProperty error;
+    private ObservableList<User> userObservableList;
+
+    public ManageGuestViewModel(UsersManagementModel model) {
+        this.usersManagementModel = model;
+        userObservableList = FXCollections.observableArrayList();
+        usersManagementModel.addPropertyChangeListener("users", evt -> {
+            updateUsersList(evt);
+        });
+        companyName = new SimpleStringProperty("");
+        CVR = new SimpleStringProperty("");
+        phone = new SimpleStringProperty("");
+        email =  new SimpleStringProperty("");
+        password = new SimpleStringProperty("");
+        error = new SimpleStringProperty("");
+
+    }
+    public void bindCompanyName (StringProperty property){
+        property.bindBidirectional(companyName);
+    }
+    public void bindCVR (StringProperty property){
+        property.bindBidirectional(CVR);
+    }
+    public void bindEmail (StringProperty property){
+        property.bindBidirectional(email);
+    }
+    public void bindPhone (StringProperty property){
+        property.bindBidirectional(phone);
+    }
+    public void bindPassword (StringProperty property){
+        property.bindBidirectional(password);
+    }
+    public void bindError(StringProperty property){
+
+        property.bind(error);
+    }
+    public void createGuest(){
+        try {
+            usersManagementModel.createGuest(CVR.get(),password.get(),companyName.get(),phone.get(),email.get());
+            notification(CVR.getValue()+", add successfully");
+
+        }catch (Exception e){
+
+            notification(e.getMessage());
+
+
+        }
+    }
+    public void notification(String msg){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setContentText(msg);
+        alert.showAndWait();
+    }
+
+    public void updateUsersList(PropertyChangeEvent e){
+        Platform.runLater(()->{
+            userObservableList.clear();
+            userObservableList.addAll(((Users) e.getNewValue()).getAdministrators());
+        });
+    }
+    public ObservableList<User> getUserObservableList() {
+        return userObservableList;
+    }
+}

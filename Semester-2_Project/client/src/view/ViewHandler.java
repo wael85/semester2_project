@@ -5,7 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import users_model.UsersManagementModel;
-import view.addUser.TabPaneAdminController;
+import view.manageUser.TabPaneManageUserController;
 import viewModel.ViewModelFactory;
 
 import java.io.IOException;
@@ -23,19 +23,19 @@ public class ViewHandler {
     }
 
     public void start() {
-        openTabPaneAdmin();
+        openTabPaneManageUser();
     }
 
-    private void openTabPaneAdmin() {
+    private void openTabPaneManageUser() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../view/addUser/tabPaneAdmin.fxml"));
+            loader.setLocation(getClass().getResource("../view/manageUser/tabPaneManageUser.fxml"));
             Parent root = loader.load();
 
-            TabPaneAdminController view = loader.getController();
+            TabPaneManageUserController view = loader.getController();
             view.init(vmf);
             Scene scene = new Scene(root);
-            stage.setTitle("");
+            stage.setTitle("Manage User");
 
             stage.setScene(scene);
             stage.show();

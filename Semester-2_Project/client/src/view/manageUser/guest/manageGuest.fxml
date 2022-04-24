@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="430.0" prefWidth="580.0" style="-fx-background-color: #0A5663;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manageUser.guest.ManageGuestController">
+   <children>
+      <TextField fx:id="companyName" layoutX="128.0" layoutY="132.0" />
+      <TextField fx:id="CVR" layoutX="128.0" layoutY="167.0" />
+      <TextField fx:id="phone" layoutX="128.0" layoutY="201.0" />
+      <TextField fx:id="email" layoutX="128.0" layoutY="235.0" />
+      <Label layoutX="30.0" layoutY="137.0" text="Company name:">
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.009345794705865539">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#cdc538" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill></Label>
+      <Label layoutX="30.0" layoutY="172.0" text="CVR:">
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.009345794705865539">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#cdc538" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill></Label>
+      <Label layoutX="29.0" layoutY="206.0" text="tlf. number:">
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.009345794705865539">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#cdc538" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill></Label>
+      <Label layoutX="30.0" layoutY="240.0" text="Email addres:">
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.009345794705865539">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#cdc538" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill></Label>
+      <Label layoutX="28.0" layoutY="271.0" text="Password:">
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.009345794705865539">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#cdc538" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill></Label>
+      <Button fx:id="addGuest" layoutX="127.0" layoutY="303.0" mnemonicParsing="false" onAction="#AddGuest" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #39C997;" text="Add">
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.009345794705865539">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <PasswordField fx:id="password" layoutX="128.0" layoutY="267.0" />
+      <ImageView fitHeight="68.0" fitWidth="141.0" layoutX="411.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../resources/viaLogo.png" />
+         </image>
+      </ImageView>
+      <ListView layoutX="305.0" layoutY="132.0" onMouseClicked="#selectedGuest" prefHeight="224.0" prefWidth="247.0" />
+      <Button layoutX="305.0" layoutY="363.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: red;" text="Delete" textFill="#151515" />
+   </children>
+</AnchorPane>
