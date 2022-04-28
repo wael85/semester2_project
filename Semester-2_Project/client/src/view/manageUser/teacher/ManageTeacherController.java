@@ -2,9 +2,11 @@ package view.manageUser.teacher;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import users_model.User;
 import viewModel.administrator.ManageTeacherViewModel;
 
 
@@ -21,12 +23,14 @@ public class ManageTeacherController {
     public TextField email;
     @FXML
     public PasswordField password;
+    public ListView<User> list;
 
     private ManageTeacherViewModel manageTeacherViewModel;
 
 
     public void init(ManageTeacherViewModel manageTeacherViewModel) {
         this.manageTeacherViewModel = manageTeacherViewModel;
+        list.setItems(manageTeacherViewModel.getUserObservableList());
         manageTeacherViewModel.bindStaffId(staffId.textProperty());
         manageTeacherViewModel.bindFirstName(firstName.textProperty());
         manageTeacherViewModel.bindLastName(lastname.textProperty());
@@ -36,15 +40,24 @@ public class ManageTeacherController {
 
 
     }
+
     @FXML
     public void Cancel(ActionEvent actionEvent) {
     }
 
+    public String getUserName() {
+        return list.getSelectionModel().getSelectedItem().getUserName();
+    }
 
     @FXML
     public void addTeacher(ActionEvent actionEvent) {
         manageTeacherViewModel.createTeacher();
-        staffId.clear();firstName.clear(); lastname.clear();phone.clear();email.clear();password.clear();
+        staffId.clear();
+        firstName.clear();
+        lastname.clear();
+        phone.clear();
+        email.clear();
+        password.clear();
     }
 
 
@@ -55,5 +68,6 @@ public class ManageTeacherController {
     }
 
     public void deleteButton(ActionEvent actionEvent) {
+        manageTeacherViewModel.deleteUser(getUserName());
     }
 }

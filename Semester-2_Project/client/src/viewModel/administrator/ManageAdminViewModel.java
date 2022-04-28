@@ -36,54 +36,63 @@ public class ManageAdminViewModel {
         lastname = new SimpleStringProperty("");
         adminId = new SimpleStringProperty("");
         phone = new SimpleStringProperty("");
-        email =  new SimpleStringProperty("");
+        email = new SimpleStringProperty("");
         password = new SimpleStringProperty("");
         error = new SimpleStringProperty("");
         userObservableList = FXCollections.observableArrayList();
     }
 
-    public void bindFirstName (StringProperty property){
+    public void bindFirstName(StringProperty property) {
         property.bindBidirectional(firstname);
     }
-    public void bindLastName (StringProperty property){
+
+    public void bindLastName(StringProperty property) {
         property.bindBidirectional(lastname);
     }
-    public void bindAdminId (StringProperty property){
+
+    public void bindAdminId(StringProperty property) {
         property.bindBidirectional(adminId);
     }
-    public void bindEmail (StringProperty property){
+
+    public void bindEmail(StringProperty property) {
         property.bindBidirectional(email);
     }
-    public void bindPhone (StringProperty property){
+
+    public void bindPhone(StringProperty property) {
         property.bindBidirectional(phone);
     }
-    public void bindPassword (StringProperty property){
+
+    public void bindPassword(StringProperty property) {
         property.bindBidirectional(password);
     }
-    public void bindError(StringProperty property){
+
+    public void bindError(StringProperty property) {
         property.bind(error);
     }
-    public void createAdmin(){
+
+    public void createAdmin() {
         try {
-            usersManagementModel.createAdmin(adminId.get(),password.get(),firstname.get(),lastname.get(),phone.get(),email.get());
+            usersManagementModel.createAdmin(adminId.get(), password.get(), firstname.get(), lastname.get(), phone.get(), email.get());
 
-            notification(adminId.getValue()+", add successfully");
-        }catch (Exception e){
+            notification(adminId.getValue() + ", add successfully");
+        } catch (Exception e) {
 
-           notification(e.getMessage());
+            notification(e.getMessage());
         }
     }
-    public void notification(String msg){
+
+    public void notification(String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
         alert.setContentText(msg);
         alert.showAndWait();
     }
-    public void updateUsersList(PropertyChangeEvent e){
-        Platform.runLater(()->{
+
+    public void updateUsersList(PropertyChangeEvent e) {
+        Platform.runLater(() -> {
             userObservableList.clear();
             userObservableList.addAll(((Users) e.getNewValue()).getAdministrators());
-            System.out.println("add modele" +userObservableList);
+            System.out.println("add modele" + userObservableList);
         });
     }
 
@@ -92,16 +101,17 @@ public class ManageAdminViewModel {
         try {
             userObservableList.addAll(usersManagementModel.getAllUsers().getAdministrators());
             error.set("");
-        }catch (RemoteException e){
+        } catch (RemoteException e) {
             error.set(e.getMessage());
             e.getStackTrace();
         }
         return userObservableList;
     }
-    public void deleteUser(String userName){
+
+    public void deleteUser(String userName) {
         try {
             usersManagementModel.deleteUser(userName);
-        }catch (RemoteException ex){
+        } catch (RemoteException ex) {
             error.set(ex.getMessage());
         }
     }

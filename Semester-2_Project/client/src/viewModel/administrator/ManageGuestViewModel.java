@@ -11,6 +11,7 @@ import users_model.Users;
 import users_model.UsersManagementModel;
 
 import java.beans.PropertyChangeEvent;
+import java.rmi.RemoteException;
 
 public class ManageGuestViewModel {
     private UsersManagementModel usersManagementModel;
@@ -31,56 +32,82 @@ public class ManageGuestViewModel {
         companyName = new SimpleStringProperty("");
         CVR = new SimpleStringProperty("");
         phone = new SimpleStringProperty("");
-        email =  new SimpleStringProperty("");
+        email = new SimpleStringProperty("");
         password = new SimpleStringProperty("");
         error = new SimpleStringProperty("");
 
     }
-    public void bindCompanyName (StringProperty property){
+
+    public void bindCompanyName(StringProperty property) {
         property.bindBidirectional(companyName);
     }
-    public void bindCVR (StringProperty property){
+
+    public void bindCVR(StringProperty property) {
         property.bindBidirectional(CVR);
     }
-    public void bindEmail (StringProperty property){
+
+    public void bindEmail(StringProperty property) {
         property.bindBidirectional(email);
     }
-    public void bindPhone (StringProperty property){
+
+    public void bindPhone(StringProperty property) {
         property.bindBidirectional(phone);
     }
-    public void bindPassword (StringProperty property){
+
+    public void bindPassword(StringProperty property) {
         property.bindBidirectional(password);
     }
-    public void bindError(StringProperty property){
+
+    public void bindError(StringProperty property) {
 
         property.bind(error);
     }
-    public void createGuest(){
-        try {
-            usersManagementModel.createGuest(CVR.get(),password.get(),companyName.get(),phone.get(),email.get());
-            notification(CVR.getValue()+", add successfully");
 
-        }catch (Exception e){
+    public void createGuest() {
+        try {
+            usersManagementModel.createGuest(CVR.get(), password.get(), companyName.get(), phone.get(), email.get());
+            notification(CVR.getValue() + ", add successfully");
+
+        } catch (Exception e) {
 
             notification(e.getMessage());
 
 
         }
     }
-    public void notification(String msg){
+
+    public void notification(String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
         alert.setContentText(msg);
         alert.showAndWait();
     }
 
-    public void updateUsersList(PropertyChangeEvent e){
-        Platform.runLater(()->{
+    public void updateUsersList(PropertyChangeEvent e) {
+        Platform.runLater(() -> {
             userObservableList.clear();
-            userObservableList.addAll(((Users) e.getNewValue()).getAdministrators());
+            userObservableList.addAll(((Users) e.getNewValue()).getGuests());
+            System.out.println("add modele" + userObservableList);
         });
     }
+
     public ObservableList<User> getUserObservableList() {
+        userObservableList.clear();
+        try {
+            userObservableList.addAll(usersManagementModel.getAllUsers().getGuests());
+            error.set("");
+        } catch (RemoteException e) {
+            error.set(e.getMessage());
+            e.getStackTrace();
+        }
         return userObservableList;
+    }
+
+    public void deleteGuest(String username) {
+        try {
+            usersManagementModel.deleteUser(username);
+        } catch (RemoteException e) {
+            error.set(e.getMessage());
+        }
     }
 }

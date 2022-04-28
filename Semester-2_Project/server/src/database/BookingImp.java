@@ -20,7 +20,7 @@ public class BookingImp implements BookingDAO{
         return instance;
     }
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://hattie.db.elephantsql.com:5432/zvltjqzb",dotenv.get("USER_NAME"),dotenv.get("PASSWORD"));
+        return DriverManager.getConnection("jdbc:postgresql://hattie.db.elephantsql.com:5432/zvltjqzb","postgres","369968");
     }
 
     @Override
