@@ -37,7 +37,7 @@ public class ManageGuestController {
     }
 
     @FXML
-    public void AddGuest(ActionEvent actionEvent) {
+    public void AddGuest() {
         addGuestViewModel.createGuest();
         companyName.clear();
         CVR.clear();

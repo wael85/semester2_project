@@ -10,7 +10,7 @@ import users_model.User;
 import viewModel.ViewModelFactory;
 import viewModel.administrator.ManageStudentViewModel;
 
-public class manageStudentController {
+public class ManageStudentController {
 
     @FXML
     public TextField lastName;

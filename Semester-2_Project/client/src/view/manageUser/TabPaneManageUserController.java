@@ -2,9 +2,9 @@ package view.manageUser;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TabPane;
-import view.manageUser.admin.manageAdminController;
+import view.manageUser.admin.ManageAdminController;
 import view.manageUser.guest.ManageGuestController;
-import view.manageUser.student.manageStudentController;
+import view.manageUser.student.ManageStudentController;
 import view.manageUser.teacher.ManageTeacherController;
 import viewModel.ViewModelFactory;
 
@@ -13,11 +13,11 @@ public class TabPaneManageUserController {
     public TabPane tabPane;
 
     @FXML
-    private manageAdminController manageAdminController;
+    private ManageAdminController manageAdminController;
     @FXML
     private ManageTeacherController manageTeacherController;
     @FXML
-    private manageStudentController manageStudentController;
+    private ManageStudentController manageStudentController;
     @FXML
     private ManageGuestController manageGuestController;
 

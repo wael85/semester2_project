@@ -9,7 +9,7 @@ import users_model.User;
 import viewModel.administrator.ManageAdminViewModel;
 
 
-public class manageAdminController {
+public class ManageAdminController {
     @FXML
     public TextField firstname;
     @FXML

@@ -50,7 +50,7 @@ public class ManageTeacherController {
     }
 
     @FXML
-    public void addTeacher(ActionEvent actionEvent) {
+    public void addTeacher() {
         manageTeacherViewModel.createTeacher();
         staffId.clear();
         firstName.clear();

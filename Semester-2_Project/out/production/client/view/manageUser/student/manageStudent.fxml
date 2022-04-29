@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="430.0" prefWidth="580.0" style="-fx-background-color: #0A5663;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manageUser.student.manageStudentController">
+<AnchorPane prefHeight="430.0" prefWidth="580.0" style="-fx-background-color: #0A5663;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manageUser.student.ManageStudentController">
    <children>
       <TextField fx:id="firstName" layoutX="127.0" layoutY="131.0" />
       <TextField fx:id="lastName" layoutX="127.0" layoutY="166.0" />
