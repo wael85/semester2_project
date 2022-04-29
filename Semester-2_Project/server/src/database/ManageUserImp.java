@@ -7,9 +7,9 @@ import java.sql.*;
 
 public class ManageUserImp implements ManageUserDAO{
     private static ManageUserImp instance;
-    private Dotenv dotenv = Dotenv.load();
+    //private Dotenv dotenv = Dotenv.load();
 
-    private ManageUserImp() throws SQLException {
+   ManageUserImp() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
     }
     public static synchronized ManageUserImp getInstance() throws SQLException{
@@ -19,7 +19,8 @@ public class ManageUserImp implements ManageUserDAO{
         return instance;
     }
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://hattie.db.elephantsql.com:5432/zvltjqzb",dotenv.get("USER_NAME"),dotenv.get("PASSWORD"));
+        //return DriverManager.getConnection("jdbc:postgresql://hattie.db.elephantsql.com:5432/zvltjqzb",dotenv.get("USER_NAME"),dotenv.get("PASSWORD"));
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres","369968");
     }
 
     @Override
@@ -45,13 +46,14 @@ public class ManageUserImp implements ManageUserDAO{
     @Override
     public Guest createGuest(String CVR, String password, String companyName, String phone, String email) throws SQLException {
         try(Connection connection = getConnection() ){
-            PreparedStatement statement = connection.prepareStatement("insert into booking_room_system.guest (user_name, company_name, email, phone, password)" +
-                    "values (?,?,?,?,?);");
+            PreparedStatement statement = connection.prepareStatement("insert into booking_room_system.users (user_name,password)\n"+"values(?,?);\n"+"insert into booking_room_system.guest ( user_name_fk,company_name, email, phone)\n" +
+                    "values (?,?,?,?);");
             statement.setString(1,CVR);
-            statement.setString(2,companyName);
-            statement.setString(3,email);
-            statement.setString(4,phone);
-            statement.setString(5,password);
+            statement.setString(2,password);
+            statement.setString(3,CVR);
+            statement.setString(4,companyName);
+            statement.setString(5,email);
+            statement.setString(6,phone);
             statement.executeUpdate();
             return new Guest(CVR,password,companyName,phone,email);
         }
@@ -60,14 +62,15 @@ public class ManageUserImp implements ManageUserDAO{
     @Override
     public Student createStudent(String studentId, String password, String firstName, String lastName, String email, String phone) throws SQLException {
         try(Connection connection = getConnection() ){
-            PreparedStatement statement = connection.prepareStatement("insert into booking_room_system.student (user_name, f_name, l_name, email, phone, password)" +
-                    "values (?,?,?,?,?,?);");
+            PreparedStatement statement = connection.prepareStatement("insert into booking_room_system.users (user_name,password)\n"+"values(?,?);\n"+"insert into booking_room_system.student (user_name_fk, f_name, l_name, email, phone)" +
+                    "values (?,?,?,?,?);");
             statement.setString(1,studentId);
-            statement.setString(2,firstName);
-            statement.setString(3,lastName);
-            statement.setString(4,email);
-            statement.setString(5,phone);
-            statement.setString(6,password);
+            statement.setString(2,password);
+            statement.setString(3,studentId);
+            statement.setString(4,firstName);
+            statement.setString(5,lastName);
+            statement.setString(6,email);
+            statement.setString(7,phone);
             statement.executeUpdate();
             return new Student(studentId,password,firstName,lastName,phone,email);
         }
@@ -76,17 +79,18 @@ public class ManageUserImp implements ManageUserDAO{
     @Override
     public Teacher createTeacher(String staffNumber, String password, String firstName, String lastName, String phone, String email) throws SQLException {
         try(Connection connection = getConnection() ){
-            PreparedStatement statement = connection.prepareStatement("insert into booking_room_system.teacher (user_name, f_name, l_name, email, phone, password)" +
-                    "values (?,?,?,?,?,?);");
+            PreparedStatement statement = connection.prepareStatement("insert into booking_room_system.users (user_name,password)\n"+"values(?,?);\n"+"insert into booking_room_system.teacher (user_name_fk, f_name, l_name, email, phone)" +
+                    "values (?,?,?,?,?);");
             statement.setString(1,staffNumber);
 
-            statement.setString(2,firstName);
-            statement.setString(3,lastName);
-            statement.setString(4,email);
-            statement.setString(5,phone);
-            statement.setString(6,password);
+            statement.setString(2,password);
+            statement.setString(3,staffNumber);
+            statement.setString(4,firstName);
+            statement.setString(5,lastName);
+            statement.setString(6,email);
+            statement.setString(7,phone);
             statement.executeUpdate();
-            return new Teacher(staffNumber,password,firstName,lastName,phone,email);
+            return new Teacher(staffNumber,password,firstName,lastName,email,phone);
         }
     }
 
@@ -201,14 +205,19 @@ public class ManageUserImp implements ManageUserDAO{
 
     public static void main(String[] args) throws SQLException {
         ManageUserImp m = new ManageUserImp();
+
        // m.createAdministrator("48","sdfsd","ssdf","dfgd","sf","dsfs");
-        try {
+        m.createTeacher("dkjbhhf","df","df","df","df","df");
+       // m.createGuest("d","d","d","3","e");
+       // m.createStudent("df12","df2","df3","df4","df5","df6");
+    try {
             m.deleteUser("123");
             Users h = m.getAllUsers();
-            System.out.println(h.getAdministrators());
+            System.out.println(h.getTeachers());
         }catch (SQLException sql){
             sql.printStackTrace();
         }
 
-    }
+
+}
 }
