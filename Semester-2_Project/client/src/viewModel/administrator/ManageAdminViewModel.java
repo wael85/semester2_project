@@ -92,7 +92,6 @@ public class ManageAdminViewModel {
         Platform.runLater(() -> {
             userObservableList.clear();
             userObservableList.addAll(((Users) e.getNewValue()).getAdministrators());
-            System.out.println("add modele" + userObservableList);
         });
     }
 

@@ -89,7 +89,6 @@ public class ManageTeacherViewModel {
         Platform.runLater(() -> {
             userObservableList.clear();
             userObservableList.addAll(((Users) e.getNewValue()).getTeachers());
-            System.out.println("add modele" + userObservableList);
         });
     }
 

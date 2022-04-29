@@ -1,11 +1,8 @@
 package sheared_interfaces;
-
 import dk.via.remote.observer.RemotePropertyChangeListener;
 import users_model.*;
-
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.sql.SQLException;
 
 public interface RemoteManageUsers extends Remote{
     Administrator createAdmin(

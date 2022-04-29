@@ -87,7 +87,6 @@ public class ManageGuestViewModel {
         Platform.runLater(() -> {
             userObservableList.clear();
             userObservableList.addAll(((Users) e.getNewValue()).getGuests());
-            System.out.println("add modele" + userObservableList);
         });
     }
 

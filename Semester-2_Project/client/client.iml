@@ -8,9 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="SharedModul" />
-    <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="library" name="java-dotenv-5.2.2" level="project" />
-    <orderEntry type="library" name="postgresql-42.3.3" level="application" />
-    <orderEntry type="library" name="remoteobserver" level="project" />
+    <orderEntry type="library" name="javafx.fxml" level="application" />
+    <orderEntry type="library" name="remoteobserver" level="application" />
   </component>
 </module>

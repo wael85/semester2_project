@@ -45,7 +45,7 @@
             <Image url="@../../../resources/viaLogo.png" />
          </image>
       </ImageView>
-      <ListView layoutX="303.0" layoutY="130.0" onMouseClicked="#selectedTeacher" prefHeight="224.0" prefWidth="247.0" />
+      <ListView fx:id="list" layoutX="303.0" layoutY="130.0" onMouseClicked="#selectedTeacher" prefHeight="224.0" prefWidth="247.0" />
       <Button layoutX="303.0" layoutY="361.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: red;" text="Delete" textFill="#151515" />
    </children>
 </AnchorPane>
