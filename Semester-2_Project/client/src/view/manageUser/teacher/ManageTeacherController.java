@@ -52,12 +52,7 @@ public class ManageTeacherController {
     @FXML
     public void addTeacher() {
         manageTeacherViewModel.createTeacher();
-        staffId.clear();
-        firstName.clear();
-        lastname.clear();
-        phone.clear();
-        email.clear();
-        password.clear();
+
     }
 
 

@@ -39,11 +39,7 @@ public class ManageGuestController {
     @FXML
     public void AddGuest() {
         addGuestViewModel.createGuest();
-        companyName.clear();
-        CVR.clear();
-        phone.clear();
-        email.clear();
-        password.clear();
+
     }
 
     public String getUserName() {

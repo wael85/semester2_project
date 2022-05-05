@@ -10,5 +10,6 @@
     <orderEntry type="module" module-name="SharedModul" />
     <orderEntry type="library" name="javafx.fxml" level="application" />
     <orderEntry type="library" name="remoteobserver" level="application" />
+    <orderEntry type="library" name="javafx-swt" level="application" />
   </component>
 </module>
