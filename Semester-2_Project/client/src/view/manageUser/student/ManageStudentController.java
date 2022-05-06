@@ -46,12 +46,7 @@ public class ManageStudentController {
     @FXML
     public void AddStudent(ActionEvent actionEvent) {
         manageStudentViewModel.createStudent();
-        studentNumber.clear();
-        firstName.clear();
-        lastName.clear();
-        phone.clear();
-        email.clear();
-        password.clear();
+
     }
 
     @FXML

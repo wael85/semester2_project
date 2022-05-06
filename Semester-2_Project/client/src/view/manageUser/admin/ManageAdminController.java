@@ -47,12 +47,6 @@ public class ManageAdminController {
     @FXML
     public void addAdmin() {
         manageAdminViewModel.createAdmin();
-        firstname.clear();
-        lastname.clear();
-        email.clear();
-        phone.clear();
-        password.clear();
-        adminId.clear();
 
     }
 
