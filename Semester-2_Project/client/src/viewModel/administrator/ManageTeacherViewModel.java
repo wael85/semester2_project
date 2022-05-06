@@ -81,6 +81,9 @@ public class ManageTeacherViewModel {
             notification(staffId.getValue() + ", add successfully");
             clearFields();
         } catch (Exception e) {
+            if(e.getMessage().contains("duplicate key value")){
+                notification("User already existed");
+            }else
             notification(e.getMessage());
         }
     }
