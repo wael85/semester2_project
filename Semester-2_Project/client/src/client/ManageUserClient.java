@@ -10,7 +10,6 @@ import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -18,8 +17,8 @@ public class ManageUserClient extends UnicastRemoteObject implements ManageUserC
     private final RemoteManageUsers remoteManageUsers;
     private final PropertyChangeSupport support;
 
-    public ManageUserClient(String host , int port) throws RemoteException, NotBoundException {
-        Registry registry = LocateRegistry.getRegistry(host,port);
+    public ManageUserClient(Registry registry) throws RemoteException, NotBoundException {
+
         remoteManageUsers = (RemoteManageUsers) registry.lookup("create_users");
         remoteManageUsers.addPropertyChangeListener(this);
         this.support = new PropertyChangeSupport(this);

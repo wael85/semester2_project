@@ -1,5 +1,6 @@
 package server;
 
+import sheared_interfaces.RemoteManageRoom;
 import sheared_interfaces.RemoteManageUsers;
 
 import java.rmi.AlreadyBoundException;
@@ -12,7 +13,9 @@ public class Server {
     public static void main(String[] args) throws RemoteException, AlreadyBoundException, SQLException {
         Registry registry = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
         RemoteManageUsers manageUsersServerImp = new ManageUsersServerImp();
+        RemoteManageRoom manageRoomServerImp = new ManageRoomServerImp();
         registry.bind("create_users" , manageUsersServerImp);
+        registry.bind("create_room",manageRoomServerImp);
         System.out.println("Server is running on port "+ Registry.REGISTRY_PORT);
     }
 
