@@ -26,7 +26,7 @@ public class ManageRoomClient extends UnicastRemoteObject implements ManageRoomC
     }
 
     @Override
-    public Room createRoom( String roomId,char building, int floor, int number, String type, int capacity) throws RemoteException {
+    public Room createRoom( String roomId,String  building, String  floor, String  number, String type, String  capacity) throws RemoteException {
         return remoteManageRoom.createRoom(roomId, building, floor, number, type, capacity);
     }
 

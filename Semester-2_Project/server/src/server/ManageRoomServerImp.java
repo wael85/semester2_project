@@ -15,9 +15,9 @@ public class ManageRoomServerImp extends UnicastRemoteObject implements RemoteMa
     }
 
     @Override
-    public Room createRoom(String roomId, char building, int floor, int number, String type, int capacity) {
+    public Room createRoom(String roomId, String building, String  floor, String  number, String type, String  capacity) {
 
-        System.out.println(new Room(roomId, building, floor, number, type, capacity));
+        System.out.println(new Room(roomId,building,floor,number,type,capacity));
         return null;
     }
 

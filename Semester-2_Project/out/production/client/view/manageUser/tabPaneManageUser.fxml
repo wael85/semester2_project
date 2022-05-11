@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="430.0" prefWidth="590.0" style="-fx-background-color: #0A5663;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manageUser.TabPaneManageUserController">
+<AnchorPane prefHeight="502.0" prefWidth="624.0" style="-fx-background-color: #0A5663;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manageUser.TabPaneManageUserController">
     <children>
-        <TabPane fx:id="tabPane" layoutX="-1.0" prefHeight="490.0" prefWidth="620.0" tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="tabPane" layoutX="1.0" prefHeight="454.0" prefWidth="618.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="Manage Admin">
                     <fx:include fx:id="manageAdmin" source="admin/manageAdmin.fxml" />
@@ -25,5 +26,7 @@
                 </Tab>
             </tabs>
         </TabPane>
+      <Button mnemonicParsing="false" text="Button" />
+      <Button layoutX="33.0" layoutY="454.0" mnemonicParsing="false" onAction="#backToMain" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: brown;" text="Back" />
     </children>
 </AnchorPane>
