@@ -4,31 +4,34 @@ import java.io.Serializable;
 
 public class Room implements Serializable {
     private final String roomId;
-    private final char building;
-    private final int floor;
-    private final int number;
+    private final String building;
+    private final String floor;
+    private final String number;
     private final String type;
-    private final int capacity;
+    private final String capacity;
 
-
-    public Room(String roomId,char building, int floor, int number, String type, int capacity) {
+    public Room(String roomId, String building, String floor, String number, String type, String capacity) {
+        this.roomId = roomId;
         this.building = building;
         this.floor = floor;
         this.number = number;
         this.type = type;
         this.capacity = capacity;
-        this.roomId= roomId;
     }
 
-    public char getBuilding() {
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public String getBuilding() {
         return building;
     }
 
-    public int getFloor() {
+    public String getFloor() {
         return floor;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
@@ -36,12 +39,8 @@ public class Room implements Serializable {
         return type;
     }
 
-    public int getCapacity() {
+    public String getCapacity() {
         return capacity;
-    }
-
-    public String getRoomId() {
-        return roomId;
     }
 
     @Override

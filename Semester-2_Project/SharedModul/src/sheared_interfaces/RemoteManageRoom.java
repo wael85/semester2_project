@@ -9,7 +9,7 @@ import java.rmi.RemoteException;
 
 public interface RemoteManageRoom extends Remote {
 
-    Room createRoom(String roomId, char building, int floor, int number, String type, int capacity)throws RemoteException;
+    Room createRoom(String roomId, String building, String floor, String number, String type, String capacity)throws RemoteException;
     void deleteRoom(String roomId)throws RemoteException;
     Rooms getAllRooms()throws RemoteException;
     void addPropertyChangeListener(RemotePropertyChangeListener<Rooms> listener) throws RemoteException;
