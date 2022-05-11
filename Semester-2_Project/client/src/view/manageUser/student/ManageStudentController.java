@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import users_model.User;
 import viewModel.ViewModelFactory;
-import viewModel.administrator.ManageStudentViewModel;
+import viewModel.manageUsers.ManageStudentViewModel;
 
 public class ManageStudentController {
 

@@ -1,4 +1,4 @@
-package viewModel.administrator.inputValidation;
+package viewModel.inputValidation;
 
 public class Validator {
 

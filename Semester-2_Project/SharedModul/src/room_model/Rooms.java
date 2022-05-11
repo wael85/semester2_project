@@ -15,9 +15,4 @@ public class Rooms implements Serializable {
     public ArrayList<Room> getRooms(){
         return roomList;
     }
-    public void addAllRooms(Rooms rooms){
-        roomList.addAll(rooms.getRooms());
-    }
-
-
 }

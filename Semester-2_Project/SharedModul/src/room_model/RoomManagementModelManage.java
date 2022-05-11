@@ -20,8 +20,8 @@ public class RoomManagementModelManage implements RoomManagementModel {
     }
 
     @Override
-    public Room createRoom(String roomId, String building, String floor, String number, String type, String capacity) throws RemoteException {
-        return client.createRoom(roomId, building, floor, number, type, capacity);
+    public Room createRoom( String building, String floor, String number, String type, String capacity) throws RemoteException {
+        return client.createRoom(building, floor, number, type, capacity);
     }
 
     @Override
@@ -50,6 +50,5 @@ public class RoomManagementModelManage implements RoomManagementModel {
     @Override
     public void close() throws IOException {
         client.close();
-
     }
 }

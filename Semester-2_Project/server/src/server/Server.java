@@ -14,8 +14,8 @@ public class Server {
         Registry registry = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
         RemoteManageUsers manageUsersServerImp = new ManageUsersServerImp();
         RemoteManageRoom manageRoomServerImp = new ManageRoomServerImp();
-        registry.bind("create_users" , manageUsersServerImp);
-        registry.bind("create_room",manageRoomServerImp);
+        registry.bind("manage_users" , manageUsersServerImp);
+        registry.bind("manage_room",manageRoomServerImp);
         System.out.println("Server is running on port "+ Registry.REGISTRY_PORT);
     }
 

@@ -5,11 +5,10 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="openjdk-17" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="SharedModul" />
     <orderEntry type="library" name="javafx.fxml" level="application" />
     <orderEntry type="library" name="remoteobserver" level="application" />
-    <orderEntry type="library" name="javafx-swt" level="application" />
   </component>
 </module>

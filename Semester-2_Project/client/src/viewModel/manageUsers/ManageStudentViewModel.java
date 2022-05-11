@@ -1,4 +1,4 @@
-package viewModel.administrator;
+package viewModel.manageUsers;
 
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -9,37 +9,36 @@ import javafx.scene.control.Alert;
 import users_model.User;
 import users_model.Users;
 import users_model.UsersManagementModel;
-import viewModel.administrator.inputValidation.Validator;
+import viewModel.inputValidation.Validator;
 
 import java.beans.PropertyChangeEvent;
 import java.rmi.RemoteException;
 
-public class ManageAdminViewModel {
+public class ManageStudentViewModel {
     private UsersManagementModel usersManagementModel;
     private StringProperty firstname;
     private StringProperty lastname;
-    private StringProperty adminId;
+    private StringProperty studentNumber;
     private StringProperty phone;
     private StringProperty email;
     private StringProperty password;
     private StringProperty error;
     private ObservableList<User> userObservableList;
 
-
-    public ManageAdminViewModel(UsersManagementModel usersManagementModel) {
-        this.usersManagementModel = usersManagementModel;
+    public ManageStudentViewModel(UsersManagementModel model) {
+        this.usersManagementModel = model;
         userObservableList = FXCollections.observableArrayList();
         usersManagementModel.addPropertyChangeListener("users", evt -> {
             updateUsersList(evt);
         });
         firstname = new SimpleStringProperty("");
         lastname = new SimpleStringProperty("");
-        adminId = new SimpleStringProperty("");
+        studentNumber = new SimpleStringProperty("");
         phone = new SimpleStringProperty("");
         email = new SimpleStringProperty("");
         password = new SimpleStringProperty("");
         error = new SimpleStringProperty("");
-        userObservableList = FXCollections.observableArrayList();
+
     }
 
     public void bindFirstName(StringProperty property) {
@@ -50,8 +49,8 @@ public class ManageAdminViewModel {
         property.bindBidirectional(lastname);
     }
 
-    public void bindAdminId(StringProperty property) {
-        property.bindBidirectional(adminId);
+    public void bindStudentNumber(StringProperty property) {
+        property.bindBidirectional(studentNumber);
     }
 
     public void bindEmail(StringProperty property) {
@@ -67,23 +66,23 @@ public class ManageAdminViewModel {
     }
 
     public void bindError(StringProperty property) {
+
         property.bind(error);
     }
 
-    public void createAdmin() {
+    public void createStudent() {
         try {
             Validator.validateEmptyField(lastname.get());
             Validator.validateEmptyField(firstname.get());
             Validator.validateEmail(email.get());
             Validator.validatePassword(password.get());
-            Validator.validateUsername(adminId.get());
-            Validator.validatePhone(phone.get());
-            usersManagementModel.createAdmin(adminId.get(), password.get(), firstname.get(), lastname.get(), phone.get(), email.get());
-            notification(adminId.getValue() + ", add successfully");
+            Validator.validateUsername(studentNumber.get());
+            usersManagementModel.createStudent(studentNumber.get(), password.get(), firstname.get(), lastname.get(), phone.get(), email.get());
+            notification(studentNumber.getValue() + ", add successfully");
             clearFields();
         } catch (Exception e) {
             if(e.getMessage().contains("duplicate key value")){
-               notification("User already existed");
+                notification("User already existed");
             }else
             notification(e.getMessage());
         }
@@ -99,14 +98,14 @@ public class ManageAdminViewModel {
     public void updateUsersList(PropertyChangeEvent e) {
         Platform.runLater(() -> {
             userObservableList.clear();
-            userObservableList.addAll(((Users) e.getNewValue()).getAdministrators());
+            userObservableList.addAll(((Users) e.getNewValue()).getStudents());
         });
     }
 
     public ObservableList<User> getUserObservableList() {
         userObservableList.clear();
         try {
-            userObservableList.addAll(usersManagementModel.getAllUsers().getAdministrators());
+            userObservableList.addAll(usersManagementModel.getAllUsers().getStudents());
             error.set("");
         } catch (RemoteException e) {
             error.set(e.getMessage());
@@ -114,7 +113,6 @@ public class ManageAdminViewModel {
         }
         return userObservableList;
     }
-
     public void deleteUser(String userName) {
         try {
             usersManagementModel.deleteUser(userName);
@@ -125,7 +123,7 @@ public class ManageAdminViewModel {
     public void clearFields(){
         firstname.set("");
         lastname.set("");
-        adminId.set("");
+        studentNumber.set("");
         phone.set("");
         email.set("");
         password.set("");

@@ -7,7 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import users_model.User;
-import viewModel.administrator.ManageGuestViewModel;
+import viewModel.manageUsers.ManageGuestViewModel;
 
 
 public class ManageGuestController {

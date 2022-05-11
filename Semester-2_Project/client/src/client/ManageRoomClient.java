@@ -20,14 +20,14 @@ public class ManageRoomClient extends UnicastRemoteObject implements ManageRoomC
     private PropertyChangeSupport support;
 
     public ManageRoomClient(Registry registry) throws RemoteException, NotBoundException {
-        remoteManageRoom = (RemoteManageRoom) registry.lookup("create_room");
+        remoteManageRoom = (RemoteManageRoom) registry.lookup("manage_room");
         support= new PropertyChangeSupport(this);
 
     }
 
     @Override
-    public Room createRoom( String roomId,String  building, String  floor, String  number, String type, String  capacity) throws RemoteException {
-        return remoteManageRoom.createRoom(roomId, building, floor, number, type, capacity);
+    public Room createRoom(String building, String floor, String number, String type, String capacity) throws RemoteException {
+        return remoteManageRoom.createRoom(building, floor, number, type, capacity);
     }
 
     @Override

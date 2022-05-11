@@ -7,7 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import users_model.User;
-import viewModel.administrator.ManageTeacherViewModel;
+import viewModel.manageUsers.ManageTeacherViewModel;
 
 
 public class ManageTeacherController {

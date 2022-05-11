@@ -1,39 +1,34 @@
 package database;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import room_model.Room;
 import room_model.Rooms;
 
 import java.sql.*;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
 public class ManageRoomImp implements ManageRoomDAO {
     private static ManageRoomImp instance;
-    private final Lock lock;
-    //private Dotenv dotenv = Dotenv.load();
+    private Dotenv dotenv = Dotenv.load();
 
-    public ManageRoomImp() throws SQLException {
+    private ManageRoomImp() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
-        lock = new ReentrantLock();
     }
 
-    public synchronized ManageRoomImp getInstance() throws SQLException {
+    public static synchronized ManageRoomImp getInstance() throws SQLException {
         if (instance == null) {
-            synchronized (lock) {
-                instance = new ManageRoomImp();
-            }
+            instance = new ManageRoomImp();
         }
         return instance;
 
     }
 
     public Connection getConnection() throws SQLException {
-        //return DriverManager.getConnection("jdbc:postgresql://hattie.db.elephantsql.com:5432/zvltjqzb\",dotenv.get(\"USER_NAME\"),dotenv.get(\"PASSWORD")
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "369968");
+        return DriverManager.getConnection("jdbc:postgresql://hattie.db.elephantsql.com:5432/zvltjqzb\",dotenv.get(\"USER_NAME\"),dotenv.get(\"PASSWORD");
+       // return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "369968");
     }
 
     @Override
-    public Room createRoom(String room_Id, String building, String floor, String number, String type, String capacity) throws SQLException {
+    public Room createRoom( String building, String floor, String number, String type, String capacity) throws SQLException {
+       String room_Id = building+floor+"-"+number;
         try (Connection connection = getConnection()) {
             PreparedStatement statement = connection.prepareStatement("insert into booking_room_system.rooms (building,floor,number,type,capacity,room_Id)\n" +
                     "values (?,?,?,?,?,?);\n");

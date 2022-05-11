@@ -1,24 +1,37 @@
 package server;
 
+import database.ManageRoomDAO;
+import database.ManageRoomImp;
+import database.ManageUserDAO;
+import database.ManageUserImp;
 import dk.via.remote.observer.RemotePropertyChangeListener;
+import dk.via.remote.observer.RemotePropertyChangeSupport;
 import sheared_interfaces.RemoteManageRoom;
 import room_model.Room;
 import room_model.Rooms;
+import users_model.Users;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 
 public class ManageRoomServerImp extends UnicastRemoteObject implements RemoteManageRoom {
+    private final ManageRoomDAO manageRoomDAO;
+    private final RemotePropertyChangeSupport<Rooms> support;
 
-    public ManageRoomServerImp() throws RemoteException {
-
+    public ManageRoomServerImp() throws RemoteException, SQLException {
+        manageRoomDAO = ManageRoomImp.getInstance();
+        this.support = new RemotePropertyChangeSupport<>(this);
     }
 
-    @Override
-    public Room createRoom(String roomId, String building, String  floor, String  number, String type, String  capacity) {
 
-        System.out.println(new Room(roomId,building,floor,number,type,capacity));
-        return null;
+    @Override
+    public Room createRoom( String building, String  floor, String  number, String type, String  capacity) throws RemoteException{
+       try {
+         return  manageRoomDAO.createRoom(building,floor,number,type,capacity);
+       }catch (SQLException ex){
+           throw new RemoteException(ex.getMessage(),ex);
+       }
     }
 
     @Override

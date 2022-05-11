@@ -6,7 +6,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import users_model.User;
-import viewModel.administrator.ManageAdminViewModel;
+import viewModel.manageUsers.ManageAdminViewModel;
 
 
 public class ManageAdminController {

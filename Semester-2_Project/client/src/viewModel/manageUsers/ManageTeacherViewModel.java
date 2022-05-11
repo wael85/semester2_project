@@ -1,4 +1,4 @@
-package viewModel.administrator;
+package viewModel.manageUsers;
 
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -9,23 +9,24 @@ import javafx.scene.control.Alert;
 import users_model.User;
 import users_model.Users;
 import users_model.UsersManagementModel;
-import viewModel.administrator.inputValidation.Validator;
+import viewModel.inputValidation.Validator;
 
 import java.beans.PropertyChangeEvent;
 import java.rmi.RemoteException;
 
-public class ManageStudentViewModel {
+
+public class ManageTeacherViewModel {
     private UsersManagementModel usersManagementModel;
     private StringProperty firstname;
     private StringProperty lastname;
-    private StringProperty studentNumber;
+    private StringProperty staffId;
     private StringProperty phone;
     private StringProperty email;
     private StringProperty password;
     private StringProperty error;
     private ObservableList<User> userObservableList;
 
-    public ManageStudentViewModel(UsersManagementModel model) {
+    public ManageTeacherViewModel(UsersManagementModel model) {
         this.usersManagementModel = model;
         userObservableList = FXCollections.observableArrayList();
         usersManagementModel.addPropertyChangeListener("users", evt -> {
@@ -33,12 +34,11 @@ public class ManageStudentViewModel {
         });
         firstname = new SimpleStringProperty("");
         lastname = new SimpleStringProperty("");
-        studentNumber = new SimpleStringProperty("");
+        staffId = new SimpleStringProperty("");
         phone = new SimpleStringProperty("");
         email = new SimpleStringProperty("");
         password = new SimpleStringProperty("");
         error = new SimpleStringProperty("");
-
     }
 
     public void bindFirstName(StringProperty property) {
@@ -49,8 +49,8 @@ public class ManageStudentViewModel {
         property.bindBidirectional(lastname);
     }
 
-    public void bindStudentNumber(StringProperty property) {
-        property.bindBidirectional(studentNumber);
+    public void bindStaffId(StringProperty property) {
+        property.bindBidirectional(staffId);
     }
 
     public void bindEmail(StringProperty property) {
@@ -70,15 +70,15 @@ public class ManageStudentViewModel {
         property.bind(error);
     }
 
-    public void createStudent() {
+    public void createTeacher() {
         try {
             Validator.validateEmptyField(lastname.get());
             Validator.validateEmptyField(firstname.get());
             Validator.validateEmail(email.get());
             Validator.validatePassword(password.get());
-            Validator.validateUsername(studentNumber.get());
-            usersManagementModel.createStudent(studentNumber.get(), password.get(), firstname.get(), lastname.get(), phone.get(), email.get());
-            notification(studentNumber.getValue() + ", add successfully");
+            Validator.validateUsername(staffId.get());
+            usersManagementModel.createTeacher(staffId.get(), password.get(), firstname.get(), lastname.get(), phone.get(), email.get());
+            notification(staffId.getValue() + ", add successfully");
             clearFields();
         } catch (Exception e) {
             if(e.getMessage().contains("duplicate key value")){
@@ -98,14 +98,14 @@ public class ManageStudentViewModel {
     public void updateUsersList(PropertyChangeEvent e) {
         Platform.runLater(() -> {
             userObservableList.clear();
-            userObservableList.addAll(((Users) e.getNewValue()).getStudents());
+            userObservableList.addAll(((Users) e.getNewValue()).getTeachers());
         });
     }
 
     public ObservableList<User> getUserObservableList() {
         userObservableList.clear();
         try {
-            userObservableList.addAll(usersManagementModel.getAllUsers().getStudents());
+            userObservableList.addAll(usersManagementModel.getAllUsers().getTeachers());
             error.set("");
         } catch (RemoteException e) {
             error.set(e.getMessage());
@@ -123,9 +123,10 @@ public class ManageStudentViewModel {
     public void clearFields(){
         firstname.set("");
         lastname.set("");
-        studentNumber.set("");
+        staffId.set("");
         phone.set("");
         email.set("");
         password.set("");
     }
+
 }

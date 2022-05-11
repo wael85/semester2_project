@@ -6,11 +6,9 @@
       <sourceFolder url="file://$MODULE_DIR$/ServerTest" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="openjdk-17" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="SharedModul" />
-    <orderEntry type="library" exported="" name="lib" level="project" />
-    <orderEntry type="library" exported="" name="java-dotenv-5.2.2" level="project" />
     <orderEntry type="module-library" exported="" scope="TEST">
       <library name="JUnit5.7.0">
         <CLASSES>
@@ -28,9 +26,5 @@
       </library>
     </orderEntry>
     <orderEntry type="library" exported="" name="postgresql-42.3.3" level="application" />
-    <orderEntry type="library" name="remoteobserver" level="project" />
-    <orderEntry type="library" name="java-dotenv-5.2.2" level="application" />
-    <orderEntry type="library" name="lib" level="application" />
-    <orderEntry type="library" name="remoteobserver" level="application" />
   </component>
 </module>
