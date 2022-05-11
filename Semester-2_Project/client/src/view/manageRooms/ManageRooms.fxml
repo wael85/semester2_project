@@ -13,14 +13,9 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #0A5663;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manageRooms.ManageRoomsController">
    <children>
-      <TextField fx:id="room_Id" layoutX="130.0" layoutY="94.0" />
       <TextField fx:id="building" layoutX="130.0" layoutY="130.0" />
       <TextField fx:id="floor" layoutX="130.0" layoutY="163.0" />
       <TextField fx:id="capacity" layoutX="130.0" layoutY="200.0" />
-      <Label layoutX="48.0" layoutY="98.0" text="Room_Id" textFill="#cdc538">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font></Label>
       <Label layoutX="48.0" layoutY="134.0" text="Building" textFill="#cdc538">
          <font>
             <Font name="System Bold Italic" size="12.0" />
@@ -43,7 +38,7 @@
          </font></Button>
       <Button layoutX="371.0" layoutY="322.0" mnemonicParsing="false" onAction="#deleteRoom" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: red;" text="Delete" />
       <Button layoutX="29.0" layoutY="349.0" mnemonicParsing="false" onAction="#backToMain" prefHeight="26.0" prefWidth="50.0" style="-fx-background-color: brown;" text="Back " />
-      <ListView layoutX="371.0" layoutY="89.0" prefHeight="230.0" prefWidth="200.0" />
+      <ListView fx:id="list" layoutX="371.0" layoutY="89.0" prefHeight="230.0" prefWidth="200.0" />
       <ImageView fitHeight="60.0" fitWidth="140.0" layoutX="401.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../resources/viaLogo.png" />
