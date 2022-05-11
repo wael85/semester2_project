@@ -1,7 +1,9 @@
 package viewModel;
 
 
+import room_model.RoomManagementModel;
 import users_model.UsersManagementModel;
+import viewModel.manageRooms.ManageRoomsViewModel;
 import viewModel.manageUsers.ManageAdminViewModel;
 import viewModel.manageUsers.ManageGuestViewModel;
 import viewModel.manageUsers.ManageStudentViewModel;
@@ -13,12 +15,14 @@ public class ViewModelFactory {
     private ManageStudentViewModel manageStudentViewModel;
     private ManageGuestViewModel manageGuestViewModel;
     private ManageTeacherViewModel manageTeacherViewModel;
+    private ManageRoomsViewModel manageRoomsViewModel;
 
-    public ViewModelFactory(UsersManagementModel model){
-        this.manageAdminViewModel =new ManageAdminViewModel(model);
-        this.manageGuestViewModel = new ManageGuestViewModel(model);
-        this.manageStudentViewModel = new ManageStudentViewModel(model);
-        this.manageTeacherViewModel = new ManageTeacherViewModel(model);
+    public ViewModelFactory(UsersManagementModel usersModel, RoomManagementModel roomModel){
+        this.manageAdminViewModel =new ManageAdminViewModel(usersModel);
+        this.manageGuestViewModel = new ManageGuestViewModel(usersModel);
+        this.manageStudentViewModel = new ManageStudentViewModel(usersModel);
+        this.manageTeacherViewModel = new ManageTeacherViewModel(usersModel);
+        this.manageRoomsViewModel = new ManageRoomsViewModel(roomModel);
     }
 
     public ManageAdminViewModel getManageAdminViewModel() {
@@ -35,5 +39,9 @@ public class ViewModelFactory {
 
     public ManageTeacherViewModel getManageTeacherViewModel() {
         return manageTeacherViewModel;
+    }
+
+    public ManageRoomsViewModel getManageRoomsViewModel(){
+        return manageRoomsViewModel;
     }
 }

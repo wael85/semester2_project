@@ -24,8 +24,8 @@ public class App extends Application {
 
         UsersManagementModel usersManagementModel = new UsersManagementModelManger(manageUserClient);
         RoomManagementModel roomManagementModel= new RoomManagementModelManage(manageRoomClient);
-        ViewModelFactory viewModelFactory = new ViewModelFactory(usersManagementModel);
-        ViewHandler viewHandler = new ViewHandler(primaryStage,viewModelFactory,usersManagementModel);
+        ViewModelFactory viewModelFactory = new ViewModelFactory(usersManagementModel,roomManagementModel);
+        ViewHandler viewHandler = new ViewHandler(primaryStage,viewModelFactory,usersManagementModel,roomManagementModel);
         viewHandler.start();
         primaryStage.getOnCloseRequest();
     }

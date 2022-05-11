@@ -8,10 +8,6 @@ import java.sql.SQLException;
 public interface ManageRoomDAO {
     Room createRoom( String building, String floor, String number, String type, String capacity) throws SQLException;
     void deleteRoom(String room_Id) throws SQLException;
-    Rooms getAllClassRooms() throws SQLException;
+    Rooms getRooms() throws SQLException;
 
-    Rooms getAllStudyRooms() throws SQLException;
-
-    Rooms getAllAuditoryRooms() throws SQLException;
-    Rooms getAllRooms()throws SQLException;
 }

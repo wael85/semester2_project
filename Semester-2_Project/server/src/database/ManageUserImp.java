@@ -204,21 +204,4 @@ public class ManageUserImp implements ManageUserDAO{
             return users;
         }
     }
-
-    public static void main(String[] args) throws SQLException {
-        ManageUserImp m = new ManageUserImp();
-
-       // m.createAdministrator("48","sdfsd","ssdf","dfgd","sf","dsfs");
-        m.createTeacher("dkjbhhf","df","df","df","df","df");
-       // m.createGuest("d","d","d","3","e");
-       // m.createStudent("df12","df2","df3","df4","df5","df6");
-    try {
-            m.deleteUser("123");
-            Users h = m.getAllUsers();
-            System.out.println(h.getTeachers());
-        }catch (SQLException sql){
-            sql.printStackTrace();
-        }
-
-}
 }

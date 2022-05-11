@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import room_model.RoomManagementModel;
 import users_model.UsersManagementModel;
 import view.mainMenu.MainMenuController;
 import view.manageRooms.ManageRoomsController;
@@ -17,11 +18,13 @@ public class ViewHandler {
     private Stage stage;
     private ViewModelFactory vmf;
     private UsersManagementModel usersManagementModel;
+    private RoomManagementModel roomManagementModel;
 
-    public ViewHandler(Stage stage, ViewModelFactory vmf, UsersManagementModel usersManagementModel) {
+    public ViewHandler(Stage stage, ViewModelFactory vmf, UsersManagementModel usersManagementModel,RoomManagementModel roomManagementModel) {
         this.stage = stage;
         this.vmf = vmf;
         this.usersManagementModel = usersManagementModel;
+        this.roomManagementModel = roomManagementModel;
     }
 
     public void start() {
@@ -45,6 +48,7 @@ public class ViewHandler {
             stage.setOnCloseRequest(e -> {
                 try {
                     usersManagementModel.close();
+                    roomManagementModel.close();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -65,20 +69,20 @@ public class ViewHandler {
             mainMenuController.init(vmf, this);
             stage.setScene(scene);
             stage.show();
-
-
+            stage.setOnCloseRequest(e -> {
+                try {
+                    usersManagementModel.close();
+                    roomManagementModel.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
-    public void closeView(){
-        stage.close();
-
-    }
     public void openManageRoom(){
-
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../view/manageRooms/ManageRooms.fxml"));
@@ -86,15 +90,20 @@ public class ViewHandler {
             Scene scene = new Scene(root);
             stage.setTitle("Manage Rooms");
             ManageRoomsController manageRoomsController = loader.getController();
-            manageRoomsController.init(vmf, this);
+            manageRoomsController.init(vmf.getManageRoomsViewModel(), this);
             stage.setScene(scene);
             stage.show();
-
-
+            stage.setOnCloseRequest(e -> {
+                try {
+                    usersManagementModel.close();
+                    roomManagementModel.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 }

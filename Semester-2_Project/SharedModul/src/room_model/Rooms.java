@@ -15,4 +15,11 @@ public class Rooms implements Serializable {
     public ArrayList<Room> getRooms(){
         return roomList;
     }
+
+    @Override
+    public String toString() {
+        return "Rooms{" +
+                "roomList=" + roomList +
+                '}';
+    }
 }

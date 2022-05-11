@@ -11,6 +11,7 @@ import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -21,6 +22,7 @@ public class ManageRoomClient extends UnicastRemoteObject implements ManageRoomC
 
     public ManageRoomClient(Registry registry) throws RemoteException, NotBoundException {
         remoteManageRoom = (RemoteManageRoom) registry.lookup("manage_room");
+        remoteManageRoom.addPropertyChangeListener(this);
         support= new PropertyChangeSupport(this);
 
     }
@@ -71,4 +73,10 @@ public class ManageRoomClient extends UnicastRemoteObject implements ManageRoomC
     public void propertyChange(RemotePropertyChangeEvent<Rooms> changeEvent) throws RemoteException {
         support.firePropertyChange(changeEvent.getPropertyName(),changeEvent.getOldValue(),changeEvent.getNewValue());
     }
+
+  /*  public static void main(String[] args) throws RemoteException, NotBoundException {
+        Registry registry = LocateRegistry.getRegistry("localhost", Registry.REGISTRY_PORT);
+        ManageRoomClient manageRoomClient = new ManageRoomClient(registry);
+        System.out.println(manageRoomClient.remoteManageRoom.getAllRooms());
+    }*/
 }

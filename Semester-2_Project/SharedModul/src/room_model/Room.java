@@ -46,11 +46,6 @@ public class Room implements Serializable {
     @Override
     public String toString() {
         return
-                "RoomId: " + roomId +
-                ", Building: " + building +
-                ", Floor: " + floor +
-                ", Number: " + number +
-                ", Type: " + type +
-                ", Capacity: " + capacity;
+                "RoomId: " + roomId +", Capacity: " + capacity+ ", Room Type: "+type;
     }
 }

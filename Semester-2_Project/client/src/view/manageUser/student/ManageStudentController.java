@@ -39,8 +39,7 @@ public class ManageStudentController {
         manageStudentViewModel.bindLastName(lastName.textProperty());
         manageStudentViewModel.bindPhone(phone.textProperty());
         manageStudentViewModel.bindEmail(email.textProperty());
-
-
+        manageStudentViewModel.bindPassword(password.textProperty());
     }
 
     @FXML

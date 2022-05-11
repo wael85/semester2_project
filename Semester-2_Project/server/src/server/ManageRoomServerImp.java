@@ -28,7 +28,9 @@ public class ManageRoomServerImp extends UnicastRemoteObject implements RemoteMa
     @Override
     public Room createRoom( String building, String  floor, String  number, String type, String  capacity) throws RemoteException{
        try {
-         return  manageRoomDAO.createRoom(building,floor,number,type,capacity);
+         Room room =   manageRoomDAO.createRoom(building,floor,number,type,capacity);
+         support.firePropertyChange("rooms",null,getAllRooms());
+         return room;
        }catch (SQLException ex){
            throw new RemoteException(ex.getMessage(),ex);
        }
@@ -36,21 +38,30 @@ public class ManageRoomServerImp extends UnicastRemoteObject implements RemoteMa
 
     @Override
     public void deleteRoom(String roomId) throws RemoteException {
-
+        try {
+            manageRoomDAO.deleteRoom(roomId);
+            support.firePropertyChange("rooms",null,getAllRooms());
+        }catch (SQLException e){
+            throw new RemoteException(e.getMessage(),e);
+        }
     }
 
     @Override
     public Rooms getAllRooms() throws RemoteException {
-        return null;
+        try {
+            return manageRoomDAO.getRooms();
+        }catch (SQLException ex){
+            throw new RemoteException(ex.getMessage(),ex);
+        }
     }
 
     @Override
     public void addPropertyChangeListener(RemotePropertyChangeListener<Rooms> listener) throws RemoteException {
-
+                support.addPropertyChangeListener(listener);
     }
 
     @Override
     public void removePropertyChangeListener(RemotePropertyChangeListener<Rooms> listener) throws RemoteException {
-
+                support.removePropertyChangeListener(listener);
     }
 }

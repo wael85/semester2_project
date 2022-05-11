@@ -58,14 +58,14 @@ public class Validator {
             throw new IllegalArgumentException("Tlf.number needs " + MINIMAL_LENGTH + " or more characters.");
         }
 
-        boolean digit = false;
+        boolean isDigit = false;
         for (int i = 0; i < phone.length(); i++) {
             char ch = phone.charAt(i);
 
-            digit =  Character.isDigit(ch);
-        }
-        if (!(digit)) {
-            throw new IllegalArgumentException("Tlf.number needs only digits.");
+            isDigit =  Character.isDigit(ch);
+            if (!(isDigit)) {
+                throw new IllegalArgumentException("Tlf.number needs only digits.");
+            }
         }
     }
 
