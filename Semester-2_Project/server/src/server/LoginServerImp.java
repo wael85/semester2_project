@@ -5,25 +5,18 @@ import database.LoginImp;
 import sheared_interfaces.RemoteLogin;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 
-public class LoginServerImp implements RemoteLogin {
+public class LoginServerImp extends UnicastRemoteObject implements RemoteLogin {
     private LoginDAO loginDAO;
 
-    public LoginServerImp() throws SQLException {
+    public LoginServerImp() throws RemoteException,SQLException {
       loginDAO = LoginImp.getInstance();
     }
 
     @Override
-    public String login(String userName, String password) throws RemoteException {
-        try {
-            if( loginDAO.login(userName,password)){
-                return "it is true";
-            }
-        }catch (SQLException e){
-            throw new RemoteException(e.getMessage() ,e);
-        }finally {
-            return "ir is false";
-        }
+    public Boolean login(String userName, String password) throws RemoteException, SQLException {
+       return loginDAO.login(userName,password);
     }
 }

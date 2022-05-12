@@ -8,6 +8,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 
 public class ClientLogin extends UnicastRemoteObject implements Login, RemoteLogin {
     private Registry registry;
@@ -18,9 +19,8 @@ public class ClientLogin extends UnicastRemoteObject implements Login, RemoteLog
          remoteLogin = (RemoteLogin) this.registry.lookup("login");
     }
     @Override
-    public String login(String userName, String password) throws RemoteException {
-      String b =  remoteLogin.login(userName,password);
-      return b;
+    public Boolean login(String userName, String password) throws RemoteException, SQLException {
+     return remoteLogin.login(userName,password);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class ClientLogin extends UnicastRemoteObject implements Login, RemoteLog
 
     }
 
-    public static void main(String[] args) throws RemoteException, NotBoundException {
+    public static void main(String[] args) throws RemoteException, NotBoundException, SQLException {
         ClientLogin c = new ClientLogin(LocateRegistry.getRegistry("localhost", Registry.REGISTRY_PORT));
         System.out.println( c.login("tch","222"));
     }
