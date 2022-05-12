@@ -9,7 +9,7 @@ import javafx.scene.control.Alert;
 import users_model.User;
 import users_model.Users;
 import users_model.UsersManagementModel;
-import viewModel.inputValidation.Validator;
+import viewModel.inputValidation.ValidatorManageUsers;
 
 import java.beans.PropertyChangeEvent;
 import java.rmi.RemoteException;
@@ -72,11 +72,11 @@ public class ManageStudentViewModel {
 
     public void createStudent() {
         try {
-            Validator.validateEmptyField(lastname.get());
-            Validator.validateEmptyField(firstname.get());
-            Validator.validateEmail(email.get());
-            Validator.validatePassword(password.get());
-            Validator.validateUsername(studentNumber.get());
+            ValidatorManageUsers.validateEmptyField(lastname.get());
+            ValidatorManageUsers.validateEmptyField(firstname.get());
+            ValidatorManageUsers.validateEmail(email.get());
+            ValidatorManageUsers.validatePassword(password.get());
+            ValidatorManageUsers.validateUsername(studentNumber.get());
             usersManagementModel.createStudent(studentNumber.get(), password.get(), firstname.get(), lastname.get(), phone.get(), email.get());
             notification(studentNumber.getValue() + ", add successfully");
             clearFields();

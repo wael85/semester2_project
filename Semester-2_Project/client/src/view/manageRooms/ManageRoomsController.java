@@ -47,7 +47,6 @@ public class ManageRoomsController {
             @Override
             public void changed(ObservableValue<? extends Toggle> observableValue, Toggle oldToggle, Toggle newToggle) {
                manageRoomsViewModel.setType(RoomType.selectedToggleProperty().getValue().getUserData().toString());
-                System.out.println(RoomType.selectedToggleProperty().getValue().getUserData());
             }
         });
         list.setItems(manageRoomsViewModel.getRoomsList());

@@ -9,6 +9,8 @@ import javafx.scene.control.Alert;
 import room_model.Room;
 import room_model.RoomManagementModel;
 import room_model.Rooms;
+import viewModel.inputValidation.ValidatorManageRooms;
+import viewModel.inputValidation.ValidatorManageUsers;
 
 import java.beans.PropertyChangeEvent;
 import java.rmi.RemoteException;
@@ -25,17 +27,18 @@ public class ManageRoomsViewModel {
 
     public ManageRoomsViewModel(RoomManagementModel model) {
         this.model = model;
-        model.addPropertyChangeListener("rooms", event ->{
+        model.addPropertyChangeListener("rooms", event -> {
             updateRoomsList(event);
         });
         this.building = new SimpleStringProperty("");
-        this.floor= new SimpleStringProperty("");
+        this.floor = new SimpleStringProperty("");
         this.number = new SimpleStringProperty("");
         this.type = new SimpleStringProperty("");
         this.capacity = new SimpleStringProperty("");
         this.roomsList = FXCollections.observableArrayList();
 
     }
+
     public void bindBuilding(StringProperty property) {
         property.bindBidirectional(building);
     }
@@ -56,48 +59,59 @@ public class ManageRoomsViewModel {
         property.bindBidirectional(capacity);
     }
 
-    public void createRoom(){
+    public void createRoom() {
         try {
+
+            ValidatorManageRooms.validateBuilding(building.get());
+            ValidatorManageRooms.validateFloor(floor.get());
+            ValidatorManageRooms.validateNumber(number.get());
+            ValidatorManageRooms.validateCapacity(capacity.get(), type.get());
+
             model.createRoom(building.get(), floor.get(), number.get(), type.get(), capacity.get());
             clearFields();
 
-        } catch (RemoteException e) {
-            if(e.getMessage().contains("duplicate key value")){
+        } catch (Exception e) {
+            if (e.getMessage().contains("duplicate key value")) {
                 notification("User already existed");
-            }else
+            } else
                 notification(e.getMessage());
         }
     }
+
     public void notification(String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
         alert.setContentText(msg);
         alert.showAndWait();
     }
-    public void deleteRoom(String roomId){
+
+    public void deleteRoom(String roomId) {
         try {
             model.deleteRoom(roomId);
         } catch (RemoteException e) {
             notification(e.getMessage());
         }
     }
-    public ObservableList<Room> getRoomsList(){
-       try {
-           this.roomsList.clear();
-           this.roomsList.addAll(model.getAllRooms().getRooms());
-       }catch (RemoteException e){
-           notification(e.getMessage());
-       }
-       return this.roomsList;
+
+    public ObservableList<Room> getRoomsList() {
+        try {
+            this.roomsList.clear();
+            this.roomsList.addAll(model.getAllRooms().getRooms());
+        } catch (RemoteException e) {
+            notification(e.getMessage());
+        }
+        return this.roomsList;
     }
-    public void updateRoomsList(PropertyChangeEvent event){
-        Platform.runLater(()->{
+
+    public void updateRoomsList(PropertyChangeEvent event) {
+        Platform.runLater(() -> {
             roomsList.clear();
-            roomsList.addAll(((Rooms)event.getNewValue()).getRooms());
+            roomsList.addAll(((Rooms) event.getNewValue()).getRooms());
         });
 
     }
-    public void clearFields(){
+
+    public void clearFields() {
         building.set("");
         floor.set("");
         number.set("");
