@@ -5,11 +5,14 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.TextField;
 import room_model.Room;
 import room_model.Rooms;
 import view.ViewHandler;
 import viewModel.ViewModelFactory;
 import viewModel.manageRooms.ManageRoomsViewModel;
+
+import java.awt.*;
 
 public class ManageRoomsController {
 
