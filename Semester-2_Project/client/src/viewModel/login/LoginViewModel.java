@@ -4,6 +4,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import login.LoginModel;
 
+import java.rmi.RemoteException;
+
 public class LoginViewModel {
     private StringProperty userName;
     private StringProperty password;
@@ -27,14 +29,13 @@ public class LoginViewModel {
     public void bindErrorLabel(StringProperty property){
         property.bind(error);
     }
-    public boolean login(){
-        error.set("");
-        boolean login = loginModel.login(userName.get(),password.get());
-        if(login){
-            error.set("success!!!");
-            return true;
+    public void login() {
+        try {
+            error.set("");
+            loginModel.login(userName.get(),password.get());
+            error.set("Success !!");
+        }catch (RemoteException e){
+            error.set(e.getMessage());
         }
-        error.set("user name or password is not correct ..");
-        return false;
     }
 }

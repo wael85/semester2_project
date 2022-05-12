@@ -1,7 +1,8 @@
 package client;
 
 import java.io.Closeable;
+import java.rmi.RemoteException;
 
 public interface Login extends Closeable {
-    boolean login(String userName,String password);
+    String login(String userName,String password) throws RemoteException;
 }
