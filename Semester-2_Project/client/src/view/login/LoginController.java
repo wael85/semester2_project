@@ -7,6 +7,8 @@ import viewModel.login.LoginViewModel;
 
 import javafx.scene.control.*;
 
+import java.rmi.RemoteException;
+
 public class LoginController {
     @FXML
     private TextField userName;
@@ -27,6 +29,6 @@ public class LoginController {
     }
     @FXML
     public void login(){
-        loginViewModel.login();
+       loginViewModel.login();
     }
 }
