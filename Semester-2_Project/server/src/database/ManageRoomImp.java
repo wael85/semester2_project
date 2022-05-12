@@ -81,9 +81,5 @@ public class ManageRoomImp implements ManageRoomDAO {
         }
     }
 
-    public static void main(String[] args) throws SQLException {
-        ManageRoomImp imp = new ManageRoomImp();
-        imp.createRoom("l","2","3", RoomTypes.AUDITORY_ROOM.type, "10");
-        System.out.println(imp.getRooms());
-    }
+
 }
