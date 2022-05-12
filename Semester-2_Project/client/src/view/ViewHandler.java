@@ -4,8 +4,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import login.LoginModel;
 import room_model.RoomManagementModel;
 import users_model.UsersManagementModel;
+import view.login.LoginController;
 import view.mainMenu.MainMenuController;
 import view.manageRooms.ManageRoomsController;
 import view.manageUser.TabPaneManageUserController;
@@ -19,16 +21,18 @@ public class ViewHandler {
     private ViewModelFactory vmf;
     private UsersManagementModel usersManagementModel;
     private RoomManagementModel roomManagementModel;
+    private LoginModel loginModel;
 
-    public ViewHandler(Stage stage, ViewModelFactory vmf, UsersManagementModel usersManagementModel,RoomManagementModel roomManagementModel) {
+    public ViewHandler(Stage stage, ViewModelFactory vmf, UsersManagementModel usersManagementModel,RoomManagementModel roomManagementModel,LoginModel loginModel) {
         this.stage = stage;
         this.vmf = vmf;
         this.usersManagementModel = usersManagementModel;
         this.roomManagementModel = roomManagementModel;
+        this.loginModel = loginModel;
     }
 
     public void start() {
-       openMainMenu();
+       openLogin();
     }
 
     public void openTabPaneManageUser() {
@@ -81,7 +85,30 @@ public class ViewHandler {
             e.printStackTrace();
         }
     }
-
+    public void openLogin(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../view/login/Login.fxml"));
+            Parent root=loader.load();
+            Scene scene = new Scene(root);
+            stage.setTitle("Login");
+            LoginController loginController = loader.getController();
+            loginController.init(vmf.getLoginViewModel(), this);
+            stage.setScene(scene);
+            stage.show();
+            stage.setOnCloseRequest(e -> {
+                try {
+                    usersManagementModel.close();
+                    roomManagementModel.close();
+                    loginModel.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void openManageRoom(){
         try {
             FXMLLoader loader = new FXMLLoader();

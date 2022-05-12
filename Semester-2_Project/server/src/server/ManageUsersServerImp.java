@@ -10,7 +10,6 @@ import users_model.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class ManageUsersServerImp extends UnicastRemoteObject implements RemoteManageUsers {
     private final ManageUserDAO manageUserDAO;
