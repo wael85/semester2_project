@@ -34,5 +34,4 @@ public class Teacher extends User implements Serializable {
                         ", phone: " + phone +
                         ", email: " + email;
     }
-
 }

@@ -16,7 +16,9 @@ import viewModel.ViewModelFactory;
             viewHandler.openManageRoom();
         }
 
-        public void toLogIn(ActionEvent actionEvent) {
+        public void logout(ActionEvent actionEvent) {
+            viewHandler.getCurrentUser().setCurrentUser(null);
+            viewHandler.openLogin();
         }
 
         public void init(ViewModelFactory viewModelFactory, ViewHandler viewHandler) {

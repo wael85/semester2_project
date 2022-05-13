@@ -12,6 +12,7 @@ import view.login.LoginController;
 import view.mainMenu.MainMenuController;
 import view.manageRooms.ManageRoomsController;
 import view.manageUser.TabPaneManageUserController;
+import view.booking.*;
 import viewModel.ViewModelFactory;
 
 import java.io.IOException;
@@ -60,6 +61,7 @@ public class ViewHandler {
                 try {
                     usersManagementModel.close();
                     roomManagementModel.close();
+                    loginModel.close();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -84,6 +86,7 @@ public class ViewHandler {
                 try {
                     usersManagementModel.close();
                     roomManagementModel.close();
+                    loginModel.close();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -131,6 +134,82 @@ public class ViewHandler {
                 try {
                     usersManagementModel.close();
                     roomManagementModel.close();
+                    loginModel.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void openStudentBooking() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../view/booking/StudentBooking.fxml"));
+            Parent root=loader.load();
+            Scene scene = new Scene(root);
+            stage.setTitle("Student Booking");
+            StudentBookingController studentBookingController = loader.getController();
+            studentBookingController.init( this);
+            stage.setScene(scene);
+            stage.show();
+            stage.setOnCloseRequest(e -> {
+                try {
+                    usersManagementModel.close();
+                    roomManagementModel.close();
+                    loginModel.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void openTeacherBooking() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../view/booking/TeacherBooking.fxml"));
+            Parent root=loader.load();
+            Scene scene = new Scene(root);
+            stage.setTitle("Teacher Booking");
+            TeacherBookingController teacherBookingController = loader.getController();
+            teacherBookingController.init( this);
+            stage.setScene(scene);
+            stage.show();
+            stage.setOnCloseRequest(e -> {
+                try {
+                    usersManagementModel.close();
+                    roomManagementModel.close();
+                    loginModel.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void openGuestBooking() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../view/booking/GuestBooking.fxml"));
+            Parent root=loader.load();
+            Scene scene = new Scene(root);
+            stage.setTitle("Guest Booking");
+            GuestBookingController guestBookingController = loader.getController();
+            guestBookingController.init( this);
+            stage.setScene(scene);
+            stage.show();
+            stage.setOnCloseRequest(e -> {
+                try {
+                    usersManagementModel.close();
+                    roomManagementModel.close();
+                    loginModel.close();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
