@@ -21,6 +21,6 @@
       </Text>
       <Button layoutX="173.0" layoutY="126.0" mnemonicParsing="false" onAction="#toMangeUsers" prefHeight="33.0" prefWidth="153.0" text="Manage Users:" />
       <Button layoutX="173.0" layoutY="183.0" mnemonicParsing="false" onAction="#toMangeRooms" prefHeight="33.0" prefWidth="153.0" text="Manage Rooms:" />
-      <Button layoutX="37.0" layoutY="284.0" mnemonicParsing="false" onAction="#toLogIn" prefHeight="18.0" prefWidth="91.0" text="Log off" />
+      <Button layoutX="37.0" layoutY="284.0" mnemonicParsing="false" onAction="#logout" prefHeight="18.0" prefWidth="91.0" text="Log off" />
     </children>
 </AnchorPane>

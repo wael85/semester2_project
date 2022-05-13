@@ -10,40 +10,40 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #0A5663;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manageRooms.ManageRoomsController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manageRooms.ManageRoomsController">
    <children>
       <TextField fx:id="building" layoutX="130.0" layoutY="95.0" />
       <TextField fx:id="floor" layoutX="130.0" layoutY="128.0" />
       <TextField fx:id="capacity" layoutX="130.0" layoutY="200.0" />
-      <Label layoutX="49.0" layoutY="99.0" text="Building" textFill="#cdc538">
+      <Label layoutX="57.0" layoutY="101.0" text="Building:">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></Label>
-      <Label layoutX="59.0" layoutY="132.0" text="Floor" textFill="#cdc538">
+      <Label layoutX="62.0" layoutY="134.0" prefHeight="15.0" prefWidth="34.0" text="Floor:">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></Label>
-      <Label layoutX="48.0" layoutY="204.0" text="Capacity" textFill="#cdc538">
+      <Label layoutX="48.0" layoutY="204.0" text="Capacity:">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></Label>
-      <Label layoutX="48.0" layoutY="241.0" text="Room Type" textFill="#cdc538">
+      <Label layoutX="48.0" layoutY="241.0" text="Room Type:">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></Label>
-      <Button layoutX="137.0" layoutY="322.0" mnemonicParsing="false" onAction="#createRoom" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: #39C997;" text="Add Room" textFill="WHITE">
+      <Button layoutX="170.0" layoutY="319.0" mnemonicParsing="false" onAction="#createRoom" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: #39C997;" text="Add Room" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
       <Button layoutX="371.0" layoutY="322.0" mnemonicParsing="false" onAction="#deleteRoom" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: red;" text="Delete" />
-      <Button layoutX="29.0" layoutY="349.0" mnemonicParsing="false" onAction="#backToMain" prefHeight="26.0" prefWidth="50.0" style="-fx-background-color: brown;" text="Back " />
       <ListView fx:id="list" layoutX="371.0" layoutY="89.0" prefHeight="230.0" prefWidth="200.0" />
       <ImageView fitHeight="60.0" fitWidth="140.0" layoutX="401.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../resources/viaLogo.png" />
          </image></ImageView>
-      <RadioButton fx:id="ClassRoom" layoutX="130.0" layoutY="241.0" mnemonicParsing="false" selected="true" text="Class Room" textFill="#cdc538" userData="class room">
+      <RadioButton fx:id="ClassRoom" layoutX="130.0" layoutY="241.0" mnemonicParsing="false" selected="true" text="Class Room" userData="class room">
          <toggleGroup>
             <ToggleGroup fx:id="RoomType" />
          </toggleGroup>
@@ -51,26 +51,27 @@
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="StudyRoom" layoutX="131.0" layoutY="267.0" mnemonicParsing="false" text="Study Room" textFill="#cdc538" toggleGroup="$RoomType" userData="study room">
+      <RadioButton fx:id="StudyRoom" layoutX="131.0" layoutY="267.0" mnemonicParsing="false" text="Study Room" toggleGroup="$RoomType" userData="study room">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="AuditoryRoom" layoutX="131.0" layoutY="291.0" mnemonicParsing="false" text="Auditory Room" textFill="#cdc538" toggleGroup="$RoomType" userData="auditory">
+      <RadioButton fx:id="AuditoryRoom" layoutX="131.0" layoutY="291.0" mnemonicParsing="false" text="Auditory Room" toggleGroup="$RoomType" userData="auditory">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </RadioButton>
-      <Label layoutX="110.0" layoutY="22.0" prefHeight="56.0" prefWidth="188.0" text="Mange Rooms" textFill="#ff7575">
-         <font>
-            <Font name="System Italic" size="28.0" />
-         </font>
-      </Label>
       <TextField fx:id="roomNumber" layoutX="130.0" layoutY="165.0" />
-      <Label layoutX="32.0" layoutY="169.0" text="Room Number" textFill="#cdc538">
+      <Label layoutX="32.0" layoutY="169.0" text="Room Number:">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Label>
+      <Text layoutX="34.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Rooms:" wrappingWidth="322.646484375">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Button layoutX="26.0" layoutY="348.0" mnemonicParsing="false" onAction="#backToMain" prefHeight="26.0" prefWidth="69.0" text="Back" />
    </children>
 </AnchorPane>

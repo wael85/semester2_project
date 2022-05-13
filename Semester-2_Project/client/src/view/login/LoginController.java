@@ -14,7 +14,7 @@ public class LoginController {
     @FXML
     private TextField userName;
     @FXML
-    private TextField password;
+    private PasswordField password;
     @FXML
     private Label error;
     private LoginViewModel loginViewModel;
@@ -26,17 +26,32 @@ public class LoginController {
         this.loginViewModel.bindErrorLabel(error.textProperty());
         this.loginViewModel.bindPassword(password.textProperty());
         this.loginViewModel.bindUserName(userName.textProperty());
+        reset();
 
     }
     @FXML
     public void login(){
       if( loginViewModel.login()){
-          switch (viewHandler.getCurrentUser().getCurrentUser().getUserType()){
+          String user = viewHandler.getCurrentUser().getCurrentUser().getUserType();
+          switch (user){
               case "ADMINISTRATOR":
                   viewHandler.openMainMenu();
+                  break;
               case "STUDENT":
-                  viewHandler.openManageRoom();
+                  viewHandler.openStudentBooking();
+                  break;
+              case "TEACHER":
+                  viewHandler.openTeacherBooking();
+                  break;
+              case "GUEST":
+                  viewHandler.openGuestBooking();
+                  break;
+              default: viewHandler.openLogin();
           }
       }
+    }
+    public void reset(){
+        userName.setText("");
+        password.setText("");
     }
 }

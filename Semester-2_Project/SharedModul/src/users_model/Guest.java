@@ -32,5 +32,4 @@ public class Guest extends User implements Serializable {
                         ", phone: " + phone +
                         ", email: " + email;
     }
-
 }
