@@ -13,19 +13,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="430.0" prefWidth="580.0" style="-fx-background-color: #0A5663;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manageUser.admin.ManageAdminController">
+<AnchorPane prefHeight="430.0" prefWidth="580.0" style="-fx-background-color: #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manageUser.admin.ManageAdminController">
     <children>
         <TextField fx:id="firstname" layoutX="131.0" layoutY="130.0" />
         <TextField fx:id="lastname" layoutX="131.0" layoutY="165.0" />
         <TextField fx:id="adminId" layoutX="131.0" layoutY="198.0" />
         <TextField fx:id="phone" layoutX="131.0" layoutY="230.0" />
         <TextField fx:id="email" layoutX="131.0" layoutY="263.0" />
-        <Label layoutX="31.0" layoutY="134.0" text="First name: " textFill="#cdc538" />
-        <Label layoutX="31.0" layoutY="169.0" text="Last name:" textFill="#cdc538" />
-        <Label layoutX="31.0" layoutY="202.0" text="Admin Id:" textFill="#cdc538" />
-        <Label layoutX="31.0" layoutY="234.0" text="tlf. number:" textFill="#cdc538" />
-        <Label layoutX="31.0" layoutY="267.0" text="Email addres:" textFill="#cdc538" />
-        <Label layoutX="34.0" layoutY="301.0" text="Password:" textFill="#cdc538" />
+        <Label layoutX="31.0" layoutY="134.0" text="First name: " textFill="#070707" />
+        <Label layoutX="31.0" layoutY="169.0" text="Last name:" />
+        <Label layoutX="31.0" layoutY="202.0" text="Admin Id:" />
+        <Label layoutX="31.0" layoutY="234.0" text="Tlf. number:" />
+        <Label layoutX="31.0" layoutY="267.0" text="Email address:" />
+        <Label layoutX="34.0" layoutY="301.0" text="Password:" />
         <Text layoutX="131.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="148.79999999999995" />
         <Button fx:id="AddAdmin" layoutX="130.0" layoutY="328.0" mnemonicParsing="false" onAction="#addAdmin" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #39C997;" text="Add">
             <textFill>
@@ -47,5 +47,10 @@
         </ImageView>
       <ListView fx:id="list" layoutX="302.0" layoutY="130.0" prefHeight="224.0" prefWidth="247.0" />
       <Button layoutX="302.0" layoutY="361.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: red;" text="Delete" textFill="#151515" />
+      <Text layoutX="24.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Administrator:" wrappingWidth="322.646484375">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>
