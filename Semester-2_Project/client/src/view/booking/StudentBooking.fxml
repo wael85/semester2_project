@@ -27,7 +27,7 @@
             <Image url="@../../resources/viaLogo.png" />
          </image>
       </ImageView>
-      <Button layoutX="476.0" layoutY="347.0" mnemonicParsing="false" text="Book this room:" />
       <Button layoutX="31.0" layoutY="347.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="Log off" />
+      <Button layoutX="476.0" layoutY="349.0" mnemonicParsing="false" text="Book this room:" />
    </children>
 </AnchorPane>
