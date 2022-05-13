@@ -1,6 +1,7 @@
 package view.login;
 
 import javafx.fxml.FXML;
+import users_model.UsersTypes;
 import view.ViewHandler;
 import viewModel.ViewModelFactory;
 import viewModel.login.LoginViewModel;
@@ -29,6 +30,13 @@ public class LoginController {
     }
     @FXML
     public void login(){
-       loginViewModel.login();
+      if( loginViewModel.login()){
+          switch (viewHandler.getCurrentUser().getCurrentUser().getUserType()){
+              case "ADMINISTRATOR":
+                  viewHandler.openMainMenu();
+              case "STUDENT":
+                  viewHandler.openManageRoom();
+          }
+      }
     }
 }

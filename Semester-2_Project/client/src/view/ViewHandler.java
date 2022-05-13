@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import login.LoginModel;
 import room_model.RoomManagementModel;
+import user_state.UserState;
 import users_model.UsersManagementModel;
 import view.login.LoginController;
 import view.mainMenu.MainMenuController;
@@ -22,17 +23,23 @@ public class ViewHandler {
     private UsersManagementModel usersManagementModel;
     private RoomManagementModel roomManagementModel;
     private LoginModel loginModel;
+    private UserState currentUser;
 
-    public ViewHandler(Stage stage, ViewModelFactory vmf, UsersManagementModel usersManagementModel,RoomManagementModel roomManagementModel,LoginModel loginModel) {
+    public ViewHandler(Stage stage, ViewModelFactory vmf, UsersManagementModel usersManagementModel,RoomManagementModel roomManagementModel,LoginModel loginModel, UserState currentUser) {
         this.stage = stage;
         this.vmf = vmf;
         this.usersManagementModel = usersManagementModel;
         this.roomManagementModel = roomManagementModel;
         this.loginModel = loginModel;
+        this.currentUser = currentUser;
     }
 
     public void start() {
        openLogin();
+    }
+
+    public UserState getCurrentUser() {
+        return currentUser;
     }
 
     public void openTabPaneManageUser() {

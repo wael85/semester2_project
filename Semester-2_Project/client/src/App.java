@@ -23,11 +23,11 @@ public class App extends Application {
         ManageUserClientInterface manageUserClient = new ManageUserClient(registry);
        ManageRoomClientInterface manageRoomClient =new ManageRoomClient(registry);
         ClientLogin clientLogin = new ClientLogin(registry);
-        LoginModel loginModel = new LoginModelManger(clientLogin);
+        LoginModel loginModel = new LoginModelManger(clientLogin,currentUser);
         UsersManagementModel usersManagementModel = new UsersManagementModelManger(manageUserClient);
         RoomManagementModel roomManagementModel= new RoomManagementModelManage(manageRoomClient);
         ViewModelFactory viewModelFactory = new ViewModelFactory(usersManagementModel,roomManagementModel,loginModel);
-        ViewHandler viewHandler = new ViewHandler(primaryStage,viewModelFactory,usersManagementModel,roomManagementModel, loginModel);
+        ViewHandler viewHandler = new ViewHandler(primaryStage,viewModelFactory,usersManagementModel,roomManagementModel, loginModel,currentUser);
         viewHandler.start();
         primaryStage.getOnCloseRequest();
     }
