@@ -29,13 +29,14 @@ public class LoginViewModel {
     public void bindErrorLabel(StringProperty property){
         property.bind(error);
     }
-    public void login() {
+    public boolean login() {
         try {
-            error.set("");
-            loginModel.login(userName.get(),password.get());
-            error.set("Success !!");
+           boolean t = loginModel.login(userName.get(),password.get());
+           return t;
         }catch (RemoteException e){
+            error.set("");
             error.set(e.getMessage());
+            return false;
         }
     }
 }
