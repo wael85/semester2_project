@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class BookingImp implements BookingDAO{
     private static BookingImp instance;
-    private Dotenv dotenv = Dotenv.load();
+    //private Dotenv dotenv = Dotenv.load();
 
     private BookingImp() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
