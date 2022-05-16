@@ -1,6 +1,8 @@
-package users_model;
+package model.users_mangment;
 
 import client.ManageUserClientInterface;
+import model.users_mangment.UsersManagementModel;
+import users_model.*;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

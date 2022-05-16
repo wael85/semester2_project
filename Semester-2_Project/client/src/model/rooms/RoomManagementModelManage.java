@@ -1,6 +1,9 @@
-package room_model;
+package model.rooms;
 
 import client.ManageRoomClientInterface;
+import model.rooms.RoomManagementModel;
+import room_model.Room;
+import room_model.Rooms;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -20,7 +23,7 @@ public class RoomManagementModelManage implements RoomManagementModel {
     }
 
     @Override
-    public Room createRoom( String building, String floor, String number, String type, String capacity) throws RemoteException {
+    public Room createRoom(String building, String floor, String number, String type, String capacity) throws RemoteException {
         return client.createRoom(building, floor, number, type, capacity);
     }
 

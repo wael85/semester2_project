@@ -19,10 +19,14 @@ public class BookingServerImp extends UnicastRemoteObject implements RemoteBooki
     private final RemotePropertyChangeSupport<Rooms> support;
 
 
-    public BookingServerImp() throws SQLException, RemoteException {
+    public BookingServerImp() throws RemoteException {
 
-        this.bookingDAO= BookingImp.getInstance();
-        this.support = new RemotePropertyChangeSupport<>(this);
+       try {
+           this.bookingDAO= BookingImp.getInstance();
+           this.support = new RemotePropertyChangeSupport<>(this);
+       }catch (SQLException x){
+           throw new RemoteException(x.getMessage(),x);
+       }
 
     }
 

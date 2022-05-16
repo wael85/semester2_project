@@ -2,7 +2,7 @@ package viewModel.login;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import login.LoginModel;
+import model.login.LoginModel;
 
 import java.rmi.RemoteException;
 

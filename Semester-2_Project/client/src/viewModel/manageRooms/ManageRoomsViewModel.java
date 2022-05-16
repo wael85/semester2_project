@@ -7,10 +7,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import room_model.Room;
-import room_model.RoomManagementModel;
+import model.rooms.RoomManagementModel;
 import room_model.Rooms;
 import viewModel.inputValidation.ValidatorManageRooms;
-import viewModel.inputValidation.ValidatorManageUsers;
 
 import java.beans.PropertyChangeEvent;
 import java.rmi.RemoteException;

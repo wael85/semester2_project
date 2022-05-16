@@ -1,13 +1,14 @@
-package login;
+package model.login;
 
 import client.ClientLoginInterface;
+import model.login.LoginModel;
 import user_state.UserState;
 import users_model.User;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
 
-public class LoginModelManger implements LoginModel{
+public class LoginModelManger implements LoginModel {
     private ClientLoginInterface loginClient;
     private UserState currentUser;
 

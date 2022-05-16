@@ -1,13 +1,15 @@
 import client.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import login.LoginModel;
-import login.LoginModelManger;
-import room_model.RoomManagementModel;
-import room_model.RoomManagementModelManage;
+import model.login.LoginModel;
+import model.login.LoginModelManger;
+import model.booking.BookingModel;
+import model.booking.BookingModelManger;
+import model.rooms.RoomManagementModel;
+import model.rooms.RoomManagementModelManage;
 import user_state.UserState;
-import users_model.UsersManagementModel;
-import users_model.UsersManagementModelManger;
+import model.users_mangment.UsersManagementModel;
+import model.users_mangment.UsersManagementModelManger;
 import view.ViewHandler;
 import viewModel.ViewModelFactory;
 
@@ -20,13 +22,15 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
         Registry registry = LocateRegistry.getRegistry("localhost", Registry.REGISTRY_PORT);
         UserState currentUser = new UserState();
+        ClientBookingInterface clientBooking = new ClientBooking(registry);
         ManageUserClientInterface manageUserClient = new ManageUserClient(registry);
        ManageRoomClientInterface manageRoomClient =new ManageRoomClient(registry);
         ClientLogin clientLogin = new ClientLogin(registry);
         LoginModel loginModel = new LoginModelManger(clientLogin,currentUser);
+        BookingModel bookingModel = new BookingModelManger(clientBooking , currentUser);
         UsersManagementModel usersManagementModel = new UsersManagementModelManger(manageUserClient);
         RoomManagementModel roomManagementModel= new RoomManagementModelManage(manageRoomClient);
-        ViewModelFactory viewModelFactory = new ViewModelFactory(usersManagementModel,roomManagementModel,loginModel);
+        ViewModelFactory viewModelFactory = new ViewModelFactory(usersManagementModel,roomManagementModel,loginModel,bookingModel);
         ViewHandler viewHandler = new ViewHandler(primaryStage,viewModelFactory,usersManagementModel,roomManagementModel, loginModel,currentUser);
         viewHandler.start();
         primaryStage.getOnCloseRequest();

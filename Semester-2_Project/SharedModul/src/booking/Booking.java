@@ -1,9 +1,10 @@
 package booking;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class Booking {
+public class Booking implements Serializable {
     private int id;
     private String bookedBy;
     private String roomId;

@@ -1,9 +1,10 @@
 package viewModel;
 
 
-import login.LoginModel;
-import room_model.RoomManagementModel;
-import users_model.UsersManagementModel;
+import model.login.LoginModel;
+import model.booking.BookingModel;
+import model.rooms.RoomManagementModel;
+import model.users_mangment.UsersManagementModel;
 import viewModel.login.LoginViewModel;
 import viewModel.manageRooms.ManageRoomsViewModel;
 import viewModel.manageUsers.ManageAdminViewModel;
@@ -20,7 +21,7 @@ public class ViewModelFactory {
     private ManageRoomsViewModel manageRoomsViewModel;
     private LoginViewModel loginViewModel;
 
-    public ViewModelFactory(UsersManagementModel usersModel, RoomManagementModel roomModel,LoginModel loginModel){
+    public ViewModelFactory(UsersManagementModel usersModel, RoomManagementModel roomModel, LoginModel loginModel, BookingModel bookingModel){
         this.manageAdminViewModel =new ManageAdminViewModel(usersModel);
         this.manageGuestViewModel = new ManageGuestViewModel(usersModel);
         this.manageStudentViewModel = new ManageStudentViewModel(usersModel);

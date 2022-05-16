@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import users_model.User;
 import users_model.Users;
-import users_model.UsersManagementModel;
+import model.users_mangment.UsersManagementModel;
 import viewModel.inputValidation.ValidatorManageUsers;
 
 import java.beans.PropertyChangeEvent;
