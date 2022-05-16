@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E6E6FA#E6E6FA;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.booking.GuestBookingController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E6E6FA#E6E6FA;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.booking.guest.GuestBookingController">
    <children>
       <Button layoutX="8.0" layoutY="49.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="169.0" text="Book a room" />
       <Button layoutX="466.0" layoutY="337.0" mnemonicParsing="false" text="Book this room:" />
@@ -28,7 +28,7 @@
       <Text layoutX="323.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available rooms:" />
       <ImageView fitHeight="68.0" fitWidth="141.0" layoutX="446.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../resources/viaLogo.png" />
+            <Image url="@../../../resources/viaLogo.png" />
          </image>
       </ImageView>
    </children>

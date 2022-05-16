@@ -8,11 +8,13 @@ import login.LoginModel;
 import room_model.RoomManagementModel;
 import user_state.UserState;
 import users_model.UsersManagementModel;
+import view.booking.guest.GuestBookingController;
+import view.booking.student.StudentBookingController;
+import view.booking.teacher.TeacherBookingController;
 import view.login.LoginController;
 import view.mainMenu.MainMenuController;
 import view.manageRooms.ManageRoomsController;
 import view.manageUser.TabPaneManageUserController;
-import view.booking.*;
 import viewModel.ViewModelFactory;
 
 import java.io.IOException;
