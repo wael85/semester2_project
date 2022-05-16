@@ -1,6 +1,7 @@
 package sheared_interfaces;
 
 import booking.Booking;
+import booking.Bookings;
 import dk.via.remote.observer.RemotePropertyChangeListener;
 import room_model.Rooms;
 

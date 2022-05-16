@@ -1,6 +1,7 @@
 package server;
 
 import booking.Booking;
+import booking.Bookings;
 import database.BookingDAO;
 import database.BookingImp;
 import dk.via.remote.observer.RemotePropertyChangeListener;
@@ -33,25 +34,38 @@ public class BookingServerImp extends UnicastRemoteObject implements RemoteBooki
             support.firePropertyChange("getAvailableRooms",null,null);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RemoteException( e.getMessage() , e);
         }
     }
 
     @Override
-    public Rooms getAvailableRooms(Timestamp start, Timestamp end) {
-      return bookingDAO.getAvailableRooms(start,end);
+    public Rooms getAvailableRooms(Timestamp start, Timestamp end) throws RemoteException {
+      try {
+          return bookingDAO.getAvailableRooms(start,end);
+      }catch (SQLException sql){
+          throw new RemoteException(sql.getMessage(), sql);
+      }
 
     }
 
     @Override
-    public Bookings getUserBooking(String userName) {
-      return bookingDAO.getUserBooking(userName);
+    public Bookings getUserBooking(String userName) throws RemoteException {
+        try {
+            return bookingDAO.getUserBooking(userName);
+        } catch (SQLException e) {
+            throw new RemoteException( e.getMessage() , e);
+        }
     }
 
     @Override
     public void cancelBooking(Booking booking) throws RemoteException {
-        bookingDAO.cancelBooking(booking);
-        support.firePropertyChange("getAvailableRooms",null,null);
+        try {
+            bookingDAO.cancelBooking(booking);
+            support.firePropertyChange("getAvailableRooms",null,null);
+        } catch (SQLException e) {
+            throw new RemoteException( e.getMessage() , e);
+        }
+
     }
 
     @Override

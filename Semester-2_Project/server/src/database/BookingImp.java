@@ -77,23 +77,32 @@ public class BookingImp implements BookingDAO{
 
     @Override
     public Bookings getUserBooking(String userName) throws SQLException {
-        return null;
+        try (Connection c = getConnection()) {
+            PreparedStatement preparedStatement = c.prepareStatement("SELECT * from booking_room_system.booking WHERE booking.bookedby = ?;");
+            preparedStatement.setString(1,userName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            Bookings bookings= new Bookings();
+            while (resultSet.next()) {
+                Booking booking = new Booking(resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getTimestamp(4),
+                        resultSet.getTimestamp(5)
+                );
+                booking.setCheckedIn(resultSet.getBoolean(8));
+                booking.setStatus(resultSet.getString(9));
+                bookings.addBooking(booking);
+            }
+            return bookings;
+        }
     }
 
     @Override
     public void cancelBooking(Booking booking) throws SQLException {
-
-    }
-
-    public static void main(String[] args) {
-        try {
-            BookingImp b = new BookingImp();
-           //  b.bookRoom("waehad","B1-10",new Timestamp(2022-1900,4,12,8,0,3,0),new Timestamp(2022-1900,4,12,9,0,0,0));
-         //   b.bookRoom("315315","C2-2",new Timestamp(2022-1900,4,12,12,0,3,0),new Timestamp(2022-1900,4,12,13,0,0,0));
-            System.out.println(b.getAvailableRooms(new Timestamp(2022-1900,4,12,9,0,0,0),new Timestamp(2022-1900,4,12,11,0,0,0)));
-        }catch (SQLException s){
-            s.printStackTrace();
+        try (Connection c = getConnection()) {
+            PreparedStatement preparedStatement = c.prepareStatement("DELETE from booking_room_system.booking WHERE booking.booking_number = ?;");
+            preparedStatement.setInt(1, booking.getId());
+            preparedStatement.executeUpdate();
         }
-
     }
 }

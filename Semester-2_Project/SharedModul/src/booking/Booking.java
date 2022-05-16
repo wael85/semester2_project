@@ -12,7 +12,7 @@ public class Booking {
     private Timestamp firstReminder;
     private Timestamp lastReminder;
     private boolean isCheckedIn;
-    private BookingStatus status;
+    private String status;
 
     public Booking(int id, String bookedBy, String roomId, Timestamp startDateTime, Timestamp endDateTime) {
         this.id = id;
@@ -23,11 +23,34 @@ public class Booking {
         this.firstReminder = new Timestamp(startDateTime.getTime() - 300000) ;
         this.lastReminder = new Timestamp(endDateTime.getTime() + 1500000 );
         this.isCheckedIn = false;
-        this.status = BookingStatus.PRE_ACTIVE;
+        this.status = BookingStatus.PRE_ACTIVE.name();
     }
 
     public Timestamp getFirstReminder() {
         return firstReminder;
+    }
+
+    public void setCheckedIn(boolean checkedIn) {
+        isCheckedIn = checkedIn;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                " bookedBy='" + bookedBy + '\'' +
+                ", roomId='" + roomId + '\'' +
+                ", startDateTime=" + startDateTime +
+                ", endDateTime=" + endDateTime +
+                ", isCheckedIn=" + isCheckedIn +
+                '}';
     }
 
     public static void main(String[] args) {
