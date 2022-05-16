@@ -32,10 +32,4 @@ public class ClientLogin extends UnicastRemoteObject implements ClientLoginInter
     public void close() throws IOException {
         UnicastRemoteObject.unexportObject(this,true);
     }
-
-    public static void main(String[] args) throws RemoteException, NotBoundException {
-        ClientLogin c = new ClientLogin(LocateRegistry.getRegistry("localhost", Registry.REGISTRY_PORT));
-        System.out.println( c.login("th","222"));
-        System.out.println(c.getUser("tch"));
-    }
 }
