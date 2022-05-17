@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="468.0" prefWidth="600.0" style="-fx-background-color: #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.booking.guest.GuestTabViewController">
+    <children>
+        <TabPane layoutX="-2.0" prefHeight="435.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+    <tabs>
+        <Tab fx:id="booking" text="Booking">
+            <fx:include fx:id="GuestBooking" source="booking/GuestBooking.fxml" />
+        </Tab>
+        <Tab fx:id="managebooking" text="Manage booking">
+            <fx:include fx:id="GuestManageBooking" source="managebooking/GuestManageBooking.fxml" />
+        </Tab>
+    </tabs>
+        </TabPane>
+      <Button fx:id="gobackbtn" layoutX="14.0" layoutY="435.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Go back" />
+    </children>
+
+</AnchorPane>

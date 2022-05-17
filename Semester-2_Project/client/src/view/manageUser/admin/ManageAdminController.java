@@ -44,14 +44,11 @@ public class ManageAdminController {
     public String getUserName(){
         return list.getSelectionModel().getSelectedItem().getUserName();
     }
+
     @FXML
     public void addAdmin() {
         manageAdminViewModel.createAdmin();
-
     }
-
-
-
 
     public void deleteButton(ActionEvent actionEvent) {
         manageAdminViewModel.deleteUser(getUserName());

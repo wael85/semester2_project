@@ -8,9 +8,9 @@ import model.login.LoginModel;
 import model.rooms.RoomManagementModel;
 import user_state.UserState;
 import model.users_mangment.UsersManagementModel;
-import view.booking.guest.GuestBookingController;
-import view.booking.student.StudentBookingController;
-import view.booking.teacher.TeacherBookingController;
+import view.booking.guest.GuestTabViewController;
+import view.booking.student.StudentTabViewController;
+import view.booking.teacher.TeacherTabViewController;
 import view.login.LoginController;
 import view.mainMenu.MainMenuController;
 import view.manageRooms.ManageRoomsController;
@@ -149,14 +149,18 @@ public class ViewHandler {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../view/booking/StudentBooking.fxml"));
+            loader.setLocation(getClass().getResource("../view/booking/student/StudentTabView.fxml"));
             Parent root=loader.load();
+
+            StudentTabViewController studentTabViewController = loader.getController();
+            studentTabViewController.init( this,vmf);
+
             Scene scene = new Scene(root);
             stage.setTitle("Student Booking");
-            StudentBookingController studentBookingController = loader.getController();
-            studentBookingController.init( this);
+
             stage.setScene(scene);
             stage.show();
+            
             stage.setOnCloseRequest(e -> {
                 try {
                     usersManagementModel.close();
@@ -174,12 +178,14 @@ public class ViewHandler {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../view/booking/TeacherBooking.fxml"));
+            loader.setLocation(getClass().getResource("../view/booking/TeacherTabView.fxml"));
             Parent root=loader.load();
+            TeacherTabViewController teacherTabViewController = loader.getController();
+            teacherTabViewController.init( this , vmf);
+
             Scene scene = new Scene(root);
             stage.setTitle("Teacher Booking");
-            TeacherBookingController teacherBookingController = loader.getController();
-            teacherBookingController.init( this);
+
             stage.setScene(scene);
             stage.show();
             stage.setOnCloseRequest(e -> {
@@ -199,12 +205,12 @@ public class ViewHandler {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../view/booking/GuestBooking.fxml"));
+            loader.setLocation(getClass().getResource("../view/booking/GuestTabView.fxml"));
             Parent root=loader.load();
             Scene scene = new Scene(root);
             stage.setTitle("Guest Booking");
-            GuestBookingController guestBookingController = loader.getController();
-            guestBookingController.init( this);
+            GuestTabViewController guestTabViewController = loader.getController();
+            guestTabViewController.init( this);
             stage.setScene(scene);
             stage.show();
             stage.setOnCloseRequest(e -> {

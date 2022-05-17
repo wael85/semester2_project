@@ -36,7 +36,6 @@ public class TabPaneManageUserController {
         manageTeacherController.init(viewModelFactory.getManageTeacherViewModel());
         manageStudentController.init(viewModelFactory.getManageStudentViewModel());
         manageGuestController.init(viewModelFactory.getManagGuestViewModel());
-
     }
 
     public void backToMain(ActionEvent actionEvent) {
