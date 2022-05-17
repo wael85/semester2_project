@@ -1,8 +1,8 @@
-package view.booking.teacher;
+package view.booking.guest.booking;
 
 import view.ViewHandler;
 
-public class TeacherBookingController {
+public class GuestBookingController {
     private ViewHandler viewHandler;
 
     public void init(ViewHandler viewHandler){

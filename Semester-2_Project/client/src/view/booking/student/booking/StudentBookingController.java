@@ -1,4 +1,4 @@
-package view.booking.student;
+package view.booking.student.booking;
 
 import view.ViewHandler;
 
