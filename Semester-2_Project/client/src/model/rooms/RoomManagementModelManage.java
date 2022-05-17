@@ -1,6 +1,7 @@
 package model.rooms;
 
 import client.ManageRoomClientInterface;
+import model.inputValidation.ValidatorManageRooms;
 import model.rooms.RoomManagementModel;
 import room_model.Room;
 import room_model.Rooms;
@@ -24,6 +25,7 @@ public class RoomManagementModelManage implements RoomManagementModel {
 
     @Override
     public Room createRoom(String building, String floor, String number, String type, String capacity) throws RemoteException {
+        ValidatorManageRooms.validatorCreateRoom(building, floor, number, type, capacity);
         return client.createRoom(building, floor, number, type, capacity);
     }
 

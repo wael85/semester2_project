@@ -9,7 +9,7 @@ import javafx.scene.control.Alert;
 import users_model.User;
 import users_model.Users;
 import model.users_mangment.UsersManagementModel;
-import viewModel.inputValidation.ValidatorManageUsers;
+import model.inputValidation.ValidatorManageUsers;
 
 import java.beans.PropertyChangeEvent;
 import java.rmi.RemoteException;
@@ -66,11 +66,8 @@ public class ManageGuestViewModel {
 
     public void createGuest() {
         try {
-            ValidatorManageUsers.validateEmptyField(CVR.get());
-            ValidatorManageUsers.validateEmail(email.get());
-            ValidatorManageUsers.validatePassword(password.get());
-            ValidatorManageUsers.validateUsername(CVR.get());
-            usersManagementModel.createGuest(CVR.get(), password.get(), companyName.get(), phone.get(), email.get());
+
+            usersManagementModel.createGuest(CVR.get(), password.get(), companyName.get(), email.get(), phone.get());
             notification(CVR.getValue() + ", add successfully");
             clearFields();
         } catch (Exception e) {

@@ -1,6 +1,7 @@
 package model.users_mangment;
 
 import client.ManageUserClientInterface;
+import model.inputValidation.ValidatorManageUsers;
 import model.users_mangment.UsersManagementModel;
 import users_model.*;
 
@@ -26,21 +27,27 @@ public class UsersManagementModelManger  implements UsersManagementModel {
 
     @Override
     public Administrator createAdmin(String staffNumber, String firstName, String lastName, String phone, String email, String password) throws  RemoteException {
+        ValidatorManageUsers.validatorCreateAdmin(staffNumber, firstName, lastName, phone, email, password);
+
        return   client.createAdmin(staffNumber,firstName,lastName,phone,email,password);
     }
 
     @Override
     public Student createStudent(String studentId, String firstName, String lastName, String phone, String email, String password) throws  RemoteException {
+
+        ValidatorManageUsers.validatorCreateStudent(studentId, firstName, lastName, phone, email, password);
       return   client.createStudent(studentId, firstName, lastName, phone, email, password);
     }
 
     @Override
     public Teacher createTeacher(String staffNumber, String firstName, String lastName, String phone, String email, String password) throws  RemoteException {
+     ValidatorManageUsers.validatorCreateTeacher(staffNumber, firstName, lastName, phone, email, password);
       return    client.createTeacher(staffNumber, firstName, lastName, phone, email, password);
     }
 
     @Override
     public Guest createGuest(String CVR, String companyName, String phone, String email, String password) throws RemoteException {
+        ValidatorManageUsers.validatorCreateGuest(CVR, companyName, phone, email, password);
         return client.createGuest(CVR, companyName, phone, email, password);
     }
 

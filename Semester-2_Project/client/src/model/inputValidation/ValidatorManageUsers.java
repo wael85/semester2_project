@@ -1,11 +1,30 @@
-package viewModel.inputValidation;
+package model.inputValidation;
 
 public class ValidatorManageUsers {
-
-
     public final static int MINIMAL_LENGTH = 8;
     public final static int MINIMAL_LENGTH_USERNAME = 6;
 
+
+    public static void validatorCreateGuest(String CVR, String password, String companyName, String phone, String email){
+        validateUsername(CVR); validatePassword(password); validateEmptyField(companyName); validatePhone(phone);
+        validateEmail(email);
+    }
+
+    public static void validatorCreateAdmin(String staffNumber, String firstName, String lastName, String phone, String email, String password){
+        validateUsername(staffNumber);validatePassword(password); validateEmptyField(firstName);validateEmptyField(lastName);
+        validatePhone(phone); validateEmail(email);
+    }
+
+    public static void validatorCreateStudent(String studentId, String firstName, String lastName, String phone, String email, String password){
+        validateUsername(studentId);validatePassword(password); validateEmptyField(firstName);validateEmptyField(lastName);
+        validatePhone(phone); validateEmail(email);
+    }
+
+    public static void validatorCreateTeacher(String staffNumber, String firstName, String lastName, String phone, String email, String password)
+    {
+        validateUsername(staffNumber);validatePassword(password); validateEmptyField(firstName);validateEmptyField(lastName);
+        validatePhone(phone); validateEmail(email);
+    }
     private static void illegalArgument(String message) {
         throw new IllegalArgumentException(message);
     }
