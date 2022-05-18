@@ -58,9 +58,10 @@ public class BookingImp implements BookingDAO{
                     "FROM booking_room_system.room LEFT OUTER JOIN\n" +
                     "    booking_room_system.booking b ON\n" +
                     "    room.room_id = b.room_id\n" +
-                    "WHERE ((b.end_datetime <= '" + start + "' AND b.end_datetime <= '" + end + "' ) OR\n" +
-                    "      (b.start_datetime >= '" + start + "' AND b.start_datetime >= '" + end + "')) OR\n" +
-                    "      (b.booking_number IS NULL );");
+                    "WHERE ((b.end_datetime <= '" + start + "' AND b.end_datetime < '" + end + "' ) OR\n" +
+                    "      (b.start_datetime > '" + start + "' AND b.start_datetime >= '" + end + "')) OR\n" +
+                    "      (b.booking_number IS NULL )" +
+                    "group by room.room_id;");
             ResultSet resultSet = preparedStatement.executeQuery();
             Rooms rooms = new Rooms();
             while (resultSet.next()) {

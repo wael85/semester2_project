@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import room_model.Room;
@@ -11,6 +12,7 @@ import view.ViewHandler;
 import viewModel.booking.StudentBookingViewModel;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class StudentBookingController {
 
@@ -25,23 +27,25 @@ public class StudentBookingController {
     private TextField startTime;
     @FXML
     private TextField endTime;
-    private TextField date;
+    @FXML
+    private Label error;
+    private Date date;
 
     public void init(ViewHandler viewHandler,StudentBookingViewModel studentBookingViewModel){
         this.viewHandler=viewHandler;
         this.studentBookingViewModel = studentBookingViewModel;
+
         bookingDate.valueProperty().addListener((observable ,oldValue,newValue)-> {
-            date.textProperty().set(newValue.toString());
+            date = new Date( newValue.getYear(),newValue.getMonthValue(),newValue.getDayOfMonth());
         });
-        studentBookingViewModel.bindDate(date.textProperty());
         studentBookingViewModel.bindStartTime(startTime.textProperty());
         studentBookingViewModel.bindEndTime(endTime.textProperty());
+        studentBookingViewModel.bindError(error.textProperty());
     }
     public void book(ActionEvent actionEvent){
-        //Timestamp startDateTime = new Timestamp(d.getYear()-1900,d.getMonth(),d.getDate(),Integer.parseInt(startTime.get()),0,0,0);
-        System.out.println("booking");
+      studentBookingViewModel.bookRoom(roomsList.getSelectionModel().getSelectedItem().getRoomId());
     }
     public void getAvailableRooms(ActionEvent actionEvent){
-        roomsList.setItems(studentBookingViewModel.getAvailableRooms());
+        roomsList.setItems(studentBookingViewModel.getAvailableRooms(date));
     }
 }
