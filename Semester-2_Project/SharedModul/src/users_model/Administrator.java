@@ -9,7 +9,7 @@ public class Administrator extends User implements Serializable {
     private String email;
 
 
-    public Administrator(String  username,String password, String firstName, String lastName, String phone, String email) {
+    public Administrator(String  username,String password, String firstName, String lastName, String email, String phone) {
         super(username,password);
 
         this.firstName = firstName;

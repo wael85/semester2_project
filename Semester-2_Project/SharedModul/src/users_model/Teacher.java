@@ -9,7 +9,7 @@ public class Teacher extends User implements Serializable {
     private String email;
 
 
-    public Teacher(String userName, String password, String firstName, String lastName, String phone, String email) {
+    public Teacher(String userName, String password, String firstName, String lastName, String email, String phone) {
         super(userName, password);
         this.firstName = firstName;
         this.lastName = lastName;
