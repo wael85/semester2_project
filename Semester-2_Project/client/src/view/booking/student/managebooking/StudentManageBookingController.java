@@ -7,9 +7,18 @@ import view.ViewHandler;
 import viewModel.booking.StudentManageBookingViewModel;
 
 public class StudentManageBookingController {
+
     @FXML
     private ListView<Booking> bookingList;
-    public void init(ViewHandler viewHandler, StudentManageBookingViewModel studentManageBookingViewModel) {
+
+    private StudentManageBookingViewModel studentManageBookingViewModel;
+    private ViewHandler viewHandler;
+
+    public void init( ViewHandler viewHandler,StudentManageBookingViewModel studentManageBookingViewModel) {
+        this.studentManageBookingViewModel= studentManageBookingViewModel;
+        this.viewHandler=viewHandler;
+
+
     }
     public void cancelBooking(){
         //

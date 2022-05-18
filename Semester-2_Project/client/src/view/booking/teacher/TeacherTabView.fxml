@@ -10,11 +10,11 @@
     <children>
         <TabPane layoutX="-2.0" prefHeight="463.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
-                <Tab fx:id="booking" text="Booking">
-                    <fx:include fx:id="TeacherBooking" source="booking/TeacherBooking.fxml" />
+                <Tab text="Booking">
+                    <fx:include fx:id="teacherBookingController" source="booking/TeacherBooking.fxml" />
                 </Tab>
-                <Tab fx:id="managebooking" text="Manage booking">
-                    <fx:include fx:id="TeacherManageBooking" source="managebooking/TeacherManageBooking.fxml" />
+                <Tab text="Manage booking">
+                    <fx:include fx:id="teacherManageBookingController" source="managebooking/TeacherManageBooking.fxml" />
                 </Tab>
             </tabs>
         </TabPane>

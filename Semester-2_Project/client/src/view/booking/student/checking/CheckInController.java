@@ -1,4 +1,4 @@
-package view.booking.student.checkin;
+package view.booking.student.checking;
 
 import booking.Booking;
 import javafx.fxml.FXML;
@@ -9,6 +9,11 @@ import viewModel.booking.CheckInViewModel;
 public class CheckInController {
     @FXML
     private ListView<Booking> bookingList;
+
+    private CheckInViewModel checkInViewModel;
+    private  ViewHandler viewHandler;
     public void init(ViewHandler viewHandler, CheckInViewModel checkInViewModel) {
+        this.checkInViewModel = checkInViewModel;
+        this.viewHandler=viewHandler;
     }
 }

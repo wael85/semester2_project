@@ -10,13 +10,13 @@
         <TabPane fx:id="tabPane" layoutX="-2.0" prefHeight="435.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab  text="Booking">
-                    <fx:include fx:id="StudentBooking" source="booking/StudentBooking.fxml" />
+                    <fx:include fx:id="studentBooking" source="booking/StudentBooking.fxml" />
                 </Tab>
                 <Tab  text="Manage booking">
-                    <fx:include fx:id="StudentManageBooking" source="managebooking/StudentManageBooking.fxml" />
+                    <fx:include fx:id="studentManageBooking" source="managebooking/StudentManageBooking.fxml" />
                 </Tab>
                 <Tab  text="Check in">
-                    <fx:include fx:id="Checkin" source="checkin/Checkin.fxml" />
+                    <fx:include fx:id="checking" source="checking/Checking.fxml" />
                 </Tab>
             </tabs>
         </TabPane>

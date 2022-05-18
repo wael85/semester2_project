@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TabPane;
 import view.ViewHandler;
 import view.booking.student.booking.StudentBookingController;
-import view.booking.student.checkin.CheckInController;
+import view.booking.student.checking.CheckInController;
 import view.booking.student.managebooking.StudentManageBookingController;
 import viewModel.ViewModelFactory;
 
@@ -14,18 +14,18 @@ public class StudentTabViewController {
     @FXML
     public TabPane tabPane;
     @FXML
-    public StudentBookingController studentBookingController;
+    private StudentBookingController studentBookingController;
     @FXML
-    public StudentManageBookingController studentManageBookingController;
+    private StudentManageBookingController studentManageBookingController;
     @FXML
-    public CheckInController checkinController;
+    private CheckInController checkingController;
 
     public void init(ViewHandler viewHandler, ViewModelFactory vm) {
         this.viewHandler = viewHandler;
         this.vm = vm;
         studentBookingController.init(viewHandler,vm.getStudentBookingViewModel());
         studentManageBookingController.init(viewHandler,vm.getStudentManageBookingViewModel());
-        checkinController.init(viewHandler,vm.getCheckInViewModel());
+        checkingController.init(viewHandler,vm.getCheckInViewModel());
     }
     public void goBack(){
         System.out.println("go back");
