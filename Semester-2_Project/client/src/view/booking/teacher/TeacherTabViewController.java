@@ -1,5 +1,6 @@
 package view.booking.teacher;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import view.ViewHandler;
@@ -20,9 +21,12 @@ public class TeacherTabViewController {
     public void init(ViewHandler viewHandler, ViewModelFactory vmf) {
         this.viewHandler =viewHandler;
         this.vmf = vmf;
-        teacherBookingController.init(vmf.getTeacherBookingViewModel());
-        teacherManageBookingController.init(vmf.getTeacherManageBookingViewModel());
+        teacherBookingController.init(viewHandler,vmf.getTeacherBookingViewModel());
+        teacherManageBookingController.init(viewHandler,vmf.getTeacherManageBookingViewModel());
 
+    }
 
+    public void goBackBtn() {
+        viewHandler.openLogin();
     }
 }

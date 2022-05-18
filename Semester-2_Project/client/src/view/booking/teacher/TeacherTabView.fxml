@@ -11,14 +11,14 @@
         <TabPane layoutX="-2.0" prefHeight="463.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="Booking">
-                    <fx:include fx:id="teacherBookingController" source="booking/TeacherBooking.fxml" />
+                    <fx:include fx:id="teacherBooking" source="booking/TeacherBooking.fxml" />
                 </Tab>
                 <Tab text="Manage booking">
-                    <fx:include fx:id="teacherManageBookingController" source="managebooking/TeacherManageBooking.fxml" />
+                    <fx:include fx:id="teacherManageBooking" source="managebooking/TeacherManageBooking.fxml" />
                 </Tab>
             </tabs>
         </TabPane>
-        <Button layoutX="14.0" layoutY="423.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Go back" />
+        <Button layoutX="14.0" layoutY="423.0" mnemonicParsing="false" onAction="#goBackBtn" prefHeight="25.0" prefWidth="92.0" text="Go back" />
     </children>
 
 </AnchorPane>
