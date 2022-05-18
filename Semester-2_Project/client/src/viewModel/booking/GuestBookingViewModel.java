@@ -39,6 +39,9 @@ public class GuestBookingViewModel {
 
     public void bindEndTime(StringProperty textProperty) {
         textProperty.bindBidirectional(endTime);
+      
+        // bookingModel.addPropertyChangeListener("getAvailableRooms",evt -> );
+
     }
 
     public ObservableList getAvailableRooms() {

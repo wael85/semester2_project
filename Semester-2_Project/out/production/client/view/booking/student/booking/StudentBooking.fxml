@@ -41,16 +41,17 @@
          </font>
       </Text>
       <DatePicker fx:id="bookingDate" layoutX="58.0" layoutY="147.0" />
-      <TextField fx:id="startTime" layoutX="58.0" layoutY="275.0" prefHeight="25.0" prefWidth="57.0" />
-      <TextField fx:id="endTime" layoutX="175.0" layoutY="275.0" prefHeight="25.0" prefWidth="57.0" />
+      <TextField fx:id="startTime" layoutX="178.0" layoutY="187.0" prefHeight="25.0" prefWidth="41.0" />
+      <TextField fx:id="endTime" layoutX="178.0" layoutY="228.0" prefHeight="25.0" prefWidth="41.0" />
       <Label layoutX="14.0" layoutY="151.0" text="Date" />
-      <Label layoutX="13.0" layoutY="279.0" text="From:" />
-      <Label layoutX="152.0" layoutY="279.0" text="To:" />
+      <Label layoutX="102.0" layoutY="191.0" text="From:" />
+      <Label layoutX="109.0" layoutY="232.0" text="To:" />
       <Label layoutX="73.0" layoutY="30.0" prefHeight="50.0" prefWidth="251.0" text="Student Booking Site">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <Button layoutX="73.0" layoutY="349.0" mnemonicParsing="false" onAction="#logout" text="Log out" />
+      <Button layoutX="106.0" layoutY="270.0" mnemonicParsing="false" onAction="#getAvailableRooms" prefHeight="25.0" prefWidth="129.0" text="Get avalibale rooms" />
+      <Label fx:id="error" layoutX="13.0" layoutY="323.0" prefHeight="17.0" prefWidth="294.0" textFill="#d92020" />
    </children>
 </AnchorPane>

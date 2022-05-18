@@ -20,6 +20,7 @@ public class TeacherBookingViewModel {
 
     public  TeacherBookingViewModel(BookingModel bookingModel){
         this.bookingModel = bookingModel;
+        // bookingModel.addPropertyChangeListener("getAvailableRooms",evt -> );
     }
 
     public void bindDate(StringProperty textProperty) {

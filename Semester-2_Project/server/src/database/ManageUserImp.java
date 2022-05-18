@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class ManageUserImp implements ManageUserDAO{
     private static ManageUserImp instance;
-    private Dotenv dotenv = Dotenv.load();
+   // private Dotenv dotenv = Dotenv.load();
 
    ManageUserImp() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
@@ -19,14 +19,14 @@ public class ManageUserImp implements ManageUserDAO{
         return instance;
     }
     public Connection getConnection() throws SQLException {
-       return DriverManager.getConnection("jdbc:postgresql://hattie.db.elephantsql.com:5432/zvltjqzb",dotenv.get("USER_NAME"),dotenv.get("PASSWORD"));
+       //return DriverManager.getConnection("jdbc:postgresql://hattie.db.elephantsql.com:5432/zvltjqzb",dotenv.get("USER_NAME"),dotenv.get("PASSWORD"));
       //return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres","369968");
 
-     //return DriverManager.getConnection("jdbc:postgresql://localhost:5432/sep2_project?currentSchema=booking_room_system","postgres","1230");
+     return DriverManager.getConnection("jdbc:postgresql://localhost:5432/sep2_project?currentSchema=booking_room_system","postgres","1230");
     }
 
     @Override
-    public Administrator createAdministrator(String staffNumber, String password, String firstName, String lastName, String phone, String email) throws SQLException {
+    public Administrator createAdministrator(String staffNumber, String password, String firstName, String lastName, String email, String phone) throws SQLException {
         try(Connection connection = getConnection() ){
             PreparedStatement statement = connection.prepareStatement("insert into booking_room_system.users (user_name, password)\n" +
                     "values (?,?);\n" +
@@ -41,12 +41,12 @@ public class ManageUserImp implements ManageUserDAO{
             statement.setString(6,email);
             statement.setString(7,phone);
             statement.executeUpdate();
-            return new Administrator(staffNumber,password,firstName,lastName,phone,email);
+            return new Administrator(staffNumber,password,firstName,lastName,email,phone);
         }
     }
 
     @Override
-    public Guest createGuest(String CVR, String password, String companyName, String phone, String email) throws SQLException {
+    public Guest createGuest(String CVR, String password, String companyName, String email, String phone) throws SQLException {
         try(Connection connection = getConnection() ){
             PreparedStatement statement = connection.prepareStatement("insert into booking_room_system.users (user_name,password)\n"+"values(?,?);\n"+"insert into booking_room_system.guest ( user_name_fk,company_name, email, phone)\n" +
                     "values (?,?,?,?);");
@@ -57,7 +57,7 @@ public class ManageUserImp implements ManageUserDAO{
             statement.setString(5,email);
             statement.setString(6,phone);
             statement.executeUpdate();
-            return new Guest(CVR,password,companyName,phone,email);
+            return new Guest(CVR,password,companyName,email,phone);
         }
     }
 
@@ -74,12 +74,12 @@ public class ManageUserImp implements ManageUserDAO{
             statement.setString(6,email);
             statement.setString(7,phone);
             statement.executeUpdate();
-            return new Student(studentId,password,firstName,lastName,phone,email);
+            return new Student(studentId,password,firstName,lastName,email,phone);
         }
     }
 
     @Override
-    public Teacher createTeacher(String staffNumber, String password, String firstName, String lastName, String phone, String email) throws SQLException {
+    public Teacher createTeacher(String staffNumber, String password, String firstName, String lastName, String email, String phone) throws SQLException {
         try(Connection connection = getConnection() ){
             PreparedStatement statement = connection.prepareStatement("insert into booking_room_system.users (user_name,password)\n"+"values(?,?);\n"+"insert into booking_room_system.teacher (user_name_fk, f_name, l_name, email, phone)" +
                     "values (?,?,?,?,?);");
@@ -163,8 +163,8 @@ public class ManageUserImp implements ManageUserDAO{
     public Users getAllAdmins() throws SQLException {
         Users users = new Users();
         try (Connection c = getConnection()) {
-            PreparedStatement preparedStatement = c.prepareStatement("select user_name,password,administrator," +
-                    "f_name,administrator.l_name,administrator.phone" +
+            PreparedStatement preparedStatement = c.prepareStatement("select user_name,password," +
+                    "administrator.f_name,administrator.l_name,administrator.phone" +
                     " ,administrator.email from booking_room_system.users " +
                     "join booking_room_system.administrator  " +
                     "on users.user_name = administrator.user_name_fk");
