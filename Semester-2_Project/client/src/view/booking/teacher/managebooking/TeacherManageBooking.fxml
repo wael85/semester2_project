@@ -8,22 +8,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.booking.teacher.managebooking.TeacherManageBookingController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.booking.teacher.managebooking.TeacherManageBookingController">
    <children>
-      <ImageView fitHeight="68.0" fitWidth="141.0" layoutX="475.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="68.0" fitWidth="141.0" layoutX="465.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../resources/viaLogo.png" />
          </image>
       </ImageView>
-      <Text layoutX="85.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage booking:" wrappingWidth="119.7578125">
+      <ListView fx:id="bookingList" layoutX="332.0" layoutY="148.0" prefHeight="224.0" prefWidth="247.0" />
+      <Text layoutX="332.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your booked rooms:" />
+      <Text layoutX="75.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage booking:" wrappingWidth="119.7578125">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Button fx:id="editroomteacherbtn" layoutX="92.0" layoutY="153.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Edit room:" />
-      <Button fx:id="editroomteacherbtn" layoutX="92.0" layoutY="195.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Cancel reservation" />
-      <Text layoutX="342.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your booked rooms:" />
-      <ListView fx:id="listteacher" layoutX="342.0" layoutY="158.0" prefHeight="224.0" prefWidth="247.0" />
+      <Button layoutX="82.0" layoutY="185.0" mnemonicParsing="false" onAction="#cancelBooking" prefHeight="25.0" prefWidth="128.0" text="Cancel reservation" />
    </children>
 </AnchorPane>
