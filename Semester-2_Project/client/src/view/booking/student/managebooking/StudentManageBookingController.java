@@ -14,13 +14,20 @@ public class StudentManageBookingController {
     private StudentManageBookingViewModel studentManageBookingViewModel;
     private ViewHandler viewHandler;
 
-    public void init( ViewHandler viewHandler,StudentManageBookingViewModel studentManageBookingViewModel) {
-        this.studentManageBookingViewModel= studentManageBookingViewModel;
-        this.viewHandler=viewHandler;
-
+    public void init(ViewHandler viewHandler, StudentManageBookingViewModel studentManageBookingViewModel) {
+        this.studentManageBookingViewModel = studentManageBookingViewModel;
+        this.viewHandler = viewHandler;
+        bookingList.setItems(studentManageBookingViewModel.getListOfBookings());
 
     }
-    public void cancelBooking(){
-        //
+
+
+    public void cancelBooking() {
+        Booking booking = bookingList.getSelectionModel().getSelectedItem();
+        if (booking != null) {
+            studentManageBookingViewModel.cancelBooking(booking);
+            bookingList.getItems().remove(booking);
+        }
+
     }
 }

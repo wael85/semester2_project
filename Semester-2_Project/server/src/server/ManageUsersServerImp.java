@@ -21,9 +21,9 @@ public class ManageUsersServerImp extends UnicastRemoteObject implements RemoteM
     }
 
     @Override
-    public Administrator createAdmin(String staffNumber, String password, String firstName, String lastName, String phone, String email) throws RemoteException{
+    public Administrator createAdmin(String staffNumber, String password, String firstName, String lastName, String email, String phone) throws RemoteException{
          try {
-             Administrator administrator = manageUserDAO.createAdministrator(staffNumber, password, firstName, lastName, phone, email);
+             Administrator administrator = manageUserDAO.createAdministrator(staffNumber, password, firstName, lastName, email, phone);
             support.firePropertyChange("users",null,manageUserDAO.getAllUsers());
             return administrator;
          }catch (SQLException ex){
@@ -32,9 +32,9 @@ public class ManageUsersServerImp extends UnicastRemoteObject implements RemoteM
     }
 
     @Override
-    public Student createStudent(String studentId, String password, String firstName, String lastName, String phone, String email) throws RemoteException {
+    public Student createStudent(String studentId, String password, String firstName, String lastName, String email, String phone) throws RemoteException {
         try {
-           Student student = manageUserDAO.createStudent(studentId, password, firstName, lastName, phone, email);
+           Student student = manageUserDAO.createStudent(studentId, password, firstName, lastName, email, phone);
             support.firePropertyChange("users",null,manageUserDAO.getAllUsers());
             return student;
         }catch (SQLException ex){
@@ -43,9 +43,9 @@ public class ManageUsersServerImp extends UnicastRemoteObject implements RemoteM
     }
 
     @Override
-    public Teacher createTeacher(String staffNumber, String password, String firstName, String lastName, String phone, String email) throws RemoteException {
+    public Teacher createTeacher(String staffNumber, String password, String firstName, String lastName, String email, String phone) throws RemoteException {
       try {
-          Teacher teacher = manageUserDAO.createTeacher(staffNumber, password, firstName, lastName, phone, email);
+          Teacher teacher = manageUserDAO.createTeacher(staffNumber, password, firstName, lastName, email, phone);
           support.firePropertyChange("users",null,manageUserDAO.getAllUsers());
           return teacher;
       }catch (SQLException ex){
@@ -54,9 +54,9 @@ public class ManageUsersServerImp extends UnicastRemoteObject implements RemoteM
     }
 
     @Override
-    public Guest createGuest(String CVR, String password, String companyName, String phone, String email) throws RemoteException {
+    public Guest createGuest(String CVR, String password, String companyName, String email, String phone) throws RemoteException {
         try {
-           Guest guest = manageUserDAO.createGuest(CVR, password, companyName, phone, email);
+           Guest guest = manageUserDAO.createGuest(CVR, password, companyName, email, phone);
             support.firePropertyChange("users",null,manageUserDAO.getAllUsers());
             return guest;
 

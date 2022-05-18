@@ -5,22 +5,22 @@ public class ValidatorManageUsers {
     public final static int MINIMAL_LENGTH_USERNAME = 6;
 
 
-    public static void validatorCreateGuest(String CVR, String password, String companyName, String phone, String email){
+    public static void validatorCreateGuest(String CVR, String password, String companyName, String email, String phone){
         validateUsername(CVR); validatePassword(password); validateEmptyField(companyName); validatePhone(phone);
         validateEmail(email);
     }
 
-    public static void validatorCreateAdmin(String staffNumber, String firstName, String lastName, String phone, String email, String password){
+    public static void validatorCreateAdmin(String staffNumber, String password, String firstName, String lastName, String email, String phone){
         validateUsername(staffNumber);validatePassword(password); validateEmptyField(firstName);validateEmptyField(lastName);
         validatePhone(phone); validateEmail(email);
     }
 
-    public static void validatorCreateStudent(String studentId, String firstName, String lastName, String phone, String email, String password){
+    public static void validatorCreateStudent(String studentId, String password, String firstName, String lastName, String email, String phone){
         validateUsername(studentId);validatePassword(password); validateEmptyField(firstName);validateEmptyField(lastName);
         validatePhone(phone); validateEmail(email);
     }
 
-    public static void validatorCreateTeacher(String staffNumber, String firstName, String lastName, String phone, String email, String password)
+    public static void validatorCreateTeacher(String staffNumber, String password, String firstName, String lastName, String email, String phone)
     {
         validateUsername(staffNumber);validatePassword(password); validateEmptyField(firstName);validateEmptyField(lastName);
         validatePhone(phone); validateEmail(email);

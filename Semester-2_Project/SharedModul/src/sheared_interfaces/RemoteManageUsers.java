@@ -7,22 +7,22 @@ import java.rmi.RemoteException;
 public interface RemoteManageUsers extends Remote{
     Administrator createAdmin(
             String  staffNumber,String password, String firstName,
-            String lastName, String phone, String email
+            String lastName, String email, String phone
     ) throws  RemoteException;
 
     Student createStudent(
             String studentId, String password, String firstName,
-            String lastName, String phone, String email
+            String lastName, String email, String phone
     ) throws RemoteException;
 
     Teacher createTeacher(
-            String staffNumber,String password, String firstName, String lastName,
-            String phone, String email
+            String staffNumber,String password, String firstName, String lastName, String email,
+            String phone
     ) throws RemoteException;
 
     Guest createGuest(
-            String CVR, String password, String companyName, String phone,
-            String email
+            String CVR, String password, String companyName,String email, String phone
+
     ) throws RemoteException;
 
     Users getAllUsers() throws  RemoteException;

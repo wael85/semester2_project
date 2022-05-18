@@ -6,17 +6,26 @@ import client.ClientBookingInterface;
 import room_model.Rooms;
 import user_state.UserState;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 
 public class BookingModelManger implements BookingModel {
      private ClientBookingInterface client;
      private UserState currentUser;
+    private PropertyChangeSupport support;
 
-    public BookingModelManger(ClientBookingInterface clientBooking, UserState currentUser) {
+    public BookingModelManger(ClientBookingInterface clientBooking, UserState currentUser) throws RemoteException {
         this.client = clientBooking;
         this.currentUser = currentUser;
+        support = new PropertyChangeSupport(this);
+        client.addPropertyChangeListener("getAvailableRooms",evt ->  updateAvailableRooms(evt));
     }
+
+
+
 
     @Override
     public void createBooking( String roomId, Timestamp start, Timestamp end) throws RemoteException {
@@ -36,5 +45,18 @@ public class BookingModelManger implements BookingModel {
     @Override
     public void cancelBooking(Booking booking) throws RemoteException {
           client.cancelBooking(booking);
+    }
+
+    private void updateAvailableRooms(PropertyChangeEvent evt) {
+        support.firePropertyChange("getAvailableRooms",null,evt.getNewValue());
+    }
+    @Override
+    public void addPropertyChangeListener(String evt, PropertyChangeListener listener) {
+        support.addPropertyChangeListener(evt,listener);
+    }
+
+    @Override
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        support.removePropertyChangeListener(listener);
     }
 }

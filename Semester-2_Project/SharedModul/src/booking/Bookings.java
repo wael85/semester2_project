@@ -13,6 +13,10 @@ public class Bookings implements Serializable {
     public void addBooking(Booking booking) {
         bookingList.add(booking);
     }
+    public ArrayList<Booking> getBookingList(){
+        return bookingList;
+    }
+
 
     @Override
     public String toString() {

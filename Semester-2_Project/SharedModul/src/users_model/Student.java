@@ -8,7 +8,7 @@ public class Student extends User implements Serializable {
     public String phone;
     public String email;
 
-    public Student(String userName, String password, String firstName, String lastName, String phone, String email) {
+    public Student(String userName, String password, String firstName, String lastName, String email, String phone) {
         super(userName, password);
         this.firstName = firstName;
         this.lastName = lastName;

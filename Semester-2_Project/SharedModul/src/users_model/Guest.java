@@ -9,7 +9,7 @@ public class Guest extends User implements Serializable {
     private String email;
 
 
-    public Guest(String userName, String password, String companyName, String phone, String email) {
+    public Guest(String userName, String password, String companyName, String email, String phone) {
 
         super(userName, password);
         this.companyName = companyName;
