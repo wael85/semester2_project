@@ -7,6 +7,7 @@ public class GuestBookingViewModel {
 
     public GuestBookingViewModel(BookingModel bookingModel){
         this.bookingModel = bookingModel;
+        // bookingModel.addPropertyChangeListener("getAvailableRooms",evt -> );
     }
 
 }
