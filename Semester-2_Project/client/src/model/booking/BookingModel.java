@@ -4,6 +4,7 @@ import booking.Booking;
 import booking.Bookings;
 import room_model.Rooms;
 
+import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 
@@ -12,4 +13,6 @@ public interface BookingModel {
     Rooms getAvailableRooms(Timestamp start, Timestamp end)throws RemoteException;
     Bookings getUserBooking()throws RemoteException;
     void cancelBooking(Booking booking) throws RemoteException;
+    void addPropertyChangeListener(String evt, PropertyChangeListener listener);
+    void removePropertyChangeListener(PropertyChangeListener listener);
 }

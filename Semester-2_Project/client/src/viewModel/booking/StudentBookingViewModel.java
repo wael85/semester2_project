@@ -28,6 +28,7 @@ public class StudentBookingViewModel {
         this.endTime = new SimpleStringProperty("");
         this.roomsList = FXCollections.observableArrayList();
         this.error = new SimpleStringProperty("");
+       // bookingModel.addPropertyChangeListener("getAvailableRooms",evt -> getAvailableRooms());
     }
     public void bindEndTime(StringProperty property){
         property.bindBidirectional(endTime);

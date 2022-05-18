@@ -31,23 +31,23 @@ public class ManageUserClient extends UnicastRemoteObject implements ManageUserC
     }
 
     @Override
-    public Administrator createAdmin(String staffNumber,  String password,String firstName, String lastName, String phone, String email) throws RemoteException {
-       return remoteManageUsers.createAdmin(staffNumber,password,firstName,lastName,phone,email);
+    public Administrator createAdmin(String staffNumber,  String password,String firstName, String lastName, String email, String phone) throws RemoteException {
+       return remoteManageUsers.createAdmin(staffNumber,password,firstName,lastName,email,phone);
     }
 
     @Override
-    public Student createStudent(String studentId, String password, String firstName, String lastName, String phone, String email) throws RemoteException {
-       return remoteManageUsers.createStudent(studentId,password,firstName,lastName,phone,email);
+    public Student createStudent(String studentId, String password, String firstName, String lastName, String email, String phone) throws RemoteException {
+       return remoteManageUsers.createStudent(studentId,password,firstName,lastName,email,phone);
     }
 
     @Override
-    public Teacher createTeacher(String staffNumber, String password, String firstName, String lastName, String phone, String email) throws  RemoteException {
-       return remoteManageUsers.createTeacher(staffNumber,password,firstName,lastName,phone,email);
+    public Teacher createTeacher(String staffNumber, String password, String firstName, String lastName, String email, String phone) throws  RemoteException {
+       return remoteManageUsers.createTeacher(staffNumber,password,firstName,lastName,email,phone);
     }
 
     @Override
-    public Guest createGuest(String CVR, String password, String companyName, String phone, String email) throws RemoteException {
-       return remoteManageUsers.createGuest(CVR,password,companyName,phone,email);
+    public Guest createGuest(String CVR, String password, String companyName, String email, String phone) throws RemoteException {
+       return remoteManageUsers.createGuest(CVR,password,companyName,email,phone);
     }
 
     @Override
