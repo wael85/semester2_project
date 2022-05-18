@@ -8,7 +8,7 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 
 public interface UsersManagementModel extends Closeable  {
-    Administrator createAdmin(String staffNumber, String password, String firstName, String lastName, String phone, String email) throws  RemoteException;
+    Administrator createAdmin(String staffNumber, String password, String firstName, String lastName, String email, String phone) throws  RemoteException;
 
     Student createStudent(String studentId, String password, String firstName, String lastName, String phone, String email) throws  RemoteException;
 

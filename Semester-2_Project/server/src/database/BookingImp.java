@@ -11,7 +11,7 @@ import java.sql.*;
 
 public class BookingImp implements BookingDAO{
     private static BookingImp instance;
-    private Dotenv dotenv = Dotenv.load();
+    //private Dotenv dotenv = Dotenv.load();
 
     private BookingImp() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
@@ -23,8 +23,8 @@ public class BookingImp implements BookingDAO{
         return instance;
     }
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://hattie.db.elephantsql.com:5432/zvltjqzb",dotenv.get("USER_NAME"),dotenv.get("PASSWORD"));
-       // return DriverManager.getConnection("jdbc:postgresql://localhost:5432/sep2_project?currentSchema=booking_room_system", "postgres", "1230");
+       // return DriverManager.getConnection("jdbc:postgresql://hattie.db.elephantsql.com:5432/zvltjqzb",dotenv.get("USER_NAME"),dotenv.get("PASSWORD"));
+       return DriverManager.getConnection("jdbc:postgresql://localhost:5432/sep2_project?currentSchema=booking_room_system", "postgres", "1230");
 
     }
 

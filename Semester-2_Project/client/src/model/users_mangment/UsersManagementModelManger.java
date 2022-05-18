@@ -26,29 +26,29 @@ public class UsersManagementModelManger  implements UsersManagementModel {
 
 
     @Override
-    public Administrator createAdmin(String staffNumber, String firstName, String lastName, String phone, String email, String password) throws  RemoteException {
-        ValidatorManageUsers.validatorCreateAdmin(staffNumber, firstName, lastName, phone, email, password);
+    public Administrator createAdmin(String staffNumber, String password, String firstName, String lastName, String email, String phone) throws  RemoteException {
+        ValidatorManageUsers.validatorCreateAdmin(staffNumber, password, firstName, lastName, email, phone);
 
-       return   client.createAdmin(staffNumber,firstName,lastName,phone,email,password);
+       return   client.createAdmin(staffNumber,password,firstName,lastName,email,phone);
     }
 
     @Override
-    public Student createStudent(String studentId, String firstName, String lastName, String phone, String email, String password) throws  RemoteException {
+    public Student createStudent(String studentId, String password, String firstName, String lastName, String email, String phone) throws  RemoteException {
 
-        ValidatorManageUsers.validatorCreateStudent(studentId, firstName, lastName, phone, email, password);
-      return   client.createStudent(studentId, firstName, lastName, phone, email, password);
+        ValidatorManageUsers.validatorCreateStudent(studentId, password, firstName, lastName, email, phone);
+      return   client.createStudent(studentId, password, firstName, lastName, email, phone);
     }
 
     @Override
-    public Teacher createTeacher(String staffNumber, String firstName, String lastName, String phone, String email, String password) throws  RemoteException {
-     ValidatorManageUsers.validatorCreateTeacher(staffNumber, firstName, lastName, phone, email, password);
-      return    client.createTeacher(staffNumber, firstName, lastName, phone, email, password);
+    public Teacher createTeacher(String staffNumber, String password, String firstName, String lastName, String email, String phone) throws  RemoteException {
+     ValidatorManageUsers.validatorCreateTeacher(staffNumber, password, firstName, lastName, email, phone);
+      return    client.createTeacher(staffNumber, password, firstName, lastName, email, phone);
     }
 
     @Override
-    public Guest createGuest(String CVR, String companyName, String phone, String email, String password) throws RemoteException {
-        ValidatorManageUsers.validatorCreateGuest(CVR, companyName, phone, email, password);
-        return client.createGuest(CVR, companyName, phone, email, password);
+    public Guest createGuest(String CVR, String password, String companyName, String email, String phone) throws RemoteException {
+        ValidatorManageUsers.validatorCreateGuest(CVR, password, companyName, email, phone);
+        return client.createGuest(CVR, password, companyName, email, phone);
     }
 
     @Override
