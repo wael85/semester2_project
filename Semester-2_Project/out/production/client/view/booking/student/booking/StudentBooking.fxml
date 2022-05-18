@@ -14,5 +14,43 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E6E6FA#E6E6FA;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.booking.student.booking.StudentBookingController">
-
+   <children>
+      <ListView fx:id="roomsList" layoutX="333.0" layoutY="132.0" prefHeight="217.0" prefWidth="244.0" />
+      <Text layoutX="333.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available rooms:" />
+      <ImageView fitHeight="68.0" fitWidth="141.0" layoutX="456.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../resources/viaLogo.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="428.0" layoutY="349.0" mnemonicParsing="false" onAction="#book" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #39C997;" text="Book this room">
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.009345794705865539">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Text layoutX="65.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book a room:" wrappingWidth="94.7578125">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <DatePicker fx:id="bookingDate" layoutX="58.0" layoutY="147.0" />
+      <TextField fx:id="startTime" layoutX="58.0" layoutY="275.0" prefHeight="25.0" prefWidth="57.0" />
+      <TextField fx:id="endTime" layoutX="175.0" layoutY="275.0" prefHeight="25.0" prefWidth="57.0" />
+      <Label layoutX="14.0" layoutY="151.0" text="Date" />
+      <Label layoutX="13.0" layoutY="279.0" text="From:" />
+      <Label layoutX="152.0" layoutY="279.0" text="To:" />
+      <Label layoutX="73.0" layoutY="30.0" prefHeight="50.0" prefWidth="251.0" text="Student Booking Site">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Button layoutX="73.0" layoutY="349.0" mnemonicParsing="false" onAction="#logout" text="Log out" />
+   </children>
 </AnchorPane>

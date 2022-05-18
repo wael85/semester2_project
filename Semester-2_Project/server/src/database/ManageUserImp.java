@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class ManageUserImp implements ManageUserDAO{
     private static ManageUserImp instance;
-    private Dotenv dotenv = Dotenv.load();
+    //private Dotenv dotenv = Dotenv.load();
 
    ManageUserImp() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
@@ -19,10 +19,10 @@ public class ManageUserImp implements ManageUserDAO{
         return instance;
     }
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://hattie.db.elephantsql.com:5432/zvltjqzb",dotenv.get("USER_NAME"),dotenv.get("PASSWORD"));
+       // return DriverManager.getConnection("jdbc:postgresql://hattie.db.elephantsql.com:5432/zvltjqzb",dotenv.get("USER_NAME"),dotenv.get("PASSWORD"));
       //return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres","369968");
 
-     // return DriverManager.getConnection("jdbc:postgresql://localhost:5432/sep2_project?currentSchema=booking_room_system","postgres","1230");
+     return DriverManager.getConnection("jdbc:postgresql://localhost:5432/sep2_project?currentSchema=booking_room_system","postgres","1230");
     }
 
     @Override
