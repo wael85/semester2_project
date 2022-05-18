@@ -58,6 +58,9 @@ public class StudentBookingViewModel {
             error.set("");
             bookingModel.createBooking(roomId,startTimeStamp,endTimeStamp);
             error.set("Success!!");
+            startTime.set("");
+            endTime.set("");
+            roomsList.clear();
         } catch (RemoteException e) {
             error.set("");
             error.set(e.getMessage());

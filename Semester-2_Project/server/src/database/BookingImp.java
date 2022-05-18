@@ -54,14 +54,12 @@ public class BookingImp implements BookingDAO{
     @Override
     public Rooms getAvailableRooms(Timestamp start, Timestamp end) throws SQLException {
         try (Connection c = getConnection()) {
-            PreparedStatement preparedStatement = c.prepareStatement("SELECT room.room_id ,room.building,room.floor,room.number,room.type ,room.capacity\n" +
-                    "FROM booking_room_system.room LEFT OUTER JOIN\n" +
-                    "    booking_room_system.booking b ON\n" +
-                    "    room.room_id = b.room_id\n" +
-                    "WHERE ((b.end_datetime <= '" + start + "' AND b.end_datetime < '" + end + "' ) OR\n" +
-                    "      (b.start_datetime > '" + start + "' AND b.start_datetime >= '" + end + "')) OR\n" +
-                    "      (b.booking_number IS NULL )" +
-                    "group by room.room_id;");
+            PreparedStatement preparedStatement = c.prepareStatement("select room.room_id ,room.building,room.floor,room.number,room.capacity,room.type from booking_room_system.room where booking_room_system.room.room_id not in\n" +
+                    "(select room_id from booking_room_system.booking WHERE ((end_datetime = '"+end+"'  AND start_datetime = '"+start+"' ) OR\n" +
+                    "                                                 (('"+start+"' > start_datetime AND '"+start+"' < end_datetime)  ) OR\n" +
+                    "                                                 ('"+end+"' > start_datetime AND '"+end+"' < end_datetime) OR\n" +
+                    "                                                 (start_datetime > '"+start+"' AND start_datetime < '"+end+"')OR\n" +
+                    "                                                 (end_datetime > '"+start+"' AND end_datetime <'"+end+"')))");
             ResultSet resultSet = preparedStatement.executeQuery();
             Rooms rooms = new Rooms();
             while (resultSet.next()) {
