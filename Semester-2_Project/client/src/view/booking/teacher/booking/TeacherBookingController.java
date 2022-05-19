@@ -24,7 +24,7 @@ public class TeacherBookingController {
         bookingDate.valueProperty().addListener((observable ,oldValue,newValue)-> {
             date.textProperty().set(newValue.toString());
         });
-        viewModel.bindDate(date.textProperty());
+        //viewModel.bindDate(date.textProperty());
         viewModel.bindStartTime(startTime.textProperty());
         viewModel.bindEndTime(endTime.textProperty());
 
@@ -34,6 +34,6 @@ public class TeacherBookingController {
         System.out.println("book");
     }
     public void getAvailableRooms(ActionEvent actionEvent){
-        roomsList.setItems(viewModel.getAvailableRooms());
+       // roomsList.setItems(viewModel.getAvailableRooms());
     }
 }

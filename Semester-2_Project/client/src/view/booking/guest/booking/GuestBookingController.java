@@ -22,7 +22,7 @@ public class GuestBookingController {
         bookingDate.valueProperty().addListener((observable ,oldValue,newValue)-> {
             date.textProperty().set(newValue.toString());
         });
-        viewModel.bindDate(date.textProperty());
+        //viewModel.bindDate(date.textProperty());
         viewModel.bindStartTime(startTime.textProperty());
         viewModel.bindEndTime(endTime.textProperty());
     }
@@ -32,7 +32,7 @@ public class GuestBookingController {
     }
 
     public void getAvailableRooms(ActionEvent actionEvent) {
-        roomsList.setItems(viewModel.getAvailableRooms());
+       // roomsList.setItems(viewModel.getAvailableRooms());
     }
 
     public void book(ActionEvent actionEvent) {

@@ -178,7 +178,7 @@ public class ViewHandler {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../view/booking/TeacherTabView.fxml"));
+            loader.setLocation(getClass().getResource("../view/booking/teacher/TeacherTabView.fxml"));
             Parent root=loader.load();
             TeacherTabViewController teacherTabViewController = loader.getController();
             teacherTabViewController.init( this , vmf);
@@ -205,12 +205,12 @@ public class ViewHandler {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../view/booking/GuestTabView.fxml"));
+            loader.setLocation(getClass().getResource("../view/booking/guest/GuestTabView.fxml"));
             Parent root=loader.load();
+            GuestTabViewController guestTabViewController = loader.getController();
+            guestTabViewController.init( this,vmf);
             Scene scene = new Scene(root);
             stage.setTitle("Guest Booking");
-            GuestTabViewController guestTabViewController = loader.getController();
-            guestTabViewController.init( this);
             stage.setScene(scene);
             stage.show();
             stage.setOnCloseRequest(e -> {

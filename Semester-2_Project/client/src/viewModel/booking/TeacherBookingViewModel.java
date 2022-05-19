@@ -24,18 +24,18 @@ public class TeacherBookingViewModel {
     }
 
     public void bindDate(StringProperty textProperty) {
-        textProperty.bindBidirectional(date);
+        //textProperty.bindBidirectional(date);
     }
 
     public void bindStartTime(StringProperty textProperty) {
-        textProperty.bindBidirectional(startTime);
+        //textProperty.bindBidirectional(startTime);
     }
 
     public void bindEndTime(StringProperty textProperty) {
-        textProperty.bindBidirectional(endTime);
+        //textProperty.bindBidirectional(endTime);
     }
 
-    public ObservableList<Room> getAvailableRooms() {
+   /* public ObservableList<Room> getAvailableRooms() {
         try {
             Date d = new Date(date.get());
             Timestamp startDateTime = new Timestamp(d.getYear()-1900,d.getMonth(),d.getDate(),Integer.parseInt(startTime.get()),0,0,0);
@@ -48,5 +48,5 @@ public class TeacherBookingViewModel {
             e.printStackTrace();
             return null;
         }
-    }
+    }*/
 }
