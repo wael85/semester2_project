@@ -3,6 +3,7 @@ package model.booking;
 import booking.Booking;
 import booking.Bookings;
 import room_model.Rooms;
+import user_state.UserState;
 
 import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
@@ -15,4 +16,5 @@ public interface BookingModel {
     void cancelBooking(Booking booking) throws RemoteException;
     void addPropertyChangeListener(String evt, PropertyChangeListener listener);
     void removePropertyChangeListener(PropertyChangeListener listener);
+    UserState getCurrentUser();
 }

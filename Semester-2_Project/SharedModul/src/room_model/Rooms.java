@@ -15,6 +15,15 @@ public class Rooms implements Serializable {
     public ArrayList<Room> getRooms(){
         return roomList;
     }
+    public ArrayList<Room> getRoomsByType(String type){
+        ArrayList<Room> rooms =new ArrayList<>();
+        for (Room r:roomList ) {
+            if(r.getType().equals(type)){
+                rooms.add(r);
+            }
+        }
+        return rooms;
+    }
 
     @Override
     public String toString() {

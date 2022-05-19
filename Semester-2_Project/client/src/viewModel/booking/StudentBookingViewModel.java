@@ -4,13 +4,17 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.booking.BookingModel;
 import room_model.Room;
+import room_model.RoomTypes;
 import room_model.Rooms;
 
+import javax.swing.*;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class StudentBookingViewModel {
@@ -44,9 +48,9 @@ public class StudentBookingViewModel {
         try {
             startTimeStamp = new Timestamp(d.getYear()-1900,d.getMonth()-1,d.getDate(),Integer.parseInt(startTime.get()),0,0,0);
             endTimeStamp = new Timestamp(d.getYear()-1900,d.getMonth()-1,d.getDate(),Integer.parseInt(endTime.get()),0,0,0);
-          Rooms rooms =  bookingModel.getAvailableRooms(startTimeStamp,endTimeStamp);
+          ArrayList<Room> rooms =  bookingModel.getAvailableRooms(startTimeStamp,endTimeStamp).getRoomsByType(RoomTypes.STUDY_ROOM.type);
           this.roomsList.clear();
-          this.roomsList.addAll(rooms.getRooms());
+          this.roomsList.addAll(rooms);
           return roomsList;
         } catch (RemoteException e) {
             error.set(e.getMessage());
@@ -57,14 +61,19 @@ public class StudentBookingViewModel {
     public void bookRoom(String roomId){
         try {
             error.set("");
-            bookingModel.createBooking(roomId,startTimeStamp,endTimeStamp);
-            error.set("Success!!");
-            startTime.set("");
-            endTime.set("");
-            roomsList.clear();
+            if(bookingModel.getUserBooking().getSize() >0){
+                JOptionPane.showMessageDialog(null,"You already have an Active Booking!!!");
+            }else {
+                bookingModel.createBooking(roomId,startTimeStamp,endTimeStamp);
+                error.set("Success!!");
+                startTime.set("");
+                endTime.set("");
+                roomsList.clear();
+            }
         } catch (RemoteException e) {
             error.set("");
             error.set(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 

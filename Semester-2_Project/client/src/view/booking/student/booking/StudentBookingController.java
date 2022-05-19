@@ -3,15 +3,13 @@ package view.booking.student.booking;
 import javafx.event.ActionEvent;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import room_model.Room;
 import view.ViewHandler;
 import viewModel.booking.StudentBookingViewModel;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class StudentBookingController {
@@ -34,9 +32,18 @@ public class StudentBookingController {
     public void init(ViewHandler viewHandler,StudentBookingViewModel studentBookingViewModel){
         this.viewHandler=viewHandler;
         this.studentBookingViewModel = studentBookingViewModel;
+        bookingDate.setValue(LocalDate.now());
+        date = new Date(bookingDate.getValue().getYear(),bookingDate.getValue().getMonthValue()-1,bookingDate.getValue().getDayOfMonth());
+        bookingDate.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
 
+                setDisable(empty || date.compareTo(today) < 0 );
+            }
+        });
         bookingDate.valueProperty().addListener((observable ,oldValue,newValue)-> {
-            date = new Date( newValue.getYear(),newValue.getMonthValue(),newValue.getDayOfMonth());
+            date = new Date( newValue.getYear(),newValue.getMonthValue()-1,newValue.getDayOfMonth());
         });
         studentBookingViewModel.bindStartTime(startTime.textProperty());
         studentBookingViewModel.bindEndTime(endTime.textProperty());
@@ -44,6 +51,8 @@ public class StudentBookingController {
     }
     public void book(ActionEvent actionEvent){
       studentBookingViewModel.bookRoom(roomsList.getSelectionModel().getSelectedItem().getRoomId());
+      bookingDate.setValue(LocalDate.now());
+
     }
     public void getAvailableRooms(ActionEvent actionEvent){
         roomsList.setItems(studentBookingViewModel.getAvailableRooms(date));

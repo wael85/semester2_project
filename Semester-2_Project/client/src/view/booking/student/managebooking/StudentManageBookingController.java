@@ -17,10 +17,12 @@ public class StudentManageBookingController {
     public void init( ViewHandler viewHandler,StudentManageBookingViewModel studentManageBookingViewModel) {
         this.studentManageBookingViewModel= studentManageBookingViewModel;
         this.viewHandler=viewHandler;
-
-
+    }
+    public void getMyBooking(){
+        bookingList.setItems(studentManageBookingViewModel.getBookingsObList());
     }
     public void cancelBooking(){
-        //
+       studentManageBookingViewModel.cancelBooking(bookingList.getSelectionModel().getSelectedItem());
+       getMyBooking();
     }
 }

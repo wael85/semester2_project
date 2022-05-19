@@ -24,6 +24,10 @@ public class BookingModelManger implements BookingModel {
         client.addPropertyChangeListener("getAvailableRooms",evt ->  updateAvailableRooms(evt));
     }
 
+    public UserState getCurrentUser() {
+        return currentUser;
+    }
+
     @Override
     public void createBooking( String roomId, Timestamp start, Timestamp end) throws RemoteException {
         client.createBooking(currentUser.getCurrentUser().getUserName(), roomId,start,end);

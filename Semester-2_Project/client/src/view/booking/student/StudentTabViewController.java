@@ -27,6 +27,7 @@ public class StudentTabViewController {
         studentManageBookingController.init(viewHandler,vm.getStudentManageBookingViewModel());
         checkingController.init(viewHandler,vm.getCheckInViewModel());
     }
+
     public void goBack(){
         System.out.println("go back");
     }

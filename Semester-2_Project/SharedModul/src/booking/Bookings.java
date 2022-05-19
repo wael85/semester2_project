@@ -14,6 +14,13 @@ public class Bookings implements Serializable {
         bookingList.add(booking);
     }
 
+    public ArrayList<Booking> getBookingList() {
+        return bookingList;
+    }
+    public int getSize(){
+        return bookingList.size();
+    }
+
     @Override
     public String toString() {
         return "Bookings{" +
