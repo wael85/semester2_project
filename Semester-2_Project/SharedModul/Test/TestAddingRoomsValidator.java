@@ -1,7 +1,8 @@
 import client.ManageRoomClient;
 import client.ManageRoomClientInterface;
+import model.rooms.RoomManagementModelManage;
 import org.junit.jupiter.api.*;
-import room_model.RoomManagementModelManage;
+
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
@@ -104,8 +105,8 @@ public class TestAddingRoomsValidator {
 
     //Room capacity validator test:
     @Test
-    public void AdminAddClassroomWithCapacityMoreThen1Digit(){
-        assertThrows(IllegalArgumentException.class,()-> client.createRoom("S","1","1","class room","11"));
+    public void AdminAddStudyRoomWithCapacityMoreThen1Digit(){
+        assertThrows(IllegalArgumentException.class,()-> client.createRoom("S","1","1","study room","11"));
     }
 
 }
