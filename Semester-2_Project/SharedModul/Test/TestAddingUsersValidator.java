@@ -1,10 +1,11 @@
 import client.ManageUserClient;
 import client.ManageUserClientInterface;
+import model.users_mangment.UsersManagementModelManger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import users_model.User;
-import users_model.UsersManagementModelManger;
+
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
@@ -48,53 +49,61 @@ public class TestAddingUsersValidator {
 
     @Test
     public void adminAddingStudentWithEmptyUsername(){
-    assertThrows(IllegalArgumentException.class,() -> client.createStudent("","student","lastname","12345678","Student@gmail.com","Student0000"));
+    assertThrows(IllegalArgumentException.class,() -> client.createStudent("","Student0000","firstname","lastname","Student@gmail.com","123456789"));
     }
     @Test
     public void adminAddingStudentWithUsernameLessThan3(){
-        assertThrows(IllegalArgumentException.class,() -> client.createStudent("ST","student","lastname","12345678","Student@gmail.com","Student0000"));
+        assertThrows(IllegalArgumentException.class,() -> client.createStudent("ST","Student0000","firstname","lastname","Student@gmail.com","123456789"));
     }
     @Test
-    public void adminAddingStudentWithUsername3() throws RemoteException {
-        client.createStudent("STU","student","lastname","12345678","Student@gmail.com","Student0000");
+    public void adminAddingStudentWithUsername6() throws RemoteException {
+        client.createStudent("Studen","Student0000","firstname","lastname","Student@gmail.com","123456789");
         boolean isThere=false;
         for (User u:client.getAllUsers().getUsers()) {
-            if (u.getUserName().equals("STU")){
+            if (u.getUserName().equals("Studen")){
                 isThere=true;
             }
         }
         assertTrue(isThere);
     }
     @Test
-    public void adminAddingStudentWithUsernameMoreThan3() throws RemoteException {
-        client.createStudent("STUDENT","student","lastname","12345678","Student@gmail.com","Student0000");
+    public void deleteStuden() throws RemoteException {
+        client.deleteUser("Studen");
+    }
+    @Test
+    public void adminAddingStudentWithUsernameMoreThan6() throws RemoteException {
+        client.createStudent("Student","Student0000","firstname","lastname","Student@gmail.com","123456789");
         boolean isThere=false;
         for (User u:client.getAllUsers().getUsers()) {
-            if (u.getUserName().equals("STU")){
+            if (u.getUserName().equals("Student")){
                 isThere=true;
             }
         }
         assertTrue(isThere);
+    }
+    @Test
+    public void deleteStudent() throws RemoteException {
+        client.deleteUser("Student");
     }
 
 
     //Password validation test.
     @Test
     public void adminAddingStudentWithEmptyPassword(){
-        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","firstname","lastname","13456789","Jak@gmail.com",""));
+        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","","firstname","lastname","Student@gmail.com","123456789"));
     }
     @Test
     public void adminAddingStudentWithPasswordDontContainUppercase(){
-        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","firstname","lastname","13456789","Jak@gmail.com","pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","password0000","firstname","lastname","Student@gmail.com","123456789"));
     }
 
     @Test
     public void adminAddingStudentWithPasswordDontContainLowercase(){
-        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","firstname","lastname","13456789","Jak@gmail.com","PASS0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","PASSWORD0000","firstname","lastname","Student@gmail.com","123456789"));
     }
     @Test
     public void adminAddingStudentWithPasswordDontContainNumbers(){
-        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","firstname","lastname","13456789","Jak@gmail.com","PassWord"));
+        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","Password","firstname","lastname","Student@gmail.com","123456789"));
     }
 
 
@@ -102,34 +111,34 @@ public class TestAddingUsersValidator {
     //Phone number validation test
     @Test
     public void adminAddingStudentWithEmptyPhone(){
-        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","firstname","lastname","","Jak@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","password0000","firstname","lastname","Student@gmail.com",""));
     }
     @Test
     public void adminAddingStudentWithLetterInTheFirstOfPhone(){
-        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","firstname","lastname","a12345678","Jak@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","password0000","firstname","lastname","Student@gmail.com","a12345678"));
     }
     @Test
     public void adminAddingStudentWithLetterInTheMiddleOfPhone(){
-        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","firstname","lastname","1234a5678","Jak@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","password0000","firstname","lastname","Student@gmail.com","1234a5678"));
     }
     @Test
     public void adminAddingStudentWithLetterInTheEndOfPhone(){
-        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","firstname","lastname","12345678a","Jak@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","password0000","firstname","lastname","Student@gmail.com","123456789a"));
     }
 
     //Email validation test
 
     @Test
     public void adminAddingStudentWithEmptyEmail(){
-        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","firstname","lastname","12345678","","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","password0000","firstname","lastname","","123456789"));
     }
     @Test
     public void adminAddingStudentWithoutHostInEmail(){
-        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","firstname","lastname","12345678","Jakgmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","password0000","firstname","lastname","Studentgmail.com","123456789"));
     }
     @Test
     public void adminAddingStudentWithoutPortInEmail(){
-        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","firstname","lastname","12345678","Jak@gmail","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createStudent("Student","password0000","firstname","lastname","Student@gmailcom","123456789"));
     }
 
     //Administrator Create another Administrator
@@ -144,53 +153,62 @@ public class TestAddingUsersValidator {
 
     @Test
     public void adminAddingAdminWithEmptyUsername(){
-        assertThrows(IllegalArgumentException.class,() -> client.createAdmin("","firstname","lastname","12345678","Admin@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,() -> client.createAdmin("","Password0000","firstname","lastname","Admin@gmail.com","12345678"));
     }
     @Test
-    public void adminAddingAdminWithUsernameLessThan3(){
-        assertThrows(IllegalArgumentException.class,() -> client.createAdmin("AD","firstname","lastname","12345678","Admin@gmail.com","Pass0000"));
+    public void adminAddingAdminWithUsernameLessThan6(){
+        assertThrows(IllegalArgumentException.class,() -> client.createAdmin("Admin","Password0000","firstname","lastname","Admin@gmail.com","12345678"));
     }
     @Test
-    public void adminAddingAdminWithUsername3() throws RemoteException {
-        client.createAdmin("ADM","firstname","lastname","12345678","Admin@gmail.com","Pass0000");
+    public void adminAddingAdminWithUsername6() throws RemoteException {
+        client.createAdmin("Admin1","Password0000","firstname","lastname","Admin@gmail.com","12345678");
         boolean isThere=false;
         for (User u:client.getAllUsers().getUsers()) {
-            if (u.getUserName().equals("ADM")){
+            if (u.getUserName().equals("Admin1")){
                 isThere=true;
             }
         }
         assertTrue(isThere);
+    }
+    @Test
+    public void deleteAdmin1() throws RemoteException {
+        client.deleteUser("Admin1");
     }
     @Test
     public void adminAddingAdminWithUsernameMoreThan3() throws RemoteException {
-        client.createAdmin("ADMIN","firstname","lastname","12345678","Admin@gmail.com","Pass0000");
+        client.createAdmin("Admin12","Password0000","firstname","lastname","Admin@gmail.com","12345678");
         boolean isThere=false;
         for (User u:client.getAllUsers().getUsers()) {
-            if (u.getUserName().equals("ADMIN")){
+            if (u.getUserName().equals("Admin12")){
                 isThere=true;
             }
         }
         assertTrue(isThere);
+    }
+    @Test
+    public void deleteAdmin12() throws RemoteException {
+        client.deleteUser("Admin12");
+
     }
 
 
     //Password validation test.
     @Test
     public void adminAddingAdminWithEmptyPassword(){
-        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin","firstname","lastname","13456789","Jak@gmail.com",""));
+        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin1","","firstname","lastname","Admin@gmail.com","12345678"));
     }
     @Test
     public void adminAddingAdminWithPasswordDontContainUppercase(){
-        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin","firstname","lastname","13456789","Jak@gmail.com","pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin1","password0000","firstname","lastname","Admin@gmail.com","12345678"));
     }
 
     @Test
     public void adminAddingAdminWithPasswordDontContainLowercase(){
-        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin","firstname","lastname","13456789","Jak@gmail.com","PASS0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin1","PASSWORD0000","firstname","lastname","Admin@gmail.com","12345678"));
     }
     @Test
     public void adminAddingAdminWithPasswordDontContainNumbers(){
-        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin","firstname","lastname","13456789","Jak@gmail.com","PassWord"));
+        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin1","Password","firstname","lastname","Admin@gmail.com","12345678"));
     }
 
 
@@ -198,34 +216,34 @@ public class TestAddingUsersValidator {
     //Phone number validation test
     @Test
     public void adminAddingAdminWithEmptyPhone(){
-        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin","firstname","lastname","","Jak@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin1","Password0000","firstname","lastname","Admin@gmail.com",""));
     }
     @Test
     public void adminAddingAdminWithLetterInTheFirstOfPhone(){
-        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin","firstname","lastname","a12345678","Jak@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin1","Password0000","firstname","lastname","Admin@gmail.com","a12345678"));
     }
     @Test
     public void adminAddingAdminWithLetterInTheMiddleOfPhone(){
-        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin","firstname","lastname","1234a5678","Jak@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin1","Password0000","firstname","lastname","Admin@gmail.com","1234a5678"));
     }
     @Test
     public void adminAddingAdminWithLetterInTheEndOfPhone(){
-        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin","firstname","lastname","12345678a","Jak@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin1","Password0000","firstname","lastname","Admin@gmail.com","12345678a"));
     }
 
     //Email validation test
 
     @Test
     public void adminAddingAdminWithEmptyEmail(){
-        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin","firstname","lastname","12345678","","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin1","Password0000","firstname","lastname","","12345678"));
     }
     @Test
     public void adminAddingAdminWithoutHostInEmail(){
-        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin","firstname","lastname","12345678","Jakgmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin1","Password0000","firstname","lastname","Admingmail.com","12345678"));
     }
     @Test
     public void adminAddingAdminWithoutPortInEmail(){
-        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin","firstname","lastname","12345678","Jak@gmail","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createAdmin("Admin1","Password0000","firstname","lastname","Admin@gmailcom","12345678"));
     }
 
     //Administrator create Teacher Test:
@@ -240,26 +258,30 @@ public class TestAddingUsersValidator {
 
     @Test
     public void adminAddingTeacherWithEmptyUsername(){
-        assertThrows(IllegalArgumentException.class,() -> client.createTeacher("","firstname","lastname","12345678","Teacher@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,() -> client.createTeacher("","Password0000","firstname","lastname","Teacher@gmail.com","123456789"));
     }
     @Test
-    public void adminAddingTeacherWithUsernameLessThan3(){
-        assertThrows(IllegalArgumentException.class,() -> client.createTeacher("TE","firstname","lastname","12345678","Teacher@gmail.com","Pass0000"));
+    public void adminAddingTeacherWithUsernameLessThan6(){
+        assertThrows(IllegalArgumentException.class,() -> client.createTeacher("TEA","Password0000","firstname","lastname","Teacher@gmail.com","123456789"));
     }
     @Test
-    public void adminAddingTeacherWithUsername3() throws RemoteException {
-        client.createTeacher("TEA","firstname","lastname","12345678","Teacher@gmail.com","Pass0000");
+    public void adminAddingTeacherWithUsername6() throws RemoteException {
+        client.createTeacher("Teache","Password0000","firstname","lastname","Teacher@gmail.com","123456789");
         boolean isThere=false;
         for (User u:client.getAllUsers().getUsers()) {
-            if (u.getUserName().equals("TEA")){
+            if (u.getUserName().equals("Teache")){
                 isThere=true;
             }
         }
         assertTrue(isThere);
     }
     @Test
-    public void adminAddingTeacherWithUsernameMoreThan3() throws RemoteException {
-        client.createTeacher("TEACHER","firstname","lastname","12345678","Teacher@gmail.com","Pass0000");
+    public void deleteTeache() throws RemoteException {
+        client.deleteUser("Teache");
+    }
+    @Test
+    public void adminAddingTeacherWithUsernameMoreThan6() throws RemoteException {
+        client.createTeacher("TEACHER","Password0000","firstname","lastname","Teacher@gmail.com","123456789");
         boolean isThere=false;
         for (User u:client.getAllUsers().getUsers()) {
             if (u.getUserName().equals("TEACHER")){
@@ -268,25 +290,29 @@ public class TestAddingUsersValidator {
         }
         assertTrue(isThere);
     }
+    @Test
+    public void deleteTEACHER() throws RemoteException {
+        client.deleteUser("TEACHER");
+    }
 
 
     //Password validation test.
     @Test
     public void adminAddingTeacherWithEmptyPassword(){
-        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("User","firstname","lastname","13456789","Jak@gmail.com",""));
+        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("Teacher","","firstname","lastname","Teacher@gmail.com","123456789"));
     }
     @Test
     public void adminAddingTeacherWithPasswordDontContainUppercase(){
-        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("User","firstname","lastname","13456789","Jak@gmail.com","pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("Teacher","password0000","firstname","lastname","Teacher@gmail.com","123456789"));
     }
 
     @Test
     public void adminAddingTeacherWithPasswordDontContainLowercase(){
-        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("User","firstname","lastname","13456789","Jak@gmail.com","PASS0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("Teacher","PASSWORD0000","firstname","lastname","Teacher@gmail.com","123456789"));
     }
     @Test
     public void adminAddingTeacherWithPasswordDontContainNumbers(){
-        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("User","firstname","lastname","13456789","Jak@gmail.com","PassWord"));
+        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("Teacher","Password","firstname","lastname","Teacher@gmail.com","123456789"));
     }
 
 
@@ -294,34 +320,34 @@ public class TestAddingUsersValidator {
     //Phone number validation test
     @Test
     public void adminAddingTeacherWithEmptyPhone(){
-        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("User","firstname","lastname","","Jak@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("Teacher","Password0000","firstname","lastname","Teacher@gmail.com",""));
     }
     @Test
     public void adminAddingTeacherWithLetterInTheFirstOfPhone(){
-        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("User","firstname","lastname","a12345678","Jak@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("Teacher","Password0000","firstname","lastname","Teacher@gmail.com","a123456789"));
     }
     @Test
     public void adminAddingTeacherWithLetterInTheMiddleOfPhone(){
-        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("User","firstname","lastname","1234a5678","Jak@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("Teacher","Password0000","firstname","lastname","Teacher@gmail.com","1234a5678"));
     }
     @Test
     public void adminAddingTeacherWithLetterInTheEndOfPhone(){
-        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("User","firstname","lastname","12345678a","Jak@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("Teacher","Password0000","firstname","lastname","Teacher@gmail.com","12345678a"));
     }
 
     //Email validation test
 
     @Test
     public void adminAddingTeacherWithEmptyEmail(){
-        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("User","firstname","lastname","12345678","","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("Teacher","Password0000","firstname","lastname","","12345678"));
     }
     @Test
     public void adminAddingTeacherWithoutHostInEmail(){
-        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("User","firstname","lastname","12345678","Jakgmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("Teacher","Password0000","firstname","lastname","Teachergmail.com","12345678"));
     }
     @Test
     public void adminAddingTeacherWithoutPortInEmail(){
-        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("User","firstname","lastname","12345678","Jak@gmail","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createTeacher("Teacher","Password0000","firstname","lastname","Teacher@gmailcom","12345678"));
     }
 
     //Administrator create Guest Test:
@@ -337,53 +363,61 @@ public class TestAddingUsersValidator {
 
     @Test
     public void adminAddingGuestWithEmptyUsername(){
-        assertThrows(IllegalArgumentException.class,() -> client.createGuest("","companyName","12345678","Guest@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,() -> client.createGuest("","Password0000","company","company@gmail.com","12345678"));
     }
     @Test
-    public void adminAddingGuestWithUsernameLessThan3(){
-        assertThrows(IllegalArgumentException.class,() -> client.createGuest("CV","companyName","12345678","Guest@gmail.com","Pass0000"));
+    public void adminAddingGuestWithUsernameLessThan6(){
+        assertThrows(IllegalArgumentException.class,() -> client.createGuest("CVR","Password0000","company","company@gmail.com","12345678"));
     }
     @Test
-    public void adminAddingGuestWithUsername3() throws RemoteException {
-        client.createGuest("CVR","companyName","12345678","Guest@gmail.com","Pass0000");
+    public void adminAddingGuestWithUsername6() throws RemoteException {
+        client.createGuest("CVRCVR","Password0000","company","company@gmail.com","12345678");
         boolean isThere=false;
         for (User u:client.getAllUsers().getUsers()) {
-            if (u.getUserName().equals("CVR")){
+            if (u.getUserName().equals("CVRCVR")){
                 isThere=true;
             }
         }
         assertTrue(isThere);
     }
     @Test
-    public void adminAddingGuestWithUsernameMoreThan3() throws RemoteException {
-        client.createGuest("CVRE","companyName","12345678","Guest@gmail.com","Pass0000");
+    public void deleteCVRCVR() throws RemoteException {
+        client.deleteUser("CVRCVR");
+    }
+    @Test
+    public void adminAddingGuestWithUsernameMoreThan6() throws RemoteException {
+        client.createGuest("CVRCVR1","Password0000","company","company@gmail.com","12345678");
         boolean isThere=false;
         for (User u:client.getAllUsers().getUsers()) {
-            if (u.getUserName().equals("CVRE")){
+            if (u.getUserName().equals("CVRCVR1")){
                 isThere=true;
             }
         }
         assertTrue(isThere);
+    }
+    @Test
+    public void deleteCVRCVR1() throws RemoteException {
+        client.deleteUser("CVRCVR1");
     }
 
 
     //Password validation test.
     @Test
     public void adminAddingGuestWithEmptyPassword(){
-        assertThrows(IllegalArgumentException.class,()-> client.createGuest("User","companyName","13456789","Guest@gmail.com",""));
+        assertThrows(IllegalArgumentException.class,()-> client.createGuest("CVRCVR","","company","company@gmail.com","12345678"));
     }
     @Test
     public void adminAddingGuestWithPasswordDontContainUppercase(){
-        assertThrows(IllegalArgumentException.class,()-> client.createGuest("User","companyName","13456789","Guest@gmail.com","pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createGuest("CVRCVR","password0000","company","company@gmail.com","12345678"));
     }
 
     @Test
     public void adminAddingGuestWithPasswordDontContainLowercase(){
-        assertThrows(IllegalArgumentException.class,()-> client.createGuest("User","companyName","13456789","Guest@gmail.com","PASS0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createGuest("CVRCVR","PASSWORD0000","company","company@gmail.com","12345678"));
     }
     @Test
     public void adminAddingGuestWithPasswordDontContainNumbers(){
-        assertThrows(IllegalArgumentException.class,()-> client.createGuest("User","companyName","13456789","Guest@gmail.com","PassWord"));
+        assertThrows(IllegalArgumentException.class,()-> client.createGuest("CVRCVR","Password","company","company@gmail.com","12345678"));
     }
 
 
@@ -391,34 +425,34 @@ public class TestAddingUsersValidator {
     //Phone number validation test
     @Test
     public void adminAddingGuestWithEmptyPhone(){
-        assertThrows(IllegalArgumentException.class,()-> client.createGuest("User","companyName","","Guest@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createGuest("CVRCVR","Password0000","company","company@gmail.com",""));
     }
     @Test
     public void adminAddingGuestWithLetterInTheFirstOfPhone(){
-        assertThrows(IllegalArgumentException.class,()-> client.createGuest("User","companyName","a12345678","Guest@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createGuest("CVRCVR","Password0000","company","company@gmail.com","a12345678"));
     }
     @Test
     public void adminAddingGuestWithLetterInTheMiddleOfPhone(){
-        assertThrows(IllegalArgumentException.class,()-> client.createGuest("User","companyName","1234a5678","Guest@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createGuest("CVRCVR","Password0000","company","company@gmail.com","1234a5678"));
     }
     @Test
     public void adminAddingGuestWithLetterInTheEndOfPhone(){
-        assertThrows(IllegalArgumentException.class,()-> client.createGuest("User","companyName","12345678a","Guest@gmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createGuest("CVRCVR","Password0000","company","company@gmail.com","12345678a"));
     }
 
     //Email validation test
 
     @Test
     public void adminAddingGuestWithEmptyEmail(){
-        assertThrows(IllegalArgumentException.class,()-> client.createGuest("User","companyName","12345678","","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createGuest("CVRCVR","Password0000","company","","12345678"));
     }
     @Test
     public void adminAddingGuestWithoutHostInEmail(){
-        assertThrows(IllegalArgumentException.class,()-> client.createGuest("User","companyName","12345678","Guestgmail.com","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createGuest("CVRCVR","Password0000","company","companygmail.com","12345678"));
     }
     @Test
     public void adminAddingGuestWithoutPortInEmail(){
-        assertThrows(IllegalArgumentException.class,()-> client.createGuest("User","companyName","12345678","Guest@gmail","Pass0000"));
+        assertThrows(IllegalArgumentException.class,()-> client.createGuest("CVRCVR","Password0000","company","company@gmailcom","12345678"));
     }
 
 
