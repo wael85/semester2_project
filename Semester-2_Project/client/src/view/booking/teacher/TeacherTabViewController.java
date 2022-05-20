@@ -26,7 +26,8 @@ public class TeacherTabViewController {
 
     }
 
-    public void goBackBtn() {
+    public void logOut() {
+        viewHandler.getCurrentUser().setCurrentUser(null);
         viewHandler.openLogin();
     }
 }

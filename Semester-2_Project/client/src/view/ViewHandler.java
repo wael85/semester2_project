@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.booking.BookingModel;
 import model.login.LoginModel;
 import model.rooms.RoomManagementModel;
 import user_state.UserState;
@@ -26,15 +27,17 @@ public class ViewHandler {
     private UsersManagementModel usersManagementModel;
     private RoomManagementModel roomManagementModel;
     private LoginModel loginModel;
+    private BookingModel bookingModel;
     private UserState currentUser;
 
-    public ViewHandler(Stage stage, ViewModelFactory vmf, UsersManagementModel usersManagementModel,RoomManagementModel roomManagementModel,LoginModel loginModel, UserState currentUser) {
+    public ViewHandler(Stage stage, ViewModelFactory vmf, UsersManagementModel usersManagementModel,RoomManagementModel roomManagementModel,LoginModel loginModel,BookingModel bookingModel, UserState currentUser) {
         this.stage = stage;
         this.vmf = vmf;
         this.usersManagementModel = usersManagementModel;
         this.roomManagementModel = roomManagementModel;
         this.loginModel = loginModel;
         this.currentUser = currentUser;
+        this.bookingModel = bookingModel;
     }
 
     public void start() {
@@ -64,6 +67,7 @@ public class ViewHandler {
                     usersManagementModel.close();
                     roomManagementModel.close();
                     loginModel.close();
+                    bookingModel.close();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -89,6 +93,7 @@ public class ViewHandler {
                     usersManagementModel.close();
                     roomManagementModel.close();
                     loginModel.close();
+                    bookingModel.close();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -113,6 +118,7 @@ public class ViewHandler {
                     usersManagementModel.close();
                     roomManagementModel.close();
                     loginModel.close();
+                    bookingModel.close();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -137,6 +143,7 @@ public class ViewHandler {
                     usersManagementModel.close();
                     roomManagementModel.close();
                     loginModel.close();
+                    bookingModel.close();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -166,6 +173,7 @@ public class ViewHandler {
                     usersManagementModel.close();
                     roomManagementModel.close();
                     loginModel.close();
+                    bookingModel.close();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -193,6 +201,7 @@ public class ViewHandler {
                     usersManagementModel.close();
                     roomManagementModel.close();
                     loginModel.close();
+                    bookingModel.close();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -218,6 +227,7 @@ public class ViewHandler {
                     usersManagementModel.close();
                     roomManagementModel.close();
                     loginModel.close();
+                    bookingModel.close();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }

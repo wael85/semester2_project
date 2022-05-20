@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="468.0" prefWidth="600.0" style="-fx-background-color: #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.booking.guest.GuestTabViewController">
+<AnchorPane prefHeight="468.0" prefWidth="600.0" style="-fx-background-color: #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA #E6E6FA#E6E6FA;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.booking.guest.GuestTabViewController">
     <children>
         <TabPane layoutX="-2.0" prefHeight="433.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
     <tabs>
@@ -17,7 +17,7 @@
         </Tab>
     </tabs>
         </TabPane>
-      <Button layoutX="14.0" layoutY="435.0" mnemonicParsing="false" onAction="#goBackBtn" prefHeight="25.0" prefWidth="105.0" text="Go back" />
+      <Button layoutX="14.0" layoutY="435.0" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="105.0" text="Log off" />
     </children>
 
 </AnchorPane>

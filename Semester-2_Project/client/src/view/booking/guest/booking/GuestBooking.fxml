@@ -52,5 +52,6 @@
             </font>
         </Label>
         <Button layoutX="106.0" layoutY="270.0" mnemonicParsing="false" onAction="#getAvailableRooms" prefHeight="25.0" prefWidth="129.0" text="Get avalibale rooms" />
+      <Label fx:id="error" layoutX="27.0" layoutY="319.0" prefHeight="17.0" prefWidth="269.0" />
     </children>
 </AnchorPane>

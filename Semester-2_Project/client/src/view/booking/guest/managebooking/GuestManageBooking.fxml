@@ -22,6 +22,7 @@
             <Font size="15.0" />
          </font>
       </Text>
-      <Button layoutX="82.0" layoutY="185.0" mnemonicParsing="false" onAction="#cancelBooking" prefHeight="25.0" prefWidth="128.0" text="Cancel reservation" />
+      <Button layoutX="85.0" layoutY="247.0" mnemonicParsing="false" onAction="#cancelBooking" prefHeight="25.0" prefWidth="128.0" text="Cancel reservation" />
+      <Button layoutX="80.0" layoutY="175.0" mnemonicParsing="false" onAction="#getMyBooking" prefHeight="25.0" prefWidth="128.0" text="Get My Booking" />
    </children>
 </AnchorPane>

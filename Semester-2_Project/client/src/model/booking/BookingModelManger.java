@@ -9,6 +9,7 @@ import user_state.UserState;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 
@@ -58,5 +59,10 @@ public class BookingModelManger implements BookingModel {
     @Override
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         support.removePropertyChangeListener(listener);
+    }
+
+    @Override
+    public void close() throws IOException {
+        client.close();
     }
 }

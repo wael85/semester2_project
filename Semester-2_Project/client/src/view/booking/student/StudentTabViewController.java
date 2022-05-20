@@ -28,7 +28,8 @@ public class StudentTabViewController {
         checkingController.init(viewHandler,vm.getCheckInViewModel());
     }
 
-    public void goBack(){
-        System.out.println("go back");
+    public void logOut(){
+        viewHandler.getCurrentUser().setCurrentUser(null);
+        viewHandler.openLogin();
     }
 }

@@ -1,5 +1,6 @@
 package viewModel.booking;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -35,7 +36,7 @@ public class StudentBookingViewModel {
         this.error = new SimpleStringProperty("");
         bookingModel.addPropertyChangeListener("getAvailableRooms",evt -> {
             if (date != null) {
-                getAvailableRooms(date);
+                updateRoomsList();
             }
         });
 
@@ -82,6 +83,11 @@ public class StudentBookingViewModel {
             error.set(e.getMessage());
             System.out.println(e.getMessage());
         }
+    }
+    public void updateRoomsList(){
+        Platform.runLater(()->{
+            getAvailableRooms(date);
+        });
     }
 
 }

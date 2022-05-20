@@ -1,41 +1,57 @@
 package view.booking.guest.booking;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import room_model.Room;
 import view.ViewHandler;
 import viewModel.booking.GuestBookingViewModel;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class GuestBookingController {
-    public ListView roomsList;
-    public DatePicker bookingDate;
-    public TextField startTime;
-    public TextField endTime;
     private ViewHandler viewHandler;
-    private GuestBookingViewModel viewModel;
-    private TextField date;
 
-    public void init(ViewHandler viewHandler, GuestBookingViewModel viewModel){
-        this.viewModel=viewModel;
-        this.viewHandler = viewHandler;
-        bookingDate.valueProperty().addListener((observable ,oldValue,newValue)-> {
-            date.textProperty().set(newValue.toString());
+    private GuestBookingViewModel guestBookingViewModel;
+    @FXML
+    private ListView<Room> roomsList;
+    @FXML
+    private DatePicker bookingDate;
+    @FXML
+    private TextField startTime;
+    @FXML
+    private TextField endTime;
+    @FXML
+    private Label error;
+    private Date date;
+
+    public void init(ViewHandler viewHandler,GuestBookingViewModel guestBookingViewModel){
+        this.viewHandler=viewHandler;
+        this.guestBookingViewModel = guestBookingViewModel;
+        bookingDate.setValue(LocalDate.now());
+        date = new Date(bookingDate.getValue().getYear(),bookingDate.getValue().getMonthValue()-1,bookingDate.getValue().getDayOfMonth());
+        bookingDate.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+
+                setDisable(empty || date.compareTo(today) < 0 );
+            }
         });
-        //viewModel.bindDate(date.textProperty());
-        viewModel.bindStartTime(startTime.textProperty());
-        viewModel.bindEndTime(endTime.textProperty());
+        bookingDate.valueProperty().addListener((observable ,oldValue,newValue)-> {
+            date = new Date( newValue.getYear(),newValue.getMonthValue()-1,newValue.getDayOfMonth());
+        });
+        this.guestBookingViewModel.bindStartTime(startTime.textProperty());
+        this.guestBookingViewModel.bindEndTime(endTime.textProperty());
+        this.guestBookingViewModel.bindError(error.textProperty());
     }
-    public void logout(){
-        viewHandler.getCurrentUser().setCurrentUser(null);
-        viewHandler.openLogin();
-    }
+    public void book(ActionEvent actionEvent){
+        guestBookingViewModel.bookRoom(roomsList.getSelectionModel().getSelectedItem().getRoomId());
+        bookingDate.setValue(LocalDate.now());
 
-    public void getAvailableRooms(ActionEvent actionEvent) {
-       // roomsList.setItems(viewModel.getAvailableRooms());
     }
-
-    public void book(ActionEvent actionEvent) {
-        System.out.println("Booking");
+    public void getAvailableRooms(ActionEvent actionEvent){
+        roomsList.setItems(guestBookingViewModel.getAvailableRooms(date));
     }
 }

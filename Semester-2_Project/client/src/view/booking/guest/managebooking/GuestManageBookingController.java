@@ -1,12 +1,13 @@
 package view.booking.guest.managebooking;
 
+import booking.Booking;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ListView;
 import view.ViewHandler;
 import viewModel.booking.GuestManageBookingViewModel;
 
 public class GuestManageBookingController {
-    public ListView bookingList;
+    public ListView<Booking> bookingList;
     private ViewHandler viewHandler;
     private GuestManageBookingViewModel viewModel;
 
@@ -15,8 +16,11 @@ public class GuestManageBookingController {
         this.viewModel=viewModel;
 
     }
-
-    public void cancelBooking(ActionEvent actionEvent) {
-
+    public void getMyBooking(){
+        bookingList.setItems(viewModel.getBookingsObList());
+    }
+    public void cancelBooking(){
+        viewModel.cancelBooking(bookingList.getSelectionModel().getSelectedItem());
+        getMyBooking();
     }
 }

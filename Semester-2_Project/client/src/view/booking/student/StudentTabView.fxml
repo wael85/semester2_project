@@ -9,18 +9,18 @@
     <children>
         <TabPane fx:id="tabPane" layoutX="-2.0" prefHeight="435.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
-                <Tab  text="Booking">
+                <Tab text="Booking">
                     <fx:include fx:id="studentBooking" source="booking/StudentBooking.fxml" />
                 </Tab>
-                <Tab  text="Manage booking">
+                <Tab text="Manage booking">
                     <fx:include fx:id="studentManageBooking" source="managebooking/StudentManageBooking.fxml" />
                 </Tab>
-                <Tab  text="Check in">
+                <Tab text="Check in">
                     <fx:include fx:id="checking" source="checking/Checking.fxml" />
                 </Tab>
             </tabs>
         </TabPane>
-      <Button layoutX="14.0" layoutY="423.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="92.0" text="Go back" />
+      <Button layoutX="14.0" layoutY="423.0" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="92.0" text="Log off" />
     </children>
 
 </AnchorPane>

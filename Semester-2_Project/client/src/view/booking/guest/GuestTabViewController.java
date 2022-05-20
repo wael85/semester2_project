@@ -27,7 +27,8 @@ public class GuestTabViewController {
         this.guestManageBookingController.init(viewHandler,vmf.getGuestManageBookingViewModel());
     }
 
-    public void goBackBtn() {
+    public void logOut() {
+        viewHandler.getCurrentUser().setCurrentUser(null);
         viewHandler.openLogin();
     }
 

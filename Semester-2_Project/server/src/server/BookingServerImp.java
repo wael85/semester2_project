@@ -13,6 +13,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 public class BookingServerImp extends UnicastRemoteObject implements RemoteBookingInterface {
    private BookingDAO bookingDAO;
@@ -35,7 +37,9 @@ public class BookingServerImp extends UnicastRemoteObject implements RemoteBooki
     public void createBooking(String bookBy, String roomId, Timestamp start, Timestamp end) throws RemoteException {
         try {
             bookingDAO.bookRoom(bookBy, roomId, start, end);
-            support.firePropertyChange("getAvailableRooms",null,null);
+            support.firePropertyChange("getAvailableRooms",null,getAvailableRooms(
+                    new Timestamp(LocalDateTime.now().getNano()),new Timestamp(LocalDateTime.now().getNano()+3600_000)
+            ));
 
         } catch (SQLException e) {
             throw new RemoteException( e.getMessage() , e);
@@ -65,7 +69,9 @@ public class BookingServerImp extends UnicastRemoteObject implements RemoteBooki
     public void cancelBooking(Booking booking) throws RemoteException {
         try {
             bookingDAO.cancelBooking(booking);
-            support.firePropertyChange("getAvailableRooms",null,null);
+            support.firePropertyChange("getAvailableRooms",null,getAvailableRooms(
+                    new Timestamp(LocalDateTime.now().getNano()),new Timestamp(LocalDateTime.now().getNano()+3600_000)
+            ));
         } catch (SQLException e) {
             throw new RemoteException( e.getMessage() , e);
         }
