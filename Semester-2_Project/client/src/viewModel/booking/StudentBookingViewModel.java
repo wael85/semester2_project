@@ -25,14 +25,20 @@ public class StudentBookingViewModel {
     private StringProperty error;
     private Timestamp startTimeStamp;
     private Timestamp endTimeStamp;
-
+    private Date date;
     public  StudentBookingViewModel(BookingModel bookingModel){
         this.bookingModel = bookingModel;
+        this.date=null;
         this.startTime = new SimpleStringProperty("");
         this.endTime = new SimpleStringProperty("");
         this.roomsList = FXCollections.observableArrayList();
         this.error = new SimpleStringProperty("");
-       // bookingModel.addPropertyChangeListener("getAvailableRooms",evt -> getAvailableRooms());
+        bookingModel.addPropertyChangeListener("getAvailableRooms",evt -> {
+            if (date != null) {
+                getAvailableRooms(date);
+            }
+        });
+
     }
     public void bindEndTime(StringProperty property){
         property.bindBidirectional(endTime);
@@ -46,6 +52,7 @@ public class StudentBookingViewModel {
 
     public ObservableList<Room> getAvailableRooms(Date d){
         try {
+            this.date=d;
             startTimeStamp = new Timestamp(d.getYear()-1900,d.getMonth()-1,d.getDate(),Integer.parseInt(startTime.get()),0,0,0);
             endTimeStamp = new Timestamp(d.getYear()-1900,d.getMonth()-1,d.getDate(),Integer.parseInt(endTime.get()),0,0,0);
           ArrayList<Room> rooms =  bookingModel.getAvailableRooms(startTimeStamp,endTimeStamp).getRoomsByType(RoomTypes.STUDY_ROOM.type);

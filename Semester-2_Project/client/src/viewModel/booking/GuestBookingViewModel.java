@@ -27,6 +27,7 @@ public class GuestBookingViewModel {
         this.endTime = new SimpleStringProperty("");
         this.roomsList = FXCollections.observableArrayList();
         this.error = new SimpleStringProperty("");
+        // bookingModel.addPropertyChangeListener("getAvailableRooms",evt -> );
     }
 
     public void bindDate(StringProperty textProperty) {
@@ -40,7 +41,7 @@ public class GuestBookingViewModel {
     public void bindEndTime(StringProperty textProperty) {
         textProperty.bindBidirectional(endTime);
       
-        // bookingModel.addPropertyChangeListener("getAvailableRooms",evt -> );
+
 
     }
 
