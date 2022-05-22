@@ -11,7 +11,7 @@ import java.sql.*;
 
 public class BookingImp implements BookingDAO{
     private static BookingImp instance;
-    private Dotenv dotenv = Dotenv.load();
+   // private Dotenv dotenv = Dotenv.load();
 
     private BookingImp() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
@@ -23,8 +23,9 @@ public class BookingImp implements BookingDAO{
         return instance;
     }
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://hattie.db.elephantsql.com:5432/zvltjqzb",dotenv.get("USER_NAME"),dotenv.get("PASSWORD"));
+       // return DriverManager.getConnection("jdbc:postgresql://hattie.db.elephantsql.com:5432/zvltjqzb",dotenv.get("USER_NAME"),dotenv.get("PASSWORD"));
        //return DriverManager.getConnection("jdbc:postgresql://localhost:5432/sep2_project?currentSchema=booking_room_system", "postgres", "1230");
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "369968");
 
     }
 
@@ -103,6 +104,17 @@ public class BookingImp implements BookingDAO{
         try (Connection c = getConnection()) {
             PreparedStatement preparedStatement = c.prepareStatement("DELETE from booking_room_system.booking WHERE booking.booking_number = ?;");
             preparedStatement.setInt(1, booking.getId());
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    @Override
+    public void checkIn(Booking booking) throws SQLException {
+        try (Connection c= getConnection()){
+            PreparedStatement preparedStatement= c.prepareStatement("UPDATE booking_room_system.booking\n" +
+                    "SET status='active'\n" +
+                    "WHERE booking_number=?;");
+            preparedStatement.setString(1, String.valueOf(booking.getId()));
             preparedStatement.executeUpdate();
         }
     }
