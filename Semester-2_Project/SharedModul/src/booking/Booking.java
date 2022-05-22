@@ -26,6 +26,9 @@ public class Booking implements Serializable {
         this.isCheckedIn = false;
         this.status = BookingStatus.PRE_ACTIVE.name();
     }
+    public Timestamp getStartDateTime(){
+        return startDateTime;
+    }
 
     public Timestamp getFirstReminder() {
         return firstReminder;
