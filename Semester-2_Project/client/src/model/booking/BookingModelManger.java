@@ -30,6 +30,11 @@ public class BookingModelManger implements BookingModel {
     }
 
     @Override
+    public void checkIn(Booking booking) throws RemoteException {
+        client.checkIn(booking);
+    }
+
+    @Override
     public void createBooking( String roomId, Timestamp start, Timestamp end) throws RemoteException {
         client.createBooking(currentUser.getCurrentUser().getUserName(), roomId,start,end);
     }

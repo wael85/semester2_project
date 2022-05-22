@@ -79,6 +79,16 @@ public class BookingServerImp extends UnicastRemoteObject implements RemoteBooki
     }
 
     @Override
+    public void checkIn(Booking booking) throws RemoteException {
+        try {
+            bookingDAO.checkIn(booking);
+        } catch (SQLException e) {
+            throw new RemoteException( e.getMessage() , e);
+        }
+
+    }
+
+    @Override
     public void addPropertyChangeListener(RemotePropertyChangeListener<Rooms> listener) throws RemoteException {
         support.addPropertyChangeListener(listener);
     }

@@ -14,6 +14,7 @@ public interface RemoteBookingInterface extends Remote {
     Rooms getAvailableRooms(Timestamp start, Timestamp end)throws RemoteException;
     Bookings getUserBooking(String userName)throws RemoteException;
     void cancelBooking(Booking booking) throws RemoteException;
+    void checkIn(Booking booking) throws RemoteException;
     void addPropertyChangeListener(RemotePropertyChangeListener<Rooms> listener) throws RemoteException;
 
     void removePropertyChangeListener(RemotePropertyChangeListener<Rooms> listener) throws RemoteException;

@@ -51,6 +51,11 @@ public class ClientBooking extends UnicastRemoteObject implements ClientBookingI
     }
 
     @Override
+    public void checkIn(Booking booking) throws RemoteException {
+        remoteBooking.checkIn(booking);
+    }
+
+    @Override
     public void addPropertyChangeListener(String event, PropertyChangeListener listener) throws RemoteException {
         support.addPropertyChangeListener(event, listener);
     }

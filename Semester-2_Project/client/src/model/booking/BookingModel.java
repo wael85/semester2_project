@@ -18,5 +18,6 @@ public interface BookingModel extends Closeable {
     void addPropertyChangeListener(String evt, PropertyChangeListener listener);
     void removePropertyChangeListener(PropertyChangeListener listener);
     UserState getCurrentUser();
+    void checkIn(Booking booking) throws RemoteException;
 
 }

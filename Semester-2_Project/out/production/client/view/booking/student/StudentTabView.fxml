@@ -15,9 +15,6 @@
                 <Tab text="Manage booking">
                     <fx:include fx:id="studentManageBooking" source="managebooking/StudentManageBooking.fxml" />
                 </Tab>
-                <Tab text="Check in">
-                    <fx:include fx:id="checking" source="checking/Checking.fxml" />
-                </Tab>
             </tabs>
         </TabPane>
       <Button layoutX="14.0" layoutY="423.0" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="92.0" text="Log off" />
