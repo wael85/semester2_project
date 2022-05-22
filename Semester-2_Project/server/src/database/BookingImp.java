@@ -111,10 +111,12 @@ public class BookingImp implements BookingDAO{
     @Override
 
     public void removeDeActiveBooking() throws SQLException {
-        try (Connection c = getConnection()){
+        try (Connection c = getConnection()) {
             PreparedStatement preparedStatement = c.prepareStatement("DELETE FROM booking_room_system.booking\n" +
                     "where end_datetime < current_timestamp OR\n" +
                     "      (current_timestamp >= booking.start_datetime + (30 * interval '1 minutes') and booking.ischecked = false);");
+        }
+    }
  @Override
     public void checkIn(Booking booking) throws SQLException {
         try (Connection c= getConnection()){
