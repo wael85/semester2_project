@@ -12,5 +12,8 @@ public interface BookingDAO {
     Rooms getAvailableRooms(Timestamp start , Timestamp end) throws SQLException;
     Bookings getUserBooking(String userName) throws SQLException;
     void cancelBooking(Booking booking) throws SQLException;
+
     void removeDeActiveBooking() throws SQLException;
+
+    void checkIn(Booking booking)throws SQLException;
 }
