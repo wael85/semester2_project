@@ -23,7 +23,9 @@ public class Server {
         registry.bind("manage_room",manageRoomServerImp);
         registry.bind("login",login);
         registry.bind("booking",remoteBooking);
-
+        CleanOldBooking cleanOldBooking = new CleanOldBooking();
+        Thread thread = new Thread(cleanOldBooking);
+        thread.start();
         System.out.println("Server is running on port "+ Registry.REGISTRY_PORT);
     }
 
