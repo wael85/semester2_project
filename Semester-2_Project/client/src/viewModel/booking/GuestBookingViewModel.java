@@ -52,14 +52,18 @@ public class GuestBookingViewModel {
     public ObservableList<Room> getAvailableRooms(Date d){
         try {
             this.date=d;
-            int start=Integer.parseInt(startTime.get().isEmpty()? "0" : startTime.get());
-            int end =Integer.parseInt(endTime.get().isEmpty()? "0" : endTime.get());
-            startTimeStamp = new Timestamp(d.getYear()-1900,d.getMonth()-1,d.getDate(),start,0,0,0);
-            endTimeStamp = new Timestamp(d.getYear()-1900,d.getMonth()-1,d.getDate(),end,0,0,0);
-            ArrayList<Room> rooms =  bookingModel.getAvailableRooms(startTimeStamp,endTimeStamp).getRoomsByType(RoomTypes.AUDITORY_ROOM.type);
-            this.roomsList.clear();
-            this.roomsList.addAll(rooms);
-            return roomsList;
+            ArrayList<Room> rooms;
+            if (!(startTime.get().equals("")||endTime.get().equals(""))){
+                int start=Integer.parseInt(startTime.get());
+                int end =Integer.parseInt(endTime.get());
+                startTimeStamp = new Timestamp(d.getYear()-1900,d.getMonth()-1,d.getDate(),start,0,0,0);
+                endTimeStamp = new Timestamp(d.getYear()-1900,d.getMonth()-1,d.getDate(),end,0,0,0);
+                rooms =  bookingModel.getAvailableRooms(startTimeStamp,endTimeStamp).getRooms();
+                this.roomsList.clear();
+                this.roomsList.addAll(rooms);
+                return roomsList;
+            }
+            return null;
         } catch (RemoteException e) {
             error.set(e.getMessage());
             e.printStackTrace();
