@@ -54,8 +54,10 @@ public class StudentBookingViewModel {
     public ObservableList<Room> getAvailableRooms(Date d){
         try {
             this.date=d;
-            startTimeStamp = new Timestamp(d.getYear()-1900,d.getMonth()-1,d.getDate(),Integer.parseInt(startTime.get()),0,0,0);
-            endTimeStamp = new Timestamp(d.getYear()-1900,d.getMonth()-1,d.getDate(),Integer.parseInt(endTime.get()),0,0,0);
+            int start=Integer.parseInt(startTime.get().isEmpty()? "0" : startTime.get());
+            int end =Integer.parseInt(endTime.get().isEmpty()? "0" : endTime.get());
+            startTimeStamp = new Timestamp(d.getYear()-1900,d.getMonth()-1,d.getDate(),start,0,0,0);
+            endTimeStamp = new Timestamp(d.getYear()-1900,d.getMonth()-1,d.getDate(),end,0,0,0);
           ArrayList<Room> rooms =  bookingModel.getAvailableRooms(startTimeStamp,endTimeStamp).getRoomsByType(RoomTypes.STUDY_ROOM.type);
           this.roomsList.clear();
           this.roomsList.addAll(rooms);
