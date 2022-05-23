@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.login.LoginModel;
 
+import javax.swing.*;
 import java.rmi.RemoteException;
 
 public class LoginViewModel {
@@ -31,7 +32,11 @@ public class LoginViewModel {
     }
     public boolean login() {
         try {
+            error.set("");
            boolean t = loginModel.login(userName.get(),password.get());
+           if(t == false){
+               JOptionPane.showMessageDialog(null,"UserName Or Password is incorrect !!");
+           }
            return t;
         }catch (RemoteException e){
             error.set("");

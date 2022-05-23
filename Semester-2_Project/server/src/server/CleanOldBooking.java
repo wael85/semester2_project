@@ -15,8 +15,11 @@ public class CleanOldBooking implements Runnable {
     public void run() {
         while (true){
             try {
-                Thread.sleep(1800000);
+               // Thread.sleep(1800000);
+                Thread.sleep(60000);
+                System.out.println("Start to clean Booking table !!!");
                 bookingDAO.removeDeActiveBooking();
+                System.out.println("finish cleaning !!");
             } catch (InterruptedException | SQLException e) {
                 e.printStackTrace();
             }

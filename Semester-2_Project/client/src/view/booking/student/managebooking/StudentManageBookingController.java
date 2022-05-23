@@ -33,7 +33,8 @@ public class StudentManageBookingController {
        getMyBooking();
     }
     public void checkIn(){
-        if(bookingList.getSelectionModel().getSelectedItem().getStartDateTime().getTime() <= LocalDateTime.now().getNano()){
+        Timestamp t = new Timestamp(LocalDateTime.now().getYear()-1900,LocalDateTime.now().getMonthValue()-1,LocalDateTime.now().getDayOfMonth(),LocalDateTime.now().getHour(),LocalDateTime.now().getMinute(),0,0);
+        if(bookingList.getSelectionModel().getSelectedItem().getStartDateTime().getTime() > t.getTime()){
             JOptionPane.showMessageDialog( null ,"It is not time yet for check in");
         }else {
             studentManageBookingViewModel.checkIn(bookingList.getSelectionModel().getSelectedItem());

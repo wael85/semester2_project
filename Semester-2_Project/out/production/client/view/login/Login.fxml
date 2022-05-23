@@ -22,7 +22,6 @@
             <Font size="15.0" />
          </font></Label>
       <Label fx:id="error" layoutX="107.0" layoutY="300.0" />
-      <Button layoutX="263.0" layoutY="256.0" mnemonicParsing="false" onAction="#login" prefHeight="26.0" prefWidth="75.0" text="Log in" />
       <Text layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in:" wrappingWidth="322.646484375">
          <font>
             <Font size="28.0" />
@@ -39,5 +38,6 @@
          </font>
       </Text>
       <PasswordField fx:id="password" layoutX="221.0" layoutY="213.0" />
+      <Button layoutX="263.0" layoutY="256.0" mnemonicParsing="false" onAction="#login" prefHeight="26.0" prefWidth="75.0" text="Log in" />
    </children>
 </AnchorPane>
