@@ -7,6 +7,10 @@ import javafx.scene.control.ListView;
 import view.ViewHandler;
 import viewModel.booking.StudentManageBookingViewModel;
 
+import javax.swing.*;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 public class StudentManageBookingController {
 
     @FXML
@@ -29,6 +33,10 @@ public class StudentManageBookingController {
        getMyBooking();
     }
     public void checkIn(){
-        studentManageBookingViewModel.checkIn(bookingList.getSelectionModel().getSelectedItem());
+        if(bookingList.getSelectionModel().getSelectedItem().getStartDateTime().getTime() <= LocalDateTime.now().getNano()){
+            JOptionPane.showMessageDialog( null ,"It is not time yet for check in");
+        }else {
+            studentManageBookingViewModel.checkIn(bookingList.getSelectionModel().getSelectedItem());
+        }
     }
 }

@@ -43,6 +43,10 @@ public class Booking implements Serializable {
         return id;
     }
 
+    public Timestamp getStartDateTime() {
+        return startDateTime;
+    }
+
     @Override
     public String toString() {
         return "Booking{" +
@@ -54,8 +58,5 @@ public class Booking implements Serializable {
                 '}';
     }
 
-    public static void main(String[] args) {
-        Booking y = new Booking(1,"wer","wr",new Timestamp(2022-1900,4,12,10,0,3,0),new Timestamp(2022,4,12,13,0,0,0));
-        System.out.println(y.getFirstReminder().toLocaleString());
-    }
+
 }

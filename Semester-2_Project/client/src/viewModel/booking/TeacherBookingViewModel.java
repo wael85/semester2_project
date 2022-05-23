@@ -56,7 +56,6 @@ public class TeacherBookingViewModel {
             return roomsList;
         } catch (RemoteException e) {
             error.set(e.getMessage());
-            e.printStackTrace();
             return null;
         }
     }

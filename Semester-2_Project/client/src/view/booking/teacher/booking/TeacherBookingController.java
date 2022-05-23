@@ -31,7 +31,7 @@ public class TeacherBookingController {
         this.viewHandler=viewHandler;
         this.viewModel = viewModel;
         bookingDate.setValue(LocalDate.now());
-        date = new Date(bookingDate.getValue().getYear(),bookingDate.getValue().getMonthValue()-1,bookingDate.getValue().getDayOfMonth());
+        date = new Date(bookingDate.getValue().getYear(),bookingDate.getValue().getMonthValue(),bookingDate.getValue().getDayOfMonth());
         bookingDate.setDayCellFactory(picker -> new DateCell() {
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
@@ -41,7 +41,7 @@ public class TeacherBookingController {
             }
         });
         bookingDate.valueProperty().addListener((observable ,oldValue,newValue)-> {
-            date = new Date( newValue.getYear(),newValue.getMonthValue()-1,newValue.getDayOfMonth());
+            date = new Date( newValue.getYear(),newValue.getMonthValue(),newValue.getDayOfMonth());
         });
         viewModel.bindStartTime(startTime.textProperty());
         viewModel.bindEndTime(endTime.textProperty());

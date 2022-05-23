@@ -12,6 +12,7 @@ import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Timestamp;
@@ -82,7 +83,6 @@ public class ClientBooking extends UnicastRemoteObject implements ClientBookingI
     public void removePropertyChangeListener(RemotePropertyChangeListener<Rooms> listener) throws RemoteException {
 
     }
-
 
     @Override
     public void propertyChange(RemotePropertyChangeEvent<Rooms> event) throws RemoteException {
