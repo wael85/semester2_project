@@ -17,7 +17,7 @@ public class ValidatorCheckIn {
 
         //todo check the month in controller and viewModel
 
-        Timestamp timestamp= new Timestamp(now.getYear()-1900,now.getMonthValue()-2,now.getDayOfMonth(), now.getHour(), now.getMinute(), 0,0);
+        Timestamp timestamp= new Timestamp(now.getYear()-1900,now.getMonthValue()-1,now.getDayOfMonth(), now.getHour(), now.getMinute(), 0,0);
 
 
 
