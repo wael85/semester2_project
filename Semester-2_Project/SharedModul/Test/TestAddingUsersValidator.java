@@ -156,15 +156,15 @@ public class TestAddingUsersValidator {
         assertThrows(IllegalArgumentException.class,() -> client.createAdmin("","Password0000","firstname","lastname","Admin@gmail.com","12345678"));
     }
     @Test
-    public void adminAddingAdminWithUsernameLessThan6(){
-        assertThrows(IllegalArgumentException.class,() -> client.createAdmin("Admin","Password0000","firstname","lastname","Admin@gmail.com","12345678"));
+    public void adminAddingAdminWithUsernameLessThan3(){
+        assertThrows(IllegalArgumentException.class,() -> client.createAdmin("Ad","Password0000","firstname","lastname","Admin@gmail.com","12345678"));
     }
     @Test
-    public void adminAddingAdminWithUsername6() throws RemoteException {
-        client.createAdmin("Admin1","Password0000","firstname","lastname","Admin@gmail.com","12345678");
+    public void adminAddingAdminWithUsername3() throws RemoteException {
+        client.createAdmin("Adm","Password0000","firstname","lastname","Admin@gmail.com","12345678");
         boolean isThere=false;
         for (User u:client.getAllUsers().getUsers()) {
-            if (u.getUserName().equals("Admin1")){
+            if (u.getUserName().equals("Adm")){
                 isThere=true;
             }
         }
@@ -172,7 +172,7 @@ public class TestAddingUsersValidator {
     }
     @Test
     public void deleteAdmin1() throws RemoteException {
-        client.deleteUser("Admin1");
+        client.deleteUser("Adm");
     }
     @Test
     public void adminAddingAdminWithUsernameMoreThan3() throws RemoteException {
@@ -261,15 +261,15 @@ public class TestAddingUsersValidator {
         assertThrows(IllegalArgumentException.class,() -> client.createTeacher("","Password0000","firstname","lastname","Teacher@gmail.com","123456789"));
     }
     @Test
-    public void adminAddingTeacherWithUsernameLessThan6(){
-        assertThrows(IllegalArgumentException.class,() -> client.createTeacher("TEA","Password0000","firstname","lastname","Teacher@gmail.com","123456789"));
+    public void adminAddingTeacherWithUsernameLessThan3(){
+        assertThrows(IllegalArgumentException.class,() -> client.createTeacher("TE","Password0000","firstname","lastname","Teacher@gmail.com","123456789"));
     }
     @Test
-    public void adminAddingTeacherWithUsername6() throws RemoteException {
-        client.createTeacher("Teache","Password0000","firstname","lastname","Teacher@gmail.com","123456789");
+    public void adminAddingTeacherWithUsername3() throws RemoteException {
+        client.createTeacher("Tea","Password0000","firstname","lastname","Teacher@gmail.com","123456789");
         boolean isThere=false;
         for (User u:client.getAllUsers().getUsers()) {
-            if (u.getUserName().equals("Teache")){
+            if (u.getUserName().equals("Tea")){
                 isThere=true;
             }
         }
@@ -277,10 +277,10 @@ public class TestAddingUsersValidator {
     }
     @Test
     public void deleteTeache() throws RemoteException {
-        client.deleteUser("Teache");
+        client.deleteUser("Tea");
     }
     @Test
-    public void adminAddingTeacherWithUsernameMoreThan6() throws RemoteException {
+    public void adminAddingTeacherWithUsernameMoreThan3() throws RemoteException {
         client.createTeacher("TEACHER","Password0000","firstname","lastname","Teacher@gmail.com","123456789");
         boolean isThere=false;
         for (User u:client.getAllUsers().getUsers()) {
@@ -366,11 +366,26 @@ public class TestAddingUsersValidator {
         assertThrows(IllegalArgumentException.class,() -> client.createGuest("","Password0000","company","company@gmail.com","12345678"));
     }
     @Test
-    public void adminAddingGuestWithUsernameLessThan6(){
-        assertThrows(IllegalArgumentException.class,() -> client.createGuest("CVR","Password0000","company","company@gmail.com","12345678"));
+    public void adminAddingGuestWithUsernameLessThan3(){
+        assertThrows(IllegalArgumentException.class,() -> client.createGuest("CV","Password0000","company","company@gmail.com","12345678"));
     }
     @Test
-    public void adminAddingGuestWithUsername6() throws RemoteException {
+    public void adminAddingGuestWithUsername() throws RemoteException {
+        client.createGuest("CVR","Password0000","company","company@gmail.com","12345678");
+        boolean isThere=false;
+        for (User u:client.getAllUsers().getUsers()) {
+            if (u.getUserName().equals("CVR")){
+                isThere=true;
+            }
+        }
+        assertTrue(isThere);
+    }
+    @Test
+    public void deleteCVRCVR() throws RemoteException {
+        client.deleteUser("CVR");
+    }
+    @Test
+    public void adminAddingGuestWithUsernameMoreThan3() throws RemoteException {
         client.createGuest("CVRCVR","Password0000","company","company@gmail.com","12345678");
         boolean isThere=false;
         for (User u:client.getAllUsers().getUsers()) {
@@ -381,23 +396,8 @@ public class TestAddingUsersValidator {
         assertTrue(isThere);
     }
     @Test
-    public void deleteCVRCVR() throws RemoteException {
-        client.deleteUser("CVRCVR");
-    }
-    @Test
-    public void adminAddingGuestWithUsernameMoreThan6() throws RemoteException {
-        client.createGuest("CVRCVR1","Password0000","company","company@gmail.com","12345678");
-        boolean isThere=false;
-        for (User u:client.getAllUsers().getUsers()) {
-            if (u.getUserName().equals("CVRCVR1")){
-                isThere=true;
-            }
-        }
-        assertTrue(isThere);
-    }
-    @Test
     public void deleteCVRCVR1() throws RemoteException {
-        client.deleteUser("CVRCVR1");
+        client.deleteUser("CVRCVR");
     }
 
 
