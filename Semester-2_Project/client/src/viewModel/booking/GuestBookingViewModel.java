@@ -58,7 +58,7 @@ public class GuestBookingViewModel {
                 int end =Integer.parseInt(endTime.get());
                 startTimeStamp = new Timestamp(d.getYear()-1900,d.getMonth()-1,d.getDate(),start,0,0,0);
                 endTimeStamp = new Timestamp(d.getYear()-1900,d.getMonth()-1,d.getDate(),end,0,0,0);
-                rooms =  bookingModel.getAvailableRooms(startTimeStamp,endTimeStamp).getRooms();
+                rooms =  bookingModel.getAvailableRooms(startTimeStamp,endTimeStamp).getRoomsByType(RoomTypes.AUDITORY_ROOM.type);
                 this.roomsList.clear();
                 this.roomsList.addAll(rooms);
                 return roomsList;

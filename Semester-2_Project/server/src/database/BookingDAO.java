@@ -15,6 +15,5 @@ public interface BookingDAO {
     void cancelBooking(Booking booking) throws SQLException;
     void removeDeActiveBooking() throws SQLException;
     void checkIn(Booking booking)throws SQLException;
-    Bookings getAllBookingNeedsReminder() throws SQLException;
     ArrayList<String> getAllEmailsToReminder() throws SQLException;
 }
