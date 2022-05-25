@@ -6,6 +6,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.booking.BookingModel;
+import model.inputValidation.ValidatorBooking;
 import room_model.Room;
 import room_model.RoomTypes;
 import room_model.Rooms;
@@ -54,14 +55,16 @@ public class GuestBookingViewModel {
             this.date=d;
             ArrayList<Room> rooms;
             if (!(startTime.get().equals("")||endTime.get().equals(""))){
-                int start=Integer.parseInt(startTime.get());
-                int end =Integer.parseInt(endTime.get());
-                startTimeStamp = new Timestamp(d.getYear()-1900,d.getMonth()-1,d.getDate(),start,0,0,0);
-                endTimeStamp = new Timestamp(d.getYear()-1900,d.getMonth()-1,d.getDate(),end,0,0,0);
-                rooms =  bookingModel.getAvailableRooms(startTimeStamp,endTimeStamp).getRoomsByType(RoomTypes.AUDITORY_ROOM.type);
-                this.roomsList.clear();
-                this.roomsList.addAll(rooms);
-                return roomsList;
+                if (ValidatorBooking.validatorTime(date,startTime.get(), endTime.get())) {
+                    int start = Integer.parseInt(startTime.get());
+                    int end = Integer.parseInt(endTime.get());
+                    startTimeStamp = new Timestamp(d.getYear() - 1900, d.getMonth() - 1, d.getDate(), start, 0, 0, 0);
+                    endTimeStamp = new Timestamp(d.getYear() - 1900, d.getMonth() - 1, d.getDate(), end, 0, 0, 0);
+                    rooms = bookingModel.getAvailableRooms(startTimeStamp, endTimeStamp).getRoomsByType(RoomTypes.AUDITORY_ROOM.type);
+                    this.roomsList.clear();
+                    this.roomsList.addAll(rooms);
+                    return roomsList;
+                }
             }
             return null;
         } catch (RemoteException e) {
