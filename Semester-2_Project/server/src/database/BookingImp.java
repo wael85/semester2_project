@@ -8,6 +8,8 @@ import room_model.Room;
 import room_model.Rooms;
 
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class BookingImp implements BookingDAO{
     private static BookingImp instance;
@@ -128,6 +130,50 @@ public class BookingImp implements BookingDAO{
                     "where booking_number = ?;");
             preparedStatement.setInt(1,booking.getId());
             preparedStatement.executeUpdate();
+        }
+    }
+
+    @Override
+    public Bookings getAllBookingNeedsReminder() throws SQLException {
+        try (Connection c = getConnection()) {
+            PreparedStatement preparedStatement = c.prepareStatement("SELECT * from booking_room_system.booking WHERE booking.start_datetime > ? OR booking.start_datetime = ?;");
+            preparedStatement.setTimestamp(1,new Timestamp(LocalDateTime.now().getYear()-1900,
+                    LocalDateTime.now().getMonthValue()-1,LocalDateTime.now().getDayOfMonth(),LocalDateTime.now().getHour(),
+                    LocalDateTime.now().getMinute(),LocalDateTime.now().getSecond(),0
+            ));
+            preparedStatement.setTimestamp(2,new Timestamp(LocalDateTime.now().getYear()-1900,
+                    LocalDateTime.now().getMonthValue()-1,LocalDateTime.now().getDayOfMonth(),LocalDateTime.now().getHour(),
+                    LocalDateTime.now().getMinute()+25,LocalDateTime.now().getSecond(),0
+            ));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            Bookings bookings= new Bookings();
+            while (resultSet.next()) {
+                Booking booking = new Booking(resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getTimestamp(4),
+                        resultSet.getTimestamp(5)
+                );
+                booking.setCheckedIn(resultSet.getBoolean(8));
+                booking.setStatus(resultSet.getString(9));
+                bookings.addBooking(booking);
+            }
+            return bookings;
+        }
+    }
+    @Override
+    public ArrayList<String> getAllEmailsToReminder()throws SQLException{
+        try (Connection c = getConnection()) {
+            PreparedStatement preparedStatement = c.prepareStatement( "SELECT student.email FROM booking_room_system.booking JOIN booking_room_system.student\n" +
+                    "ON bookedby = student.user_name_fk\n" +
+                    "where (current_timestamp between first_remainder AND start_datetime) OR\n" +
+                    "     ( current_timestamp > last_remainder AND ischecked = false);");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            ArrayList<String> emails= new ArrayList<>();
+            while (resultSet.next()) {
+                emails.add(resultSet.getString(1));
+            }
+            return emails;
         }
     }
 }

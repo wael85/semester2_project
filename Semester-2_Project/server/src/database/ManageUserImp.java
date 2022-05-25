@@ -121,7 +121,7 @@ public class ManageUserImp implements ManageUserDAO{
     public Users getAllStudents() throws SQLException {
         Users users = new Users();
         try (Connection c = getConnection()) {
-            PreparedStatement preparedStatement = c.prepareStatement("select user_name,password,student.f_name,student.l_name,student.phone ,student.email from booking_room_system.users join booking_room_system.student\n" +
+            PreparedStatement preparedStatement = c.prepareStatement("select user_name,password,student.f_name,student.l_name ,student.email,student.phone from booking_room_system.users join booking_room_system.student\n" +
                     "on users.user_name = student.user_name_fk");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -142,7 +142,7 @@ public class ManageUserImp implements ManageUserDAO{
     public Users getAllTeachers() throws SQLException {
         Users users = new Users();
         try (Connection c = getConnection()){
-            PreparedStatement preparedStatement = c.prepareStatement("select user_name,password,teacher.f_name,teacher.l_name,teacher.phone ,teacher.email from booking_room_system.users join booking_room_system.teacher  on users.user_name = teacher.user_name_fk");
+            PreparedStatement preparedStatement = c.prepareStatement("select user_name,password,teacher.f_name,teacher.l_name ,teacher.email,teacher.phone from booking_room_system.users join booking_room_system.teacher  on users.user_name = teacher.user_name_fk");
             ResultSet resultSet1 =  preparedStatement.executeQuery();
             while (resultSet1.next()){
                 User teacher = new Teacher(resultSet1.getString(1),
@@ -164,8 +164,8 @@ public class ManageUserImp implements ManageUserDAO{
         Users users = new Users();
         try (Connection c = getConnection()) {
             PreparedStatement preparedStatement = c.prepareStatement("select user_name,password," +
-                    "administrator.f_name,administrator.l_name,administrator.phone" +
-                    " ,administrator.email from booking_room_system.users " +
+                    "administrator.f_name,administrator.l_name" +
+                    " ,administrator.email,administrator.phone from booking_room_system.users " +
                     "join booking_room_system.administrator  " +
                     "on users.user_name = administrator.user_name_fk");
             ResultSet resultSet = preparedStatement.executeQuery();

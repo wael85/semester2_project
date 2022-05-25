@@ -11,6 +11,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class Server {
     public static void main(String[] args) throws RemoteException, AlreadyBoundException, SQLException {
@@ -24,8 +26,11 @@ public class Server {
         registry.bind("login",login);
         registry.bind("booking",remoteBooking);
         CleanOldBooking cleanOldBooking = new CleanOldBooking();
+        SendReminder sendReminder = new SendReminder();
         Thread thread = new Thread(cleanOldBooking);
+        Thread sendSMS = new Thread(sendReminder);
         thread.start();
+        sendSMS.start();
         System.out.println("Server is running on port "+ Registry.REGISTRY_PORT);
     }
 
