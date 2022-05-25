@@ -31,8 +31,8 @@ public class ClientBooking extends UnicastRemoteObject implements ClientBookingI
 
 
     @Override
-    public void createBooking(String bookBy, String roomId, Timestamp start, Timestamp end) throws RemoteException {
-        remoteBooking.createBooking(bookBy, roomId, start, end);
+    public void createBooking(String bookBy, String roomId, Timestamp start, Timestamp end , boolean isCheckedIn) throws RemoteException {
+        remoteBooking.createBooking(bookBy, roomId, start, end, isCheckedIn);
     }
 
     @Override

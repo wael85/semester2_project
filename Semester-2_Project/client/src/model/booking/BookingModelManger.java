@@ -5,6 +5,7 @@ import booking.Bookings;
 import client.ClientBookingInterface;
 import room_model.Rooms;
 import user_state.UserState;
+import users_model.UsersTypes;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -36,7 +37,12 @@ public class BookingModelManger implements BookingModel {
 
     @Override
     public void createBooking( String roomId, Timestamp start, Timestamp end) throws RemoteException {
-        client.createBooking(currentUser.getCurrentUser().getUserName(), roomId,start,end);
+        if(currentUser.getCurrentUser().getUserType().equals(UsersTypes.STUDENT.name())){
+            client.createBooking(currentUser.getCurrentUser().getUserName(), roomId,start,end,false);
+        }else {
+            client.createBooking(currentUser.getCurrentUser().getUserName(), roomId,start,end,true);
+        }
+
     }
 
     @Override

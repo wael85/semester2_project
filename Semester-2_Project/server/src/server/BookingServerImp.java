@@ -34,9 +34,9 @@ public class BookingServerImp extends UnicastRemoteObject implements RemoteBooki
 
 
     @Override
-    public void createBooking(String bookBy, String roomId, Timestamp start, Timestamp end) throws RemoteException {
+    public void createBooking(String bookBy, String roomId, Timestamp start, Timestamp end , boolean isCheckedIn) throws RemoteException {
         try {
-            bookingDAO.bookRoom(bookBy, roomId, start, end);
+            bookingDAO.bookRoom(bookBy, roomId, start, end, isCheckedIn);
             support.firePropertyChange("getAvailableRooms",null,getAvailableRooms(
                     new Timestamp(LocalDateTime.now().getNano()),new Timestamp(LocalDateTime.now().getNano()+3600_000)
             ));

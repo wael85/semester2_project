@@ -32,7 +32,7 @@ public class BookingImp implements BookingDAO{
     }
 
     @Override
-    public void bookRoom(String bookedBy, String roomId, Timestamp startDateTime, Timestamp endDateTime) throws SQLException {
+    public void bookRoom(String bookedBy, String roomId, Timestamp startDateTime, Timestamp endDateTime, boolean isCheckedIn) throws SQLException {
        try(Connection c = getConnection()) {
            PreparedStatement preparedStatement = c.prepareStatement("insert into booking_room_system.booking " +
                    "(bookedby, room_id, start_datetime, end_datetime, first_remainder, last_remainder,ischecked, status)" +
@@ -44,7 +44,7 @@ public class BookingImp implements BookingDAO{
            preparedStatement.setTimestamp(4, endDateTime);
            preparedStatement.setTimestamp(5, new Timestamp(startDateTime.getTime() - 300_000));
            preparedStatement.setTimestamp(6, new Timestamp(startDateTime.getTime() + 1_500_000));
-           preparedStatement.setBoolean(7, false);
+           preparedStatement.setBoolean(7, isCheckedIn);
            preparedStatement.setString(8, "preactive");
            preparedStatement.executeUpdate();
            ResultSet key = preparedStatement.getGeneratedKeys();
