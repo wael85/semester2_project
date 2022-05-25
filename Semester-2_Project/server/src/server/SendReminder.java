@@ -69,20 +69,21 @@ public class SendReminder implements Runnable{
     public void run() {
 
         while (true){
-            if(LocalDateTime.now().getMinute() == 55 | LocalDateTime.now().getMinute() == 25) {
                 try {
-                    ArrayList<String> emails = bookingDAO.getAllEmailsToReminder();
-                    System.out.println(emails);
-                    if (emails.size() > 0) {
-                        for (String x : emails) {
-                            sendEmail(x);
+                    if((LocalDateTime.now().getMinute() >= 55 && LocalDateTime.now().getMinute() <= 59 ) |
+                            (LocalDateTime.now().getMinute() >= 25 && LocalDateTime.now().getMinute() <= 29)){
+                        ArrayList<String> emails = bookingDAO.getAllEmailsToReminder();
+                        System.out.println(emails);
+                        if (emails.size() > 0) {
+                            for (String x : emails) {
+                                sendEmail(x);
+                            }
                         }
                     }
                     Thread.sleep(300000);
                 } catch (SQLException | InterruptedException x) {
                     System.out.println(x.getMessage());
                 }
-            }
         }
     }
 }
