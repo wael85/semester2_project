@@ -1,11 +1,12 @@
-import client.ManageRoomClient;
-import client.ManageRoomClientInterface;
-import client.ManageUserClient;
-import client.ManageUserClientInterface;
+import booking.Booking;
+import client.*;
+import model.booking.BookingModelManger;
 import model.rooms.RoomManagementModelManage;
 import model.users_mangment.UsersManagementModelManger;
 import org.junit.jupiter.api.*;
 import room_model.Room;
+import user_state.UserState;
+import users_model.Student;
 import users_model.User;
 
 import java.io.IOException;
@@ -15,6 +16,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import java.sql.Driver;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,6 +26,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestCasesTest {
     private UsersManagementModelManger client;
     private RoomManagementModelManage roomClient;
+    private BookingModelManger bookingClient;
+    private UserState current;
 
     @BeforeEach
     public void setup() throws NotBoundException, RemoteException {
@@ -32,6 +37,10 @@ public class TestCasesTest {
 
         ManageRoomClientInterface manageRoomClient = new ManageRoomClient(registry);
         this.roomClient = new RoomManagementModelManage(manageRoomClient);
+
+        ClientBookingInterface clientBooking = new ClientBooking(registry);
+        this.current=new UserState();
+        this.bookingClient=new BookingModelManger(clientBooking,current);
 
 
 
@@ -246,7 +255,71 @@ public class TestCasesTest {
         assertFalse(isThere);
     }
 
+@Test
+    public void aUserCanBookARoom() throws RemoteException {
+    User user =client.getAllUsers().getStudents().get(0);
+    current.setCurrentUser(user);
+    Timestamp start=new Timestamp(1);
+    Timestamp end=new Timestamp(3);
+    bookingClient.createBooking(bookingClient.getAvailableRooms(start,end).getRooms().get(0).getRoomId(),start,end);
+        boolean isThere=false;
+    for (Booking b:bookingClient.getUserBooking().getBookingList()) {
+       if (b.toString().equals(bookingClient.getUserBooking().getBookingList().get(0).toString())){
+           isThere=true;
+       }
 
+    }
+    assertTrue(isThere);
+
+}
+
+@Test
+public void userBookroomWithStartTimeNow() throws RemoteException {
+    User user =client.getAllUsers().getStudents().get(0);
+    current.setCurrentUser(user);
+    Timestamp start=new Timestamp(LocalDateTime.now().getHour());
+    Timestamp end=new Timestamp(16);
+    assertThrows(RemoteException.class,()->bookingClient.createBooking(bookingClient.getAvailableRooms(start,end).getRooms().get(0).getRoomId(),start,end));
+}
+    @Test
+    public void userBookRoomWithEndTimeSoFar() throws RemoteException {
+        User user =client.getAllUsers().getStudents().get(0);
+        current.setCurrentUser(user);
+        Timestamp start=new Timestamp(15);
+        Timestamp end=new Timestamp(23);
+        assertThrows(RemoteException.class,()->bookingClient.createBooking(bookingClient.getAvailableRooms(start,end).getRooms().get(0).getRoomId(),start,end));
+    }
+@Test
+    public void aUserCanCheckInToHisBookedRoom() throws RemoteException {
+
+    User user =client.getAllUsers().getStudents().get(1);
+    current.setCurrentUser(user);
+    Timestamp start=new Timestamp(6);
+    Timestamp end=new Timestamp(8);
+    bookingClient.createBooking(bookingClient.getAvailableRooms(start,end).getRooms().get(0).getRoomId(),start,end);
+      Booking booking= bookingClient.getUserBooking().getBookingList().get(0);
+      bookingClient.checkIn(booking);
+       assertTrue(bookingClient.getUserBooking().getBookingList().get(0).getIsCheckedIn());
+}
+@Test
+    public void userCanCancelHisBooking() throws RemoteException {
+    User user =client.getAllUsers().getStudents().get(1);
+    current.setCurrentUser(user);
+    Timestamp start=new Timestamp(6);
+    Timestamp end=new Timestamp(8);
+    bookingClient.createBooking(bookingClient.getAvailableRooms(start,end).getRooms().get(0).getRoomId(),start,end);
+    Booking booking= bookingClient.getUserBooking().getBookingList().get(0);
+    bookingClient.cancelBooking(booking);
+    boolean notThere=false;
+    for (Booking b:bookingClient.getUserBooking().getBookingList()) {
+        if (b.toString().equals(bookingClient.getUserBooking().getBookingList().get(0).toString())){
+            notThere=true;
+        }
+
+    }
+    assertFalse(notThere);
+
+}
 
 
 }
