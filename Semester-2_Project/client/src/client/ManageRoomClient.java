@@ -74,9 +74,4 @@ public class ManageRoomClient extends UnicastRemoteObject implements ManageRoomC
         support.firePropertyChange(changeEvent.getPropertyName(),changeEvent.getOldValue(),changeEvent.getNewValue());
     }
 
-  /*  public static void main(String[] args) throws RemoteException, NotBoundException {
-        Registry registry = LocateRegistry.getRegistry("localhost", Registry.REGISTRY_PORT);
-        ManageRoomClient manageRoomClient = new ManageRoomClient(registry);
-        System.out.println(manageRoomClient.remoteManageRoom.getAllRooms());
-    }*/
 }

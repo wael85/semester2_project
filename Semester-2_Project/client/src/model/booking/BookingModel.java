@@ -5,6 +5,7 @@ import booking.Bookings;
 import room_model.Rooms;
 import user_state.UserState;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.Closeable;
 import java.rmi.RemoteException;
@@ -19,5 +20,6 @@ public interface BookingModel extends Closeable {
     void removePropertyChangeListener(PropertyChangeListener listener);
     UserState getCurrentUser();
     void checkIn(Booking booking) throws RemoteException;
+    void updateAvailableRooms(PropertyChangeEvent evt);
 
 }

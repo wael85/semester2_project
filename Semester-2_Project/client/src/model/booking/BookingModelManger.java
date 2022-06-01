@@ -59,7 +59,8 @@ public class BookingModelManger implements BookingModel {
     public void cancelBooking(Booking booking) throws RemoteException {
           client.cancelBooking(booking);
     }
-    private void updateAvailableRooms(PropertyChangeEvent evt) {
+    @Override
+    public void updateAvailableRooms(PropertyChangeEvent evt) {
         support.firePropertyChange("getAvailableRooms",null,evt.getNewValue());
     }
     @Override

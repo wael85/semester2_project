@@ -64,7 +64,6 @@ public class SendReminder implements Runnable{
         }
         return null;
     }
-
     @Override
     public void run() {
 

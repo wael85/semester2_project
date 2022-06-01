@@ -52,7 +52,8 @@ public class ValidatorBooking {
         java.util.Date convertedDatetime = java.sql.Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
         if (date.getDate()==convertedDatetime.getDate()){
             if (s<now.getHour()){
-                notificationPopup("can book today from "+now.getHour());
+                int hour = now.getHour()+1;
+                notificationPopup("can book today from "+hour);
 
                 return false;
             }

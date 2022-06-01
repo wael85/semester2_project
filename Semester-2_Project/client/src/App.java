@@ -20,7 +20,8 @@ import java.rmi.registry.Registry;
 public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Registry registry = LocateRegistry.getRegistry("localhost", Registry.REGISTRY_PORT);
+        Registry registry = LocateRegistry.getRegistry("10.154.194.20", Registry.REGISTRY_PORT);
+        System.out.println(registry);
         UserState currentUser = new UserState();
         ClientBookingInterface clientBooking = new ClientBooking(registry);
         ManageUserClientInterface manageUserClient = new ManageUserClient(registry);

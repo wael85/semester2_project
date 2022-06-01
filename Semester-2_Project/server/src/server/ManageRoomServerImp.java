@@ -24,7 +24,6 @@ public class ManageRoomServerImp extends UnicastRemoteObject implements RemoteMa
         this.support = new RemotePropertyChangeSupport<>(this);
     }
 
-
     @Override
     public Room createRoom( String building, String  floor, String  number, String type, String  capacity) throws RemoteException{
        try {

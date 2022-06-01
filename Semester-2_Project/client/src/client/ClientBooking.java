@@ -11,6 +11,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.rmi.NotBoundException;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -21,12 +22,12 @@ public class ClientBooking extends UnicastRemoteObject implements ClientBookingI
     private Registry registry;
     private RemoteBookingInterface remoteBooking;
     private PropertyChangeSupport support;
-
     public ClientBooking(Registry registry) throws RemoteException, NotBoundException {
         this.registry = registry;
         remoteBooking = (RemoteBookingInterface) this.registry.lookup("booking");
+        System.out.println(remoteBooking.getUserBooking("ignign"));
         this.support = new PropertyChangeSupport(this);
-        remoteBooking.addPropertyChangeListener(this);
+       // remoteBooking.addPropertyChangeListener(this);
     }
 
 

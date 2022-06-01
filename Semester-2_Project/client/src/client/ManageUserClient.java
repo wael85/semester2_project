@@ -20,7 +20,7 @@ public class ManageUserClient extends UnicastRemoteObject implements ManageUserC
     public ManageUserClient(Registry registry) throws RemoteException, NotBoundException {
 
         remoteManageUsers = (RemoteManageUsers) registry.lookup("manage_users");
-        remoteManageUsers.addPropertyChangeListener(this);
+       // remoteManageUsers.addPropertyChangeListener(this);
         this.support = new PropertyChangeSupport(this);
     }
 

@@ -26,9 +26,6 @@ public class BookingImp implements BookingDAO{
     }
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:postgresql://hattie.db.elephantsql.com:5432/zvltjqzb",dotenv.get("USER_NAME"),dotenv.get("PASSWORD"));
-       //return DriverManager.getConnection("jdbc:postgresql://localhost:5432/sep2_project?currentSchema=booking_room_system", "postgres", "1230");
-       // return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "369968");
-
     }
 
     @Override
@@ -57,12 +54,16 @@ public class BookingImp implements BookingDAO{
     @Override
     public Rooms getAvailableRooms(Timestamp start, Timestamp end) throws SQLException {
         try (Connection c = getConnection()) {
-            PreparedStatement preparedStatement = c.prepareStatement("select room.room_id ,room.building,room.floor,room.number,room.capacity,room.type from booking_room_system.room where booking_room_system.room.room_id not in\n" +
-                    "(select room_id from booking_room_system.booking WHERE ((end_datetime = '"+end+"'  AND start_datetime = '"+start+"' ) OR\n" +
-                    "                                                 (('"+start+"' > start_datetime AND '"+start+"' < end_datetime)  ) OR\n" +
-                    "                                                 ('"+end+"' > start_datetime AND '"+end+"' < end_datetime) OR\n" +
-                    "                                                 (start_datetime > '"+start+"' AND start_datetime < '"+end+"')OR\n" +
-                    "                                                 (end_datetime > '"+start+"' AND end_datetime <'"+end+"')))");
+            PreparedStatement preparedStatement = c.prepareStatement(
+                    "select room.room_id ,room.building,room.floor," +
+                            "room.number,room.capacity,room.type from booking_room_system.room " +
+                            "where booking_room_system.room.room_id not in\n" +
+                    "(select room_id from booking_room_system.booking" +
+                    " WHERE ((end_datetime = '"+end+"'  AND start_datetime = '"+start+"' ) OR\n" +
+                    " (('"+start+"' > start_datetime AND '"+start+"' < end_datetime)  ) OR\n" +
+                    " ('"+end+"' > start_datetime AND '"+end+"' < end_datetime) OR\n" +
+                    "(start_datetime > '"+start+"' AND start_datetime < '"+end+"')OR\n" +
+                    "(end_datetime > '"+start+"' AND end_datetime <'"+end+"')))");
             ResultSet resultSet = preparedStatement.executeQuery();
             Rooms rooms = new Rooms();
             while (resultSet.next()) {

@@ -7,8 +7,8 @@
     </content>
     <orderEntry type="jdk" jdkName="openjdk-17" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="SharedModul" />
-    <orderEntry type="library" name="javafx.fxml" level="application" />
-    <orderEntry type="library" name="remoteobserver" level="application" />
+    <orderEntry type="module" module-name="SharedModul" exported="" />
+    <orderEntry type="library" exported="" name="javafx.fxml" level="application" />
+    <orderEntry type="library" exported="" name="remoteobserver" level="application" />
   </component>
 </module>
